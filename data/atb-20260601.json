@@ -1,0 +1,538 @@
+{
+  "hubs": [
+    {
+      "id": "bc1ab73a-c6df-4e10-91e5-82780a1cebeb",
+      "name": "北一女",
+      "aliases": ["臺北市立第一女子高級中學"]
+    },
+    {
+      "id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "name": "台大",
+      "aliases": ["國立臺灣大學", "臺灣大學", "臺大"]
+    },
+    {
+      "id": "bca74409-9609-4376-bc15-f83b07caef3d",
+      "name": "建中",
+      "aliases": ["臺北市立建國高級中學", "建國高中"]
+    },
+    {
+      "id": "d28351e5-3000-4bce-b315-654bd120fb7a",
+      "name": "師大附中",
+      "aliases": ["國立臺灣師範大學附屬高級中學", "附中"]
+    },
+    {
+      "id": "2d54ef76-3f3f-4df9-bb32-6bed9123d7b8",
+      "name": "雄中",
+      "aliases": ["高雄市立高雄高級中學"]
+    },
+    {
+      "id": "12610968-1926-43b5-9b91-4b086aa0fc1a",
+      "name": "精誠中學",
+      "aliases": ["彰化縣私立精誠高級中學"]
+    },
+    {
+      "id": "42db2cad-8c86-4f24-8f2f-0137d966e3aa",
+      "name": "師大",
+      "aliases": ["國立臺灣師範大學"]
+    },
+    {
+      "id": "ab66f1a2-90ce-4b11-a374-7dce37e7a0e2",
+      "name": "北科大",
+      "aliases": ["國立臺北科技大學"]
+    },
+    {
+      "id": "d986ab78-bc3c-431f-9534-aee66a8f8a27",
+      "name": "逢大",
+      "aliases": ["逢甲大學", "逢甲"]
+    },
+    {
+      "id": "e1b22713-78dc-482b-b31e-b0779ddc33e6",
+      "name": "中一中",
+      "aliases": ["臺中市立臺中第一高級中等學校", "臺中一中", "台中一中"]
+    }
+  ],
+  "spots": [
+    {
+      "id": "7d88b42f-0f47-42fa-a8f2-13c45c9e0c16",
+      "name": "HIKARU CAFE 光咖啡",
+      "google_map_url": "https://maps.app.goo.gl/YwQgzE4vP4GWr2A59",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2020"
+    },
+    {
+      "id": "4cc9a69a-39e5-4d89-8e7e-477b4ed44fcc",
+      "name": "小李水餃店",
+      "google_map_url": "https://maps.app.goo.gl/Pzv8b5dyvQFft9H68",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "a5060b70-2f2c-4fae-b995-3a69a84ee3bc",
+      "name": "紫牛平價牛排",
+      "google_map_url": "https://maps.app.goo.gl/3Svu3xUVEkEvbcYQ8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2021"
+    },
+    {
+      "id": "cfed7446-f567-439a-a4fb-59fd1307b84f",
+      "name": "長興小舖",
+      "google_map_url": "https://maps.app.goo.gl/cJJXx73HZKAcYTu59",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "2509c5cf-1ba2-48e5-a173-50cc9e394c4c",
+      "name": "山嵐拉麵 公館店",
+      "google_map_url": "https://maps.app.goo.gl/EHRuzKxS1K49rM1t8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "e1b176d8-f66b-44d8-960d-c4e92fa8d87d",
+      "name": "陳三鼎黑糖粉圓專賣店",
+      "google_map_url": "https://maps.app.goo.gl/uhATcYF28g2RWfz59",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019/11"
+    },
+    {
+      "id": "c52d9cc3-629d-47bf-a177-3306f324cfba",
+      "name": "天麻蒙古天香鍋",
+      "google_map_url": "https://maps.app.goo.gl/Wn21B2QTmDNAbf6K9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2017"
+    },
+    {
+      "id": "7e374aaa-2757-4184-ae80-6c66e52635ab",
+      "name": "得記蛋糕 Target Bakery",
+      "google_map_url": "https://maps.app.goo.gl/jgHEyVWenQfKmqsz6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025/1"
+    },
+    {
+      "id": "a8656c5b-d876-45ef-85a2-c6f74003df01",
+      "name": "3隻貓頭鷹文創",
+      "google_map_url": "https://maps.app.goo.gl/Ea2SzUkisWBW9Lcw8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "705300c0-e469-443e-9d5b-c5bf599f8e0b",
+      "name": "阿英海產粥",
+      "google_map_url": "https://maps.app.goo.gl/DaXR1ysA4nLHmPV96",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026/4"
+    },
+    {
+      "id": "e1f1a52f-625e-45ce-9407-059bb25f772c",
+      "name": "靚咖哩",
+      "google_map_url": "https://maps.app.goo.gl/5jYGXjGGuo6cYtEY8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023"
+    },
+    {
+      "id": "a453df33-ce44-4178-893e-873549b2b5ff",
+      "name": "上穎牛肉麵 台大創始店",
+      "google_map_url": "https://maps.app.goo.gl/6x3zKxbjPzuAvuDw8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "9040f222-29e6-4105-ab2a-4eefb4ecd771",
+      "name": "一弄/The Alley One",
+      "google_map_url": "https://maps.app.goo.gl/4u28obH6LoBzE5JP8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "5850c257-6195-483e-a6af-3bb8a2ba8c32",
+      "name": "臺北市立建國高級中學合作社",
+      "google_map_url": "https://maps.app.goo.gl/gbSesArBEwzvu2rA9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024/3"
+    },
+    {
+      "id": "6a5cc614-e90d-4283-9d2c-3b7bfd16cc0c",
+      "name": "雲南小廚",
+      "google_map_url": "https://maps.app.goo.gl/32hhjtFx6ZZJ8uzCA",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026"
+    },
+    {
+      "id": "e135a188-78ea-490b-ba44-be4121e75b2b",
+      "name": "康荷簡餐",
+      "google_map_url": "https://maps.app.goo.gl/6ogaM2qpVQGMbhG29",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2022"
+    },
+    {
+      "id": "5cef50fd-c4fc-4edb-8c1a-ab1feccaaec7",
+      "name": "Central Park Cafe",
+      "google_map_url": "https://maps.app.goo.gl/hRxpANTZSpxGVRQ19",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2021"
+    },
+    {
+      "id": "9f451093-ffad-4567-bfad-13ee9fd3b08e",
+      "name": "鮮味(炒飯炒麵)",
+      "google_map_url": "https://maps.app.goo.gl/U8QMy2QjzCQvUiPA8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2022"
+    },
+    {
+      "id": "bee9a484-dbba-44b7-ad7d-0f35b621cdcb",
+      "name": "琪仙館 同愛店",
+      "google_map_url": "https://maps.app.goo.gl/avhbVig3wVd1SX9U8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026"
+    },
+    {
+      "id": "42a744bd-fcb8-46a5-be5d-2806b2238f51",
+      "name": "泰蝦了-活蝦料理",
+      "google_map_url": "https://maps.app.goo.gl/t6nszpbJFkXm8Zxt7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "0e9c4ac4-5da1-424a-a440-8589993dede3",
+      "name": "樂饕美食刀削麵",
+      "google_map_url": "https://maps.app.goo.gl/t7QhdX6YZmtnxrmr8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "421d37b4-1833-4e84-b736-ce468588a3d3",
+      "name": "張媽媽大腸蚵仔麵線",
+      "google_map_url": "https://maps.app.goo.gl/RLQJZ9hzwhLdSSk9A",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "b9ccdbb7-d3e9-4bad-be6a-f472e21c305a",
+      "name": "艸艸好室",
+      "google_map_url": "https://maps.app.goo.gl/gNUArAm6LPrsqshm9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023"
+    },
+    {
+      "id": "5abae5a6-b40d-42dc-ac0e-8a28d795dd34",
+      "name": "阿婆早餐",
+      "google_map_url": "https://maps.app.goo.gl/nNxZKMtD2bZM3vcy6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024/7"
+    },
+    {
+      "id": "ec2f6d5c-afee-48b4-89ca-366ccc18c90a",
+      "name": "華軒排骨專賣店",
+      "google_map_url": "https://maps.app.goo.gl/wPV67RRWVQnKFqbt8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "aa2b54f7-a8e4-43fc-96e1-103fc163b2a4",
+      "name": "空腹鐵板吐司",
+      "google_map_url": "https://maps.app.goo.gl/4zmCC7auB4vfvRUK7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2022"
+    },
+    {
+      "id": "4e3db955-7b74-4214-8ba2-120df2397a1f",
+      "name": "蓋王泡后光華店",
+      "google_map_url": "https://maps.app.goo.gl/UjQQppz1mEpVmsqv8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "9befef8e-4b21-4d23-92c0-d69869cc0574",
+      "name": "重裝戰雞-逢甲店",
+      "google_map_url": "https://maps.app.goo.gl/ZftJLEW8Z9SM97K58",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "5659bdc5-46bf-4043-b17c-c76ba81f7fe1",
+      "name": "白帝城川式滷味(逢甲店）",
+      "google_map_url": "https://maps.app.goo.gl/7LsAYryDN1EGUQ3y5",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "258514ed-22b4-46c0-af62-ac9821d09762",
+      "name": "新香港蒸神 - 港式蒸飯茶餐廳",
+      "google_map_url": "https://maps.app.goo.gl/ABYcjDoHUKDwkE4Z6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "14a8a64e-9258-4f21-8fa2-10264a4eccbb",
+      "name": "陳媽媽四季涼補",
+      "google_map_url": "https://maps.app.goo.gl/dzhZAMcfmxLVAPS76",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "38fde7d8-ad51-4060-b921-22fab3770108",
+      "name": "幕府串燒",
+      "google_map_url": "https://maps.app.goo.gl/wSLmUtqSeLPyWt4J6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "50516750-078b-4d5c-9e30-dc20d1363085",
+      "name": "嚐再食物所",
+      "google_map_url": "https://maps.app.goo.gl/xaaZqmPnNJ8Jqy8u8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023"
+    },
+    {
+      "id": "c07830f3-7908-4c74-ad3b-bbaf848a586c",
+      "name": "健身廚房",
+      "google_map_url": "https://maps.app.goo.gl/zbScjXQR2BqUQGU77",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023"
+    },
+    {
+      "id": "e6e7e90b-cff7-4ef7-b7e4-19db6dcdb737",
+      "name": "快炒王",
+      "google_map_url": "https://maps.app.goo.gl/gyqKwtG4MyDtxtRh7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023"
+    },
+    {
+      "id": "eb1dfb0a-60de-4358-a2f7-5e980ee30a1a",
+      "name": "佐野拉麵",
+      "google_map_url": "https://maps.app.goo.gl/Av5MbdEcSWWEXj5o6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "84e74383-59cf-44d9-8f1f-cde9fbbdb8e4",
+      "name": "爆丼 SUPER DON",
+      "google_map_url": "https://maps.app.goo.gl/jLrjrTWdowHqZZZ38",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2021"
+    },
+    {
+      "id": "ffa13e3d-9bf6-4492-8e74-4564507688bf",
+      "name": "禾HER 小火鍋 一中店",
+      "google_map_url": "https://maps.app.goo.gl/LQQMPC2pydFLB9GP9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "0a94ce94-4aca-4141-9769-979d6b9dbf68",
+      "name": "58號粥舖",
+      "google_map_url": "https://maps.app.goo.gl/45C2eSoA8Qz9AkDz7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023"
+    },
+    {
+      "id": "566d1eb8-c137-46e9-8747-fca0b969fbef",
+      "name": "阿豬媽아줌마韓式烤肉",
+      "google_map_url": "https://maps.app.goo.gl/HFbiXyBNNzLcHpgg8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    }
+  ],
+  "hub_x_spot": [
+    {
+      "id": "669af386-4179-42f5-a697-5ab85baacd91",
+      "hub_id": "bc1ab73a-c6df-4e10-91e5-82780a1cebeb",
+      "spot_id": "7d88b42f-0f47-42fa-a8f2-13c45c9e0c16"
+    },
+    {
+      "id": "9f62b456-cfd8-4d2b-9021-dd4f589976dc",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "4cc9a69a-39e5-4d89-8e7e-477b4ed44fcc"
+    },
+    {
+      "id": "b6333e6f-1847-4f73-9191-e1ac4fe797d8",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "a5060b70-2f2c-4fae-b995-3a69a84ee3bc"
+    },
+    {
+      "id": "ac0a5697-7382-44af-b894-972d7f68bf1d",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "cfed7446-f567-439a-a4fb-59fd1307b84f"
+    },
+    {
+      "id": "661c0d22-f936-4c72-8c99-b0b6327650c8",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "2509c5cf-1ba2-48e5-a173-50cc9e394c4c"
+    },
+    {
+      "id": "a0537995-0639-4155-856c-94077ff753c9",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "e1b176d8-f66b-44d8-960d-c4e92fa8d87d"
+    },
+    {
+      "id": "aeb84e40-c0e8-43d7-ab4e-51d6a70407f3",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "c52d9cc3-629d-47bf-a177-3306f324cfba"
+    },
+    {
+      "id": "cac0d990-ce43-456b-9d49-d9d0fda77200",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "7e374aaa-2757-4184-ae80-6c66e52635ab"
+    },
+    {
+      "id": "e65fed97-6db5-4e7e-a992-ffe400f05e30",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "a8656c5b-d876-45ef-85a2-c6f74003df01"
+    },
+    {
+      "id": "6e672dcd-2264-4b61-a8cd-912dd8a2d9a8",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "705300c0-e469-443e-9d5b-c5bf599f8e0b"
+    },
+    {
+      "id": "15719a3f-b3c4-43b9-9611-661795b85acf",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "e1f1a52f-625e-45ce-9407-059bb25f772c"
+    },
+    {
+      "id": "58c1e8ec-7f82-46e2-a14f-11868cb068d8",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "a453df33-ce44-4178-893e-873549b2b5ff"
+    },
+    {
+      "id": "30159641-9ba9-4a9b-a3f5-372b5af67751",
+      "hub_id": "2629f774-30fb-47c4-aee4-6cecb4eed020",
+      "spot_id": "9040f222-29e6-4105-ab2a-4eefb4ecd771"
+    },
+    {
+      "id": "9e57a8c1-c3a7-4075-a358-0bbec7034f94",
+      "hub_id": "bca74409-9609-4376-bc15-f83b07caef3d",
+      "spot_id": "5850c257-6195-483e-a6af-3bb8a2ba8c32"
+    },
+    {
+      "id": "3529a7c9-cdf2-4fcb-87a1-866cfce8c99d",
+      "hub_id": "bca74409-9609-4376-bc15-f83b07caef3d",
+      "spot_id": "6a5cc614-e90d-4283-9d2c-3b7bfd16cc0c"
+    },
+    {
+      "id": "23f8d8f3-d1fd-471e-8935-5708668d5861",
+      "hub_id": "bca74409-9609-4376-bc15-f83b07caef3d",
+      "spot_id": "e135a188-78ea-490b-ba44-be4121e75b2b"
+    },
+    {
+      "id": "35bf138c-cbcd-41a6-9138-070aef0b3abc",
+      "hub_id": "d28351e5-3000-4bce-b315-654bd120fb7a",
+      "spot_id": "5cef50fd-c4fc-4edb-8c1a-ab1feccaaec7"
+    },
+    {
+      "id": "08b3ad61-beed-42ea-8320-c0da68e55d7d",
+      "hub_id": "2d54ef76-3f3f-4df9-bb32-6bed9123d7b8",
+      "spot_id": "9f451093-ffad-4567-bfad-13ee9fd3b08e"
+    },
+    {
+      "id": "8b573951-b63e-4438-a812-6b1c1c260a2d",
+      "hub_id": "2d54ef76-3f3f-4df9-bb32-6bed9123d7b8",
+      "spot_id": "bee9a484-dbba-44b7-ad7d-0f35b621cdcb"
+    },
+    {
+      "id": "047fcbb2-9cc0-4f88-85ea-7e631b59f30b",
+      "hub_id": "12610968-1926-43b5-9b91-4b086aa0fc1a",
+      "spot_id": "42a744bd-fcb8-46a5-be5d-2806b2238f51"
+    },
+    {
+      "id": "bbf927fa-1a72-4c34-a0d0-5ca623e0e9bb",
+      "hub_id": "12610968-1926-43b5-9b91-4b086aa0fc1a",
+      "spot_id": "0e9c4ac4-5da1-424a-a440-8589993dede3"
+    },
+    {
+      "id": "ac37d593-307e-4435-9a25-0b42c54754f5",
+      "hub_id": "42db2cad-8c86-4f24-8f2f-0137d966e3aa",
+      "spot_id": "421d37b4-1833-4e84-b736-ce468588a3d3"
+    },
+    {
+      "id": "1aedf453-5a84-4e10-b527-c0ea649b6faf",
+      "hub_id": "42db2cad-8c86-4f24-8f2f-0137d966e3aa",
+      "spot_id": "b9ccdbb7-d3e9-4bad-be6a-f472e21c305a"
+    },
+    {
+      "id": "69f354bf-5480-418e-bd76-b790adb011b8",
+      "hub_id": "42db2cad-8c86-4f24-8f2f-0137d966e3aa",
+      "spot_id": "5abae5a6-b40d-42dc-ac0e-8a28d795dd34"
+    },
+    {
+      "id": "cb57ade6-5c51-4ed8-a024-4c8ae3eb5b74",
+      "hub_id": "42db2cad-8c86-4f24-8f2f-0137d966e3aa",
+      "spot_id": "ec2f6d5c-afee-48b4-89ca-366ccc18c90a"
+    },
+    {
+      "id": "1a6a3050-2920-42d6-a6d3-a309971f5687",
+      "hub_id": "ab66f1a2-90ce-4b11-a374-7dce37e7a0e2",
+      "spot_id": "aa2b54f7-a8e4-43fc-96e1-103fc163b2a4"
+    },
+    {
+      "id": "4f327af8-f6a0-422b-8640-d0a0b21f4956",
+      "hub_id": "ab66f1a2-90ce-4b11-a374-7dce37e7a0e2",
+      "spot_id": "4e3db955-7b74-4214-8ba2-120df2397a1f"
+    },
+    {
+      "id": "a6f27b28-0aba-4db1-8cd7-bfedc1c8db67",
+      "hub_id": "d986ab78-bc3c-431f-9534-aee66a8f8a27",
+      "spot_id": "9befef8e-4b21-4d23-92c0-d69869cc0574"
+    },
+    {
+      "id": "5977d561-cf7a-4653-beaf-0de0726f8276",
+      "hub_id": "d986ab78-bc3c-431f-9534-aee66a8f8a27",
+      "spot_id": "5659bdc5-46bf-4043-b17c-c76ba81f7fe1"
+    },
+    {
+      "id": "4fad9c64-18d5-4729-934f-9afa38c26b2b",
+      "hub_id": "d986ab78-bc3c-431f-9534-aee66a8f8a27",
+      "spot_id": "258514ed-22b4-46c0-af62-ac9821d09762"
+    },
+    {
+      "id": "680e38f0-410c-4e01-8906-d2eaffa27c25",
+      "hub_id": "d986ab78-bc3c-431f-9534-aee66a8f8a27",
+      "spot_id": "14a8a64e-9258-4f21-8fa2-10264a4eccbb"
+    },
+    {
+      "id": "6e2d9ee4-a179-4557-95e4-7b3dc9a5c859",
+      "hub_id": "d986ab78-bc3c-431f-9534-aee66a8f8a27",
+      "spot_id": "38fde7d8-ad51-4060-b921-22fab3770108"
+    },
+    {
+      "id": "151ce04d-ab28-4058-80ee-1a874d441e7f",
+      "hub_id": "e1b22713-78dc-482b-b31e-b0779ddc33e6",
+      "spot_id": "50516750-078b-4d5c-9e30-dc20d1363085"
+    },
+    {
+      "id": "96971c25-11aa-416d-8a54-e6d58e09fd15",
+      "hub_id": "e1b22713-78dc-482b-b31e-b0779ddc33e6",
+      "spot_id": "c07830f3-7908-4c74-ad3b-bbaf848a586c"
+    },
+    {
+      "id": "5e28e971-6c4a-48dc-9507-4390ed65b38d",
+      "hub_id": "e1b22713-78dc-482b-b31e-b0779ddc33e6",
+      "spot_id": "e6e7e90b-cff7-4ef7-b7e4-19db6dcdb737"
+    },
+    {
+      "id": "9217ce14-b745-456b-9c9d-afc8b858815b",
+      "hub_id": "e1b22713-78dc-482b-b31e-b0779ddc33e6",
+      "spot_id": "eb1dfb0a-60de-4358-a2f7-5e980ee30a1a"
+    },
+    {
+      "id": "82bb0d94-cbb2-4387-943f-9e25356c735b",
+      "hub_id": "e1b22713-78dc-482b-b31e-b0779ddc33e6",
+      "spot_id": "84e74383-59cf-44d9-8f1f-cde9fbbdb8e4"
+    },
+    {
+      "id": "39fb2e1b-d9e8-4ddd-9579-6738d9d90ff7",
+      "hub_id": "e1b22713-78dc-482b-b31e-b0779ddc33e6",
+      "spot_id": "ffa13e3d-9bf6-4492-8e74-4564507688bf"
+    },
+    {
+      "id": "65c68de1-7cec-4afb-b6f5-6c90e613a78f",
+      "hub_id": "e1b22713-78dc-482b-b31e-b0779ddc33e6",
+      "spot_id": "0a94ce94-4aca-4141-9769-979d6b9dbf68"
+    },
+    {
+      "id": "9c23bcf1-5b55-4161-ad34-bc80484d1235",
+      "hub_id": "e1b22713-78dc-482b-b31e-b0779ddc33e6",
+      "spot_id": "566d1eb8-c137-46e9-8747-fca0b969fbef"
+    }
+  ]
+}
