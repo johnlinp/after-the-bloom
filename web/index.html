@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>空折枝 - 哪裡有熄燈的店家？</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21 C15 16 9 9 5 4'/%3E%3Cpath d='M14.5 15.5 C10 15 8 16 6 16'/%3E%3Cpath d='M11 11.5 C12 8 13 6 14 4'/%3E%3Cpath d='M8 8 C6 7.5 4 8 2 8'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #f6f0e6;
+      --surface: rgba(255, 252, 247, 0.88);
+      --surface-strong: #fffdf8;
+      --text: #2f352f;
+      --muted: #667060;
+      --line: rgba(91, 101, 87, 0.22);
+      --accent: #55684f;
+      --hero-band: #c9472f;
+      --hero-band-deep: #a63826;
+      --shadow: 0 18px 40px rgba(82, 72, 48, 0.08);
+      --serif: "Iowan Old Style", "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+      --sans: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.75), rgba(255,255,255,0) 22%),
+        linear-gradient(180deg, #f8f4ec 0%, var(--bg) 100%);
+    }
+
+    .top-shell {
+      position: relative;
+      background:
+        linear-gradient(180deg, var(--hero-band-deep) 0, var(--hero-band) 22px, var(--hero-band) 100%);
+      color: #fff8ef;
+      box-shadow: inset 0 -1px 0 rgba(88, 28, 18, 0.18);
+    }
+
+    .top-shell::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0) 28%);
+      pointer-events: none;
+    }
+
+    .page {
+      width: min(100%, 1440px);
+      margin: 0 auto;
+      padding: 28px clamp(28px, 4vw, 72px) 88px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 80px 1fr 80px;
+      align-items: center;
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(255, 248, 239, 0.2);
+    }
+
+    .topbar__mark,
+    .topbar__menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff6eb;
+    }
+
+    .topbar__home {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .topbar__home:focus-visible {
+      outline: 2px solid rgba(255, 246, 235, 0.7);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      display: block;
+    }
+
+    .topbar__title {
+      text-align: center;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.4vw, 3.35rem);
+      letter-spacing: 0.22em;
+      color: #fff9ef;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 56px 0 48px;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: clamp(1rem, 1.45vw, 1.45rem);
+      letter-spacing: 0.06em;
+      color: rgba(255, 248, 240, 0.9);
+    }
+
+    .search-wrap {
+      position: relative;
+      width: min(100%, 960px);
+      margin: 38px auto 0;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      padding: 26px 28px;
+      border: 1px solid rgba(255, 246, 236, 0.35);
+      border-radius: 24px;
+      background: rgba(255, 251, 245, 0.96);
+      box-shadow:
+        0 16px 30px rgba(107, 28, 14, 0.16),
+        inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-size: clamp(1.1rem, 1.7vw, 1.55rem);
+      letter-spacing: 0.08em;
+      font-family: var(--sans);
+    }
+
+    .search-bar input::placeholder {
+      color: rgba(52, 58, 52, 0.62);
+    }
+
+    .search-icon {
+      width: 52px;
+      height: 52px;
+      flex: 0 0 auto;
+      color: #55684f;
+    }
+
+    .search-results {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 0;
+      right: 0;
+      z-index: 2;
+      display: none;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 252, 247, 0.97);
+      box-shadow: var(--shadow);
+    }
+
+    .search-results.is-open {
+      display: block;
+    }
+
+    .search-result {
+      width: 100%;
+      padding: 16px 18px;
+      border: 0;
+      border-radius: 16px;
+      background: transparent;
+      text-align: left;
+      color: var(--text);
+      font-size: 0.96rem;
+      cursor: pointer;
+    }
+
+    .search-result:hover,
+    .search-result:focus-visible {
+      background: rgba(85, 104, 79, 0.1);
+      outline: none;
+    }
+
+    .hub-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 34px 0 22px;
+      min-height: 74px;
+    }
+
+    .hub-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hub-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 26px;
+      border-radius: 999px;
+      background: rgba(185, 193, 170, 0.42);
+      color: #4b5e44;
+      font-size: clamp(0.95rem, 1.15vw, 1.2rem);
+      letter-spacing: 0.08em;
+    }
+
+    .hub-pill-button {
+      border: 0;
+      background: rgba(185, 193, 170, 0.42);
+      cursor: pointer;
+      text-align: left;
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    .hub-pill-button:hover,
+    .hub-pill-button:focus-visible {
+      filter: brightness(1.06);
+    }
+
+    .hub-pill-button:focus-visible {
+      outline: 2px solid rgba(85, 104, 79, 0.45);
+      outline-offset: 4px;
+    }
+
+    .hub-pill[hidden],
+    .follow-hub[hidden],
+    .empty-state[hidden] {
+      display: none;
+    }
+
+    .follow-hub {
+      padding: 14px 26px;
+      border: 2px solid rgba(201, 71, 47, 0.9);
+      border-radius: 999px;
+      background: var(--hero-band);
+      color: #fff8ef;
+      font-size: clamp(0.95rem, 1.15vw, 1.2rem);
+      letter-spacing: 0.2em;
+      cursor: pointer;
+    }
+
+    .follow-hub:hover,
+    .follow-hub:focus-visible {
+      filter: brightness(1.08);
+    }
+
+    .modal[hidden] {
+      display: none;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(38, 35, 27, 0.28);
+      backdrop-filter: blur(6px);
+    }
+
+    .modal__panel {
+      width: min(100%, 520px);
+      padding: 36px 32px;
+      border-radius: 24px;
+      background: rgba(255, 252, 247, 0.98);
+      box-shadow: 0 20px 48px rgba(55, 40, 25, 0.18);
+      text-align: center;
+    }
+
+    .modal__message {
+      margin: 0;
+      color: #2f352f;
+      font-size: 1.08rem;
+      letter-spacing: 0.08em;
+      line-height: 1.7;
+    }
+
+    .modal__actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 42px;
+    }
+
+    .modal__close {
+      padding: 12px 24px;
+      border: 1px solid rgba(85, 104, 79, 0.6);
+      border-radius: 999px;
+      background: transparent;
+      color: #4b5e44;
+      font-size: 0.92rem;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+    }
+
+    .spot-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .spot-card {
+      display: grid;
+      grid-template-columns: minmax(320px, 1.2fr) minmax(330px, 42vw);
+      gap: clamp(28px, 4vw, 72px);
+      align-items: center;
+      width: 100%;
+      padding: 18px 0;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      text-align: left;
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    .spot-meta {
+      color: #627059;
+      font-size: clamp(0.84rem, 0.92vw, 1rem);
+      letter-spacing: 0.08em;
+    }
+
+    .spot-name {
+      margin-top: 20px;
+      font-family: var(--serif);
+      font-size: clamp(1.45rem, 1.95vw, 2.15rem);
+      line-height: 1.1;
+      color: #21251f;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      word-break: keep-all;
+    }
+
+    .spot-link {
+      display: inline-block;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .spot-link:hover,
+    .spot-link:focus-visible {
+      color: #545a54;
+    }
+
+    .spot-link:focus-visible {
+      outline: 2px solid rgba(85, 104, 79, 0.5);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    .spot-hub {
+      margin-top: 18px;
+      color: #303632;
+      font-size: clamp(0.98rem, 1.08vw, 1.16rem);
+      letter-spacing: 0.08em;
+      word-break: keep-all;
+    }
+
+    .spot-hub-button {
+      display: block;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    .spot-hub-button:hover,
+    .spot-hub-button:focus-visible {
+      color: #545a54;
+    }
+
+    .spot-hub-button:focus-visible {
+      outline: 2px solid rgba(85, 104, 79, 0.5);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    .spot-thumb {
+      width: 100%;
+      aspect-ratio: 1.8 / 1;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(85, 104, 79, 0.22);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.75), rgba(232, 225, 211, 0.85)),
+        repeating-linear-gradient(-45deg, rgba(85, 104, 79, 0.05) 0 8px, rgba(255,255,255,0) 8px 16px);
+      box-shadow: var(--shadow);
+    }
+
+    .spot-thumb-link {
+      display: block;
+      justify-self: end;
+    }
+
+    .spot-thumb-link:hover .spot-thumb,
+    .spot-thumb-link:focus-visible .spot-thumb {
+      filter: brightness(1.08);
+    }
+
+    .spot-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .spot-thumb--fallback {
+      display: grid;
+      place-items: center;
+      color: rgba(85, 104, 79, 0.72);
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+    }
+
+    .load-more {
+      display: block;
+      margin: 30px auto 0;
+      padding: 16px 34px;
+      border: 1px solid rgba(85, 104, 79, 0.65);
+      border-radius: 999px;
+      background: var(--surface-strong);
+      color: #475843;
+      font-size: 0.92rem;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .load-more[hidden] {
+      display: none;
+    }
+
+    .empty-state {
+      margin-top: 22px;
+      padding: 28px;
+      border-radius: 24px;
+      background: rgba(255, 252, 247, 0.75);
+      color: #596459;
+      text-align: center;
+      letter-spacing: 0.08em;
+    }
+
+    @media (min-width: 1024px) {
+      .hero {
+        padding-top: 64px;
+      }
+
+      .topbar {
+        grid-template-columns: 104px 1fr 104px;
+      }
+
+      .topbar__title {
+        font-size: clamp(2.4rem, 3vw, 3.7rem);
+      }
+
+      .search-bar {
+        min-height: 116px;
+        padding: 28px 34px;
+      }
+
+      .spot-card {
+        align-items: stretch;
+      }
+
+      .spot-thumb {
+        max-width: 360px;
+        justify-self: end;
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .spot-card {
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 38vw);
+      }
+
+      .spot-thumb {
+        aspect-ratio: 1.5 / 1;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .page {
+        padding-left: 84px;
+        padding-right: 84px;
+      }
+
+      .spot-list {
+        max-width: 1240px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .page {
+        padding: 18px 18px 56px;
+      }
+
+      .topbar {
+        grid-template-columns: 52px 1fr 52px;
+      }
+
+      .search-bar {
+        padding: 18px 20px;
+        border-radius: 20px;
+      }
+
+      .hero {
+        padding: 34px 0 30px;
+      }
+
+      .spot-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 18px 0;
+      }
+
+      .spot-thumb {
+        max-width: 100%;
+      }
+
+      .hub-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hub-actions {
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .follow-hub {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-shell">
+    <div class="page">
+      <header class="topbar">
+        <a class="topbar__mark topbar__home" href="/" aria-label="回到首頁">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="brand-logo"
+          >
+            <path d="M19 21 C15 16 9 9 5 4" />
+            <path d="M14.5 15.5 C10 15 8 16 6 16" />
+            <path d="M11 11.5 C12 8 13 6 14 4" />
+            <path d="M8 8 C6 7.5 4 8 2 8" />
+          </svg>
+        </a>
+        <a class="topbar__title topbar__home" href="/">空折枝</a>
+        <div class="topbar__menu" aria-label="menu">
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M4 6h16"></path>
+            <path d="M4 12h16"></path>
+            <path d="M4 18h16"></path>
+          </svg>
+        </div>
+      </header>
+
+      <section class="hero">
+        <p>哪裡有熄燈的店家？</p>
+
+        <div class="search-wrap">
+          <label class="search-bar" for="hub-search">
+            <input id="hub-search" type="text" placeholder="搜尋生活圈" autocomplete="off">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="M20 20l-3.5-3.5"></path>
+            </svg>
+          </label>
+          <div id="search-results" class="search-results" role="listbox" aria-label="hub results"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="page">
+    <section>
+      <div class="hub-toolbar">
+        <div id="active-hub" class="hub-pill hub-pill-button" role="button" tabindex="0" hidden>
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"></path>
+          </svg>
+          <span id="active-hub-name"></span>
+        </div>
+        <div class="hub-actions">
+          <button id="follow-hub" class="follow-hub" type="button" hidden>追蹤這個生活圈</button>
+        </div>
+      </div>
+
+      <div id="spot-list" class="spot-list" aria-live="polite"></div>
+      <div id="empty-state" class="empty-state" hidden>沒有符合的生活圈或熄燈店家。</div>
+      <button id="load-more" class="load-more" type="button">載入更多</button>
+    </section>
+  </div>
+
+  <div id="follow-modal" class="modal" hidden>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="follow-modal-message">
+      <p id="follow-modal-message" class="modal__message">抱歉還沒寫這個功能</p>
+      <div class="modal__actions">
+        <button id="follow-modal-close" class="modal__close" type="button">呃好</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const state = {
+      hubs: [],
+      filteredHubs: [],
+      selectedHub: null,
+      page: 1,
+      limit: 10,
+      total: 0,
+      loading: false
+    };
+
+    const searchInput = document.getElementById('hub-search');
+    const searchResults = document.getElementById('search-results');
+    const spotList = document.getElementById('spot-list');
+    const loadMoreButton = document.getElementById('load-more');
+    const activeHub = document.getElementById('active-hub');
+    const activeHubName = document.getElementById('active-hub-name');
+    const followHubButton = document.getElementById('follow-hub');
+    const emptyState = document.getElementById('empty-state');
+    const followModal = document.getElementById('follow-modal');
+    const followModalCloseButton = document.getElementById('follow-modal-close');
+
+    function formatHubName(name) {
+      const value = String(name || '').trim();
+      if (!value) return '未分類生活圈';
+      return value.endsWith('生活圈') ? value : `${value}生活圈`;
+    }
+
+    async function applyHubFilter(hub) {
+      state.selectedHub = hub;
+      searchInput.value = formatHubName(hub.name);
+      renderActiveHub();
+      closeSearchResults();
+      await resetAndLoadSpots();
+    }
+
+    async function clearHubFilter() {
+      state.selectedHub = null;
+      searchInput.value = '';
+      renderActiveHub();
+      closeSearchResults();
+      await resetAndLoadSpots();
+    }
+
+    function openFollowModal() {
+      followModal.hidden = false;
+      followModalCloseButton.focus();
+    }
+
+    function closeFollowModal() {
+      followModal.hidden = true;
+    }
+
+    async function boot() {
+      await loadHubs();
+      await resetAndLoadSpots();
+      bindEvents();
+    }
+
+    async function loadHubs() {
+      const response = await fetch('/api/v1/hubs');
+      const payload = await response.json();
+      state.hubs = Array.isArray(payload) ? payload : [];
+    }
+
+    function bindEvents() {
+      searchInput.addEventListener('input', handleSearchInput);
+      searchInput.addEventListener('focus', handleSearchInput);
+      searchInput.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          closeSearchResults();
+        }
+      });
+
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.search-wrap')) {
+          closeSearchResults();
+        }
+      });
+
+      activeHub.addEventListener('click', async () => {
+        const selectedText = window.getSelection ? String(window.getSelection()) : '';
+        if (selectedText.trim()) {
+          return;
+        }
+        await clearHubFilter();
+      });
+      activeHub.addEventListener('keydown', async event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          await clearHubFilter();
+        }
+      });
+
+      followHubButton.addEventListener('click', () => {
+        openFollowModal();
+      });
+
+      followModalCloseButton.addEventListener('click', () => {
+        closeFollowModal();
+      });
+
+      followModal.addEventListener('click', event => {
+        if (event.target === followModal) {
+          closeFollowModal();
+        }
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !followModal.hidden) {
+          closeFollowModal();
+        }
+      });
+
+      loadMoreButton.addEventListener('click', async () => {
+        if (state.loading) return;
+        state.page += 1;
+        await loadSpots({ append: true });
+      });
+    }
+
+    function handleSearchInput() {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) {
+        state.filteredHubs = [];
+        openSearchResults();
+        renderSearchResults();
+        return;
+      }
+
+      state.filteredHubs = state.hubs.filter(hub => {
+        const haystacks = [hub.name, formatHubName(hub.name)].concat(hub.aliases || []);
+        return haystacks.some(text => String(text).toLowerCase().includes(query));
+      }).slice(0, 8);
+
+      openSearchResults();
+      renderSearchResults();
+    }
+
+    function renderSearchResults() {
+      searchResults.innerHTML = '';
+
+      if (!searchInput.value.trim()) {
+        closeSearchResults();
+        return;
+      }
+
+      if (state.filteredHubs.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'search-result';
+        empty.textContent = '找不到符合的生活圈';
+        empty.setAttribute('aria-disabled', 'true');
+        searchResults.appendChild(empty);
+        return;
+      }
+
+      state.filteredHubs.forEach(hub => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'search-result';
+        button.textContent = hub.aliases && hub.aliases.length
+          ? `${formatHubName(hub.name)} · ${hub.aliases[0]}`
+          : formatHubName(hub.name);
+        button.addEventListener('click', async () => {
+          await applyHubFilter(hub);
+        });
+        searchResults.appendChild(button);
+      });
+    }
+
+    function openSearchResults() {
+      searchResults.classList.add('is-open');
+    }
+
+    function closeSearchResults() {
+      searchResults.classList.remove('is-open');
+    }
+
+    function renderActiveHub() {
+      if (!state.selectedHub) {
+        activeHub.hidden = true;
+        followHubButton.hidden = true;
+        activeHubName.textContent = '';
+        return;
+      }
+
+      activeHub.hidden = false;
+      followHubButton.hidden = false;
+      activeHubName.textContent = formatHubName(state.selectedHub.name);
+    }
+
+    async function resetAndLoadSpots() {
+      state.page = 1;
+      state.total = 0;
+      spotList.innerHTML = '';
+      await loadSpots({ append: false });
+    }
+
+    async function loadSpots({ append }) {
+      state.loading = true;
+      loadMoreButton.disabled = true;
+
+      const basePath = state.selectedHub
+        ? `/api/v1/hubs/${encodeURIComponent(state.selectedHub.id)}/spots`
+        : '/api/v1/spots';
+      const url = `${basePath}?page=${state.page}&limit=${state.limit}`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('failed to load spots');
+        }
+
+        const payload = await response.json();
+        state.total = Number(payload.total || 0);
+        const items = Array.isArray(payload.items) ? payload.items : [];
+
+        renderSpots(items, append);
+        updateLoadMore(items.length);
+      } catch (error) {
+        if (!append) {
+          spotList.innerHTML = '';
+        }
+        emptyState.hidden = false;
+        loadMoreButton.hidden = true;
+      } finally {
+        state.loading = false;
+        loadMoreButton.disabled = false;
+      }
+    }
+
+    function renderSpots(spots, append) {
+      if (!append) {
+        spotList.innerHTML = '';
+      }
+
+      if (!append && spots.length === 0) {
+        emptyState.hidden = false;
+        return;
+      }
+
+      emptyState.hidden = true;
+
+      spots.forEach(spot => {
+        const card = document.createElement('article');
+        card.className = 'spot-card';
+
+        const content = document.createElement('div');
+        const date = document.createElement('div');
+        date.className = 'spot-meta';
+        date.textContent = `${spot.permanently_closed_on} 熄燈`;
+
+        const name = document.createElement('a');
+        name.className = 'spot-link spot-name';
+        name.href = spot.google_map_url || '#';
+        name.target = '_blank';
+        name.rel = 'noopener noreferrer';
+
+        name.textContent = spot.name;
+
+        const hub = document.createElement('span');
+        hub.className = 'spot-hub spot-hub-button';
+        hub.setAttribute('role', 'button');
+        hub.tabIndex = 0;
+        hub.textContent = formatHubName(spot.hub_name);
+        hub.addEventListener('click', async () => {
+          const selectedText = window.getSelection ? String(window.getSelection()) : '';
+          if (selectedText.trim()) {
+            return;
+          }
+          const selectedHub = state.hubs.find(item => item.id === spot.hub_id);
+          if (!selectedHub) {
+            return;
+          }
+          await applyHubFilter(selectedHub);
+        });
+        hub.addEventListener('keydown', async event => {
+          if (event.key !== 'Enter' && event.key !== ' ') {
+            return;
+          }
+          event.preventDefault();
+          const selectedHub = state.hubs.find(item => item.id === spot.hub_id);
+          if (!selectedHub) {
+            return;
+          }
+          await applyHubFilter(selectedHub);
+        });
+
+        content.appendChild(date);
+        content.appendChild(name);
+        content.appendChild(hub);
+
+        const thumbLink = document.createElement('a');
+        thumbLink.className = 'spot-thumb-link';
+        thumbLink.href = spot.google_map_url || '#';
+        thumbLink.target = '_blank';
+        thumbLink.rel = 'noopener noreferrer';
+
+        const thumb = document.createElement('div');
+        thumb.className = 'spot-thumb';
+
+        const img = document.createElement('img');
+        img.alt = `${spot.name} thumbnail`;
+        img.loading = 'lazy';
+        img.src = `/api/v1/spots/${encodeURIComponent(spot.id)}/thumbnail`;
+        img.addEventListener('error', () => {
+          thumb.innerHTML = '<div class="spot-thumb--fallback">NO IMAGE</div>';
+        }, { once: true });
+
+        thumb.appendChild(img);
+        thumbLink.appendChild(thumb);
+        card.appendChild(content);
+        card.appendChild(thumbLink);
+        spotList.appendChild(card);
+      });
+    }
+
+    function updateLoadMore(lastBatchSize) {
+      const loadedCount = spotList.querySelectorAll('.spot-card').length;
+      const hasMore = loadedCount < state.total && lastBatchSize > 0;
+      loadMoreButton.hidden = !hasMore;
+    }
+
+    boot();
+  </script>
+</body>
+</html>

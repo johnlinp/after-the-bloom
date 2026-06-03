@@ -1,23 +1,32 @@
-# After the Bloom
+# 空折枝 / After the Bloom
 
-Two command-line tools for working with the Google Places API (New):
-
-- `place-retriever`: Searches for places inside a bounding box and writes `id,name` CSV output.
-- `place-validator`: Reads a CSV of place IDs, checks business status, and writes `id,name,status` CSV output.
+A Gin-based single-page web application for browsing permanently closed local businesses, backed by the `data/atb-20260601.json` dataset loaded into memory at startup.
 
 ## Requirements
 
 - Go 1.26+
-- `PLACES_API_KEY` environment variable set
 
-## Build
+## Run locally
 
 ```bash
-go build ./cmd/place-retriever
-go build ./cmd/place-validator
+go run ./cmd/after-the-bloom
 ```
 
-## Usage
+The server binds to `PORT` when present and falls back to `8080`.
+
+## API
+
+- `GET /api/v1/spots?page=1&limit=10`
+- `GET /api/v1/hubs`
+- `GET /api/v1/hubs/:hubId/spots?page=1&limit=10`
+- `GET /api/v1/spots/:spotId/thumbnail`
+
+## Existing tools
+
+The earlier Google Places helpers are still available:
+
+- `go run ./cmd/place-retriever`
+- `go run ./cmd/place-validator`
 
 Retrieve places:
 
@@ -41,3 +50,13 @@ go run ./cmd/place-validator \
 ```
 
 Operational logs are written to stderr so CSV output stays clean.
+
+## Heroku
+
+The repo includes a `Procfile`:
+
+```bash
+web: bin/after-the-bloom
+```
+
+That keeps the app compatible with Heroku's `PORT`-based runtime model.
