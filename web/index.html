@@ -127,6 +127,7 @@
       border: 1px solid rgba(255, 246, 236, 0.35);
       border-radius: 24px;
       background: rgba(255, 251, 245, 0.96);
+      overflow: hidden;
       box-shadow:
         0 16px 30px rgba(107, 28, 14, 0.16),
         inset 0 1px 0 rgba(255,255,255,0.7);
@@ -529,9 +530,17 @@
       }
 
       .search-bar {
-        padding: 18px 20px;
+        padding: 18px 24px 18px 20px;
         border-radius: 20px;
+        gap: 10px;
       }
+
+      .search-icon {
+        width: 40px;
+        height: 40px;
+        flex: 0 0 40px;
+      }
+
 
       .hero {
         padding: 34px 0 30px;
@@ -602,11 +611,11 @@
 
         <div class="search-wrap">
           <label class="search-bar" for="hub-search">
-            <input id="hub-search" type="text" placeholder="搜尋生活圈" autocomplete="off">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="7"></circle>
               <path d="M20 20l-3.5-3.5"></path>
             </svg>
+            <input id="hub-search" type="text" placeholder="搜尋生活圈" autocomplete="off">
           </label>
           <div id="search-results" class="search-results" role="listbox" aria-label="hub results"></div>
         </div>
@@ -681,14 +690,6 @@
       await resetAndLoadSpots();
     }
 
-    async function clearHubFilter() {
-      state.selectedHub = null;
-      searchInput.value = '';
-      renderActiveHub();
-      closeSearchResults();
-      await resetAndLoadSpots();
-    }
-
     function openFollowModal() {
       followModal.hidden = false;
       followModalCloseButton.focus();
@@ -723,20 +724,6 @@
       document.addEventListener('click', event => {
         if (!event.target.closest('.search-wrap')) {
           closeSearchResults();
-        }
-      });
-
-      activeHub.addEventListener('click', async () => {
-        const selectedText = window.getSelection ? String(window.getSelection()) : '';
-        if (selectedText.trim()) {
-          return;
-        }
-        await clearHubFilter();
-      });
-      activeHub.addEventListener('keydown', async event => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          await clearHubFilter();
         }
       });
 
