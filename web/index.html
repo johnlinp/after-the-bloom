@@ -95,7 +95,7 @@
     .topbar__title {
       text-align: center;
       font-family: var(--serif);
-      font-size: clamp(2rem, 3.4vw, 3.35rem);
+      font-size: clamp(1.8rem, 2.6vw, 2.8rem);
       letter-spacing: 0.22em;
       color: #fff9ef;
     }
@@ -107,7 +107,7 @@
 
     .hero p {
       margin: 0;
-      font-size: clamp(1rem, 1.45vw, 1.45rem);
+      font-size: clamp(1.08rem, 1.35vw, 1.45rem);
       letter-spacing: 0.06em;
       color: rgba(255, 248, 240, 0.9);
     }
@@ -138,7 +138,7 @@
       outline: none;
       background: transparent;
       color: var(--text);
-      font-size: clamp(1.1rem, 1.7vw, 1.55rem);
+      font-size: clamp(1.12rem, 1.45vw, 1.42rem);
       letter-spacing: 0.08em;
       font-family: var(--sans);
     }
@@ -208,12 +208,13 @@
     .hub-pill {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 14px;
       padding: 16px 26px;
       border-radius: 999px;
       background: rgba(185, 193, 170, 0.42);
       color: #4b5e44;
-      font-size: clamp(0.95rem, 1.15vw, 1.2rem);
+      font-size: clamp(0.88rem, 0.95vw, 1rem);
       letter-spacing: 0.08em;
     }
 
@@ -221,7 +222,7 @@
       border: 0;
       background: rgba(185, 193, 170, 0.42);
       cursor: pointer;
-      text-align: left;
+      text-align: center;
       user-select: text;
       -webkit-user-select: text;
     }
@@ -248,7 +249,7 @@
       border-radius: 999px;
       background: var(--hero-band);
       color: #fff8ef;
-      font-size: clamp(0.95rem, 1.15vw, 1.2rem);
+      font-size: clamp(0.88rem, 0.95vw, 1rem);
       letter-spacing: 0.2em;
       cursor: pointer;
     }
@@ -328,14 +329,14 @@
 
     .spot-meta {
       color: #627059;
-      font-size: clamp(0.84rem, 0.92vw, 1rem);
+      font-size: clamp(0.78rem, 0.74vw, 0.88rem);
       letter-spacing: 0.08em;
     }
 
     .spot-name {
       margin-top: 20px;
       font-family: var(--serif);
-      font-size: clamp(1.45rem, 1.95vw, 2.15rem);
+      font-size: clamp(1.22rem, 1.4vw, 1.6rem);
       line-height: 1.1;
       color: #21251f;
       font-weight: 700;
@@ -364,7 +365,7 @@
     .spot-hub {
       margin-top: 18px;
       color: #303632;
-      font-size: clamp(0.98rem, 1.08vw, 1.16rem);
+      font-size: clamp(0.9rem, 0.88vw, 1rem);
       letter-spacing: 0.08em;
       word-break: keep-all;
     }
@@ -436,7 +437,7 @@
       border-radius: 999px;
       background: var(--surface-strong);
       color: #475843;
-      font-size: 0.92rem;
+      font-size: 0.84rem;
       letter-spacing: 0.2em;
       cursor: pointer;
       box-shadow: var(--shadow);
@@ -466,7 +467,7 @@
       }
 
       .topbar__title {
-        font-size: clamp(2.4rem, 3vw, 3.7rem);
+        font-size: clamp(2rem, 2.2vw, 2.7rem);
       }
 
       .search-bar {
@@ -525,13 +526,16 @@
       }
 
       .spot-card {
-        grid-template-columns: 1fr;
-        gap: 12px;
+        grid-template-columns: minmax(0, 1fr) 132px;
+        gap: 14px;
         padding: 18px 0;
+        align-items: start;
       }
 
       .spot-thumb {
-        max-width: 100%;
+        max-width: 132px;
+        aspect-ratio: 1 / 1;
+        justify-self: end;
       }
 
       .hub-toolbar {
