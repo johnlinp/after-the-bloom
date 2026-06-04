@@ -61,10 +61,45 @@ type TextSearchResponse struct {
 }
 
 type PlaceSummary struct {
-	ID          string `json:"id"`
-	DisplayName struct {
+	ID              string           `json:"id"`
+	BusinessStatus  string           `json:"businessStatus"`
+	Location        *latLng          `json:"location"`
+	OpeningDate     *Date            `json:"openingDate"`
+	GoogleMapsLinks *GoogleMapsLinks `json:"googleMapsLinks"`
+	PostalAddress   *PostalAddress   `json:"postalAddress"`
+	Rating          *float64         `json:"rating"`
+	UserRatingCount int              `json:"userRatingCount"`
+	DisplayName     struct {
 		Text string `json:"text"`
 	} `json:"displayName"`
+}
+
+type Date struct {
+	Year  int `json:"year"`
+	Month int `json:"month"`
+	Day   int `json:"day"`
+}
+
+type GoogleMapsLinks struct {
+	PlaceURI        string `json:"placeUri"`
+	DirectionsURI   string `json:"directionsUri"`
+	WriteAReviewURI string `json:"writeAReviewUri"`
+	ReviewsURI      string `json:"reviewsUri"`
+	PhotosURI       string `json:"photosUri"`
+}
+
+type PostalAddress struct {
+	Revision           int      `json:"revision"`
+	RegionCode         string   `json:"regionCode"`
+	LanguageCode       string   `json:"languageCode"`
+	PostalCode         string   `json:"postalCode"`
+	SortingCode        string   `json:"sortingCode"`
+	AdministrativeArea string   `json:"administrativeArea"`
+	Locality           string   `json:"locality"`
+	Sublocality        string   `json:"sublocality"`
+	AddressLines       []string `json:"addressLines"`
+	Recipients         []string `json:"recipients"`
+	Organization       string   `json:"organization"`
 }
 
 type PlaceDetails struct {
@@ -103,7 +138,7 @@ func (c *Client) SearchText(ctx context.Context, query string, lowLat, lowLng, h
 
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("X-Goog-Api-Key", c.apiKey)
-	req.Header.Set("X-Goog-FieldMask", "places.id,places.displayName.text,nextPageToken")
+	req.Header.Set("X-Goog-FieldMask", "places.id,places.displayName.text,places.businessStatus,places.location,places.openingDate,places.googleMapsLinks,places.postalAddress,places.rating,places.userRatingCount,nextPageToken")
 
 	var respData TextSearchResponse
 	if err := c.doJSON(req, &respData); err != nil {

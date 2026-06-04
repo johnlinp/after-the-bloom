@@ -2,14 +2,24 @@ package places
 
 import (
 	"encoding/csv"
+	"encoding/json"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
 type RetrievedPlace struct {
-	ID   string
-	Name string
+	ID                  string
+	Name                string
+	BusinessStatus      string
+	LocationLatitude    string
+	LocationLongitude   string
+	OpeningDate         string
+	GoogleMapsLinksJSON string
+	PostalAddressJSON   string
+	Rating              string
+	UserRatingCount     int
 }
 
 type ValidatedPlace struct {
@@ -28,12 +38,34 @@ func WriteRetrievedPlacesCSV(path string, places []RetrievedPlace) error {
 	writer := csv.NewWriter(file)
 	defer writer.Flush()
 
-	if err := writer.Write([]string{"id", "name"}); err != nil {
+	if err := writer.Write([]string{
+		"id",
+		"name",
+		"business_status",
+		"location_latitude",
+		"location_longitude",
+		"opening_date",
+		"google_maps_links",
+		"postal_address",
+		"rating",
+		"user_rating_count",
+	}); err != nil {
 		return fmt.Errorf("write header to %q: %w", path, err)
 	}
 
 	for _, place := range places {
-		if err := writer.Write([]string{place.ID, place.Name}); err != nil {
+		if err := writer.Write([]string{
+			place.ID,
+			place.Name,
+			place.BusinessStatus,
+			place.LocationLatitude,
+			place.LocationLongitude,
+			place.OpeningDate,
+			place.GoogleMapsLinksJSON,
+			place.PostalAddressJSON,
+			place.Rating,
+			strconv.Itoa(place.UserRatingCount),
+		}); err != nil {
 			return fmt.Errorf("write row to %q: %w", path, err)
 		}
 	}
@@ -43,6 +75,19 @@ func WriteRetrievedPlacesCSV(path string, places []RetrievedPlace) error {
 	}
 
 	return nil
+}
+
+func MustMarshalJSON(value any) string {
+	if value == nil {
+		return ""
+	}
+
+	data, err := json.Marshal(value)
+	if err != nil {
+		return ""
+	}
+
+	return string(data)
 }
 
 func ReadPlaceIDsCSV(path string) ([]string, error) {

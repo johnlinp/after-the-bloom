@@ -105,9 +105,27 @@ func run() error {
 					continue
 				}
 				seenIDs[place.ID] = struct{}{}
+				var locationLat string
+				var locationLng string
+				var rating string
+				if place.Location != nil {
+					locationLat = formatCoordinate(place.Location.Latitude)
+					locationLng = formatCoordinate(place.Location.Longitude)
+				}
+				if place.Rating != nil {
+					rating = formatRating(*place.Rating)
+				}
 				collected = append(collected, places.RetrievedPlace{
-					ID:   place.ID,
-					Name: place.DisplayName.Text,
+					ID:                  place.ID,
+					Name:                place.DisplayName.Text,
+					BusinessStatus:      place.BusinessStatus,
+					LocationLatitude:    locationLat,
+					LocationLongitude:   locationLng,
+					OpeningDate:         formatOpeningDate(place.OpeningDate),
+					GoogleMapsLinksJSON: places.MustMarshalJSON(place.GoogleMapsLinks),
+					PostalAddressJSON:   places.MustMarshalJSON(place.PostalAddress),
+					Rating:              rating,
+					UserRatingCount:     place.UserRatingCount,
 				})
 				if len(collected) >= *maxRecords {
 					break
@@ -206,4 +224,20 @@ func slugify(value string) string {
 	}
 
 	return result
+}
+
+func formatOpeningDate(date *places.Date) string {
+	if date == nil || date.Year == 0 || date.Month == 0 || date.Day == 0 {
+		return ""
+	}
+
+	return fmt.Sprintf("%04d-%02d-%02d", date.Year, date.Month, date.Day)
+}
+
+func formatCoordinate(value float64) string {
+	return fmt.Sprintf("%.8f", value)
+}
+
+func formatRating(value float64) string {
+	return fmt.Sprintf("%.1f", value)
 }
