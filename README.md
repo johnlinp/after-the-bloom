@@ -37,6 +37,7 @@ go run ./cmd/place-retriever \
   -low-lng=121.52779034443573 \
   -high-lat=25.024676516055315 \
   -high-lng=121.54806758579765 \
+  -tile-size-degree=0.002 \
   -max-records=100 \
   -output=places.csv
 ```

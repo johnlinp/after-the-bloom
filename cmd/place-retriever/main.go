@@ -14,7 +14,7 @@ import (
 	"github.com/johnlinp/after-the-bloom/internal/places"
 )
 
-const tileSizeDegrees = 0.002
+const defaultTileSizeDegrees = 0.002
 
 type boundingBox struct {
 	lowLat  float64
@@ -40,6 +40,7 @@ func run() error {
 		lowLng     = flag.Float64("low-lng", 0, "Southwest longitude")
 		highLat    = flag.Float64("high-lat", 0, "Northeast latitude")
 		highLng    = flag.Float64("high-lng", 0, "Northeast longitude")
+		tileSize   = flag.Float64("tile-size-degree", defaultTileSizeDegrees, "Tile size in degrees for bounding box subdivision")
 		maxRecords = flag.Int("max-records", 100, "Maximum number of records to collect")
 		outputPath = flag.String("output", "", "Output CSV file path")
 	)
@@ -50,6 +51,9 @@ func run() error {
 	}
 	if *maxRecords <= 0 {
 		return fmt.Errorf("-max-records must be greater than zero")
+	}
+	if *tileSize <= 0 {
+		return fmt.Errorf("-tile-size-degree must be greater than zero")
 	}
 	if *lowLat > *highLat {
 		return fmt.Errorf("-low-lat must be less than or equal to -high-lat")
@@ -67,7 +71,7 @@ func run() error {
 	}
 
 	ctx := context.Background()
-	boxes := splitBoundingBox(*lowLat, *lowLng, *highLat, *highLng, tileSizeDegrees)
+	boxes := splitBoundingBox(*lowLat, *lowLng, *highLat, *highLng, *tileSize)
 	collected := make([]places.RetrievedPlace, 0, *maxRecords)
 	seenIDs := make(map[string]struct{}, *maxRecords)
 
