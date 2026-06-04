@@ -121,9 +121,9 @@ func run() error {
 					BusinessStatus:      place.BusinessStatus,
 					LocationLatitude:    locationLat,
 					LocationLongitude:   locationLng,
-					OpeningDate:         formatOpeningDate(place.OpeningDate),
 					GoogleMapsLinksJSON: places.MustMarshalJSON(place.GoogleMapsLinks),
 					PostalAddressJSON:   places.MustMarshalJSON(place.PostalAddress),
+					PhotosJSON:          places.MustMarshalJSON(place.Photos),
 					Rating:              rating,
 					UserRatingCount:     place.UserRatingCount,
 				})
@@ -224,14 +224,6 @@ func slugify(value string) string {
 	}
 
 	return result
-}
-
-func formatOpeningDate(date *places.Date) string {
-	if date == nil || date.Year == 0 || date.Month == 0 || date.Day == 0 {
-		return ""
-	}
-
-	return fmt.Sprintf("%04d-%02d-%02d", date.Year, date.Month, date.Day)
 }
 
 func formatCoordinate(value float64) string {

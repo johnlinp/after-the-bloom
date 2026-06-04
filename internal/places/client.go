@@ -61,23 +61,17 @@ type TextSearchResponse struct {
 }
 
 type PlaceSummary struct {
-	ID              string           `json:"id"`
-	BusinessStatus  string           `json:"businessStatus"`
-	Location        *latLng          `json:"location"`
-	OpeningDate     *Date            `json:"openingDate"`
-	GoogleMapsLinks *GoogleMapsLinks `json:"googleMapsLinks"`
-	PostalAddress   *PostalAddress   `json:"postalAddress"`
-	Rating          *float64         `json:"rating"`
-	UserRatingCount int              `json:"userRatingCount"`
+	ID              string            `json:"id"`
+	BusinessStatus  string            `json:"businessStatus"`
+	Location        *latLng           `json:"location"`
+	GoogleMapsLinks *GoogleMapsLinks  `json:"googleMapsLinks"`
+	PostalAddress   *PostalAddress    `json:"postalAddress"`
+	Photos          []json.RawMessage `json:"photos"`
+	Rating          *float64          `json:"rating"`
+	UserRatingCount int               `json:"userRatingCount"`
 	DisplayName     struct {
 		Text string `json:"text"`
 	} `json:"displayName"`
-}
-
-type Date struct {
-	Year  int `json:"year"`
-	Month int `json:"month"`
-	Day   int `json:"day"`
 }
 
 type GoogleMapsLinks struct {
@@ -138,7 +132,7 @@ func (c *Client) SearchText(ctx context.Context, query string, lowLat, lowLng, h
 
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("X-Goog-Api-Key", c.apiKey)
-	req.Header.Set("X-Goog-FieldMask", "places.id,places.displayName.text,places.businessStatus,places.location,places.openingDate,places.googleMapsLinks,places.postalAddress,places.rating,places.userRatingCount,nextPageToken")
+	req.Header.Set("X-Goog-FieldMask", "places.id,places.displayName.text,places.businessStatus,places.location,places.googleMapsLinks,places.postalAddress,places.photos,places.rating,places.userRatingCount,nextPageToken")
 
 	var respData TextSearchResponse
 	if err := c.doJSON(req, &respData); err != nil {

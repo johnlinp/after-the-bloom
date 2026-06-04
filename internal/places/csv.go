@@ -15,9 +15,9 @@ type RetrievedPlace struct {
 	BusinessStatus      string
 	LocationLatitude    string
 	LocationLongitude   string
-	OpeningDate         string
 	GoogleMapsLinksJSON string
 	PostalAddressJSON   string
+	PhotosJSON          string
 	Rating              string
 	UserRatingCount     int
 }
@@ -44,9 +44,9 @@ func WriteRetrievedPlacesCSV(path string, places []RetrievedPlace) error {
 		"business_status",
 		"location_latitude",
 		"location_longitude",
-		"opening_date",
 		"google_maps_links",
 		"postal_address",
+		"photos",
 		"rating",
 		"user_rating_count",
 	}); err != nil {
@@ -60,9 +60,9 @@ func WriteRetrievedPlacesCSV(path string, places []RetrievedPlace) error {
 			place.BusinessStatus,
 			place.LocationLatitude,
 			place.LocationLongitude,
-			place.OpeningDate,
 			place.GoogleMapsLinksJSON,
 			place.PostalAddressJSON,
+			place.PhotosJSON,
 			place.Rating,
 			strconv.Itoa(place.UserRatingCount),
 		}); err != nil {
