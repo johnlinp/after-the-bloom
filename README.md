@@ -25,13 +25,13 @@ The server binds to `PORT` when present and falls back to `8080`.
 
 The earlier Google Places helpers are still available:
 
-- `go run ./cmd/place-retriever`
+- `go run ./cmd/place-discoverer`
 - `go run ./cmd/place-validator`
 
 Retrieve places:
 
 ```bash
-go run ./cmd/place-retriever \
+go run ./cmd/place-discoverer \
   -text-query="restaurant" \
   -low-lat=25.010784236124856 \
   -low-lng=121.52779034443573 \
