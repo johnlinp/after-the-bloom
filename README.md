@@ -26,6 +26,7 @@ The server binds to `PORT` when present and falls back to `8080`.
 The earlier Google Places helpers are still available:
 
 - `go run ./cmd/place-discoverer`
+- `go run ./cmd/place-id-retriever`
 - `go run ./cmd/place-validator`
 
 Retrieve places:
@@ -48,6 +49,18 @@ Validate places:
 go run ./cmd/place-validator \
   -input=places.csv \
   -output=statuses.csv
+```
+
+Retrieve a Google Place ID from a full or short Google Maps URL:
+
+```bash
+go run ./cmd/place-id-retriever \
+  -maps-url='https://www.google.com/maps/place/AYin+Seafood+Porridge/@25.0246242,121.5432538,17z/data=!3m2!4b1!5s0x3442abd9dc7473b5:0x597d336dd8d813e9!4m6!3m5!1s0x3442aa2f4ecd9c5f:0xfa43f9af0fd3cee8!8m2!3d25.0246242!4d121.5432538!16s%2Fg%2F1v76xbkc?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D'
+```
+
+```bash
+go run ./cmd/place-id-retriever \
+  -maps-url='https://maps.app.goo.gl/YwQgzE4vP4GWr2A59'
 ```
 
 Operational logs are written to stderr so CSV output stays clean.
