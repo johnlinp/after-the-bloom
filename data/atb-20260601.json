@@ -359,6 +359,102 @@
       "place_id": "ChIJMZuj3Gs9aTQRmTA--EhwnuQ",
       "current_business_status": "permanently closed",
       "permanently_closed_on": "2024"
+    },
+    {
+      "id": "954db190-4775-480c-ab42-438dbd9f7148",
+      "name": "小川拉麵",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/K3uN7sfChqbZC1Ke7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023"
+    },
+    {
+      "id": "95a9e566-d38f-4b22-8ebd-a9c6fc14bab7",
+      "name": "麵試十一次",
+      "zip_code": "105",
+      "google_map_url": "https://maps.app.goo.gl/g4aaBmTWwLkDsDos6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "f64fa330-c0c5-4d2c-9892-01ad62c443d9",
+      "name": "豚人拉麵 復興店",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/9xhhQqfFUYS7CjyK6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "d8b63025-99be-4714-bab9-dfcc76000588",
+      "name": "一番星拉麵",
+      "zip_code": "114",
+      "google_map_url": "https://maps.app.goo.gl/Q88dFrRoFjuzXysk8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "aaec3ab1-b859-4d1f-a70b-3cf24b505cae",
+      "name": "半熟堂 Hanjyukudo Taiwan 拉麵 丼飯",
+      "zip_code": "10491",
+      "google_map_url": "https://maps.app.goo.gl/1apD8HQdt1xSRdXR8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2022"
+    },
+    {
+      "id": "c55787fe-a7a7-43ed-8eca-18cfe86f9885",
+      "name": "玩笑亭拉麵",
+      "zip_code": "110",
+      "google_map_url": "https://maps.app.goo.gl/2XCmyJFi6WYVZVsr7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2020"
+    },
+    {
+      "id": "f5e4ab58-a8b2-4051-85ef-c2847bf49371",
+      "name": "梅光軒",
+      "zip_code": "220",
+      "google_map_url": "https://maps.app.goo.gl/nDoZ5y7DJTtH1fBRA",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2020"
+    },
+    {
+      "id": "627de72b-a5ba-4f5f-8822-9cae1a812db1",
+      "name": "豚骨一燈 台北信義",
+      "zip_code": "110",
+      "google_map_url": "https://maps.app.goo.gl/cURdCabCFXS7Z32X8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2020"
+    },
+    {
+      "id": "49d0ed67-6893-465c-9cfa-fb06f6efc342",
+      "name": "好好食房 Soup Up- 西湖店",
+      "zip_code": "114",
+      "google_map_url": "https://maps.app.goo.gl/3o6ueR5RswZ5UoK47",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "79a5e40a-a1c0-4175-90ff-2c46f8935e5d",
+      "name": "Love at First Bite Bakery Cafe-芝加哥深盤披薩專賣店",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/cX6PNYyfhuzhUKpj6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "c7162b17-64f6-4e80-b247-e8b65f7e9f22",
+      "name": "逢家現炒",
+      "zip_code": "407",
+      "google_map_url": "https://maps.app.goo.gl/MhWooXkAmnaovueP6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023"
+    },
+    {
+      "id": "0f4edfe7-6902-4362-86d7-e632b6dd3315",
+      "name": "老家牛肉麵",
+      "zip_code": "115",
+      "google_map_url": "https://maps.app.goo.gl/Ns3xgmveRk4Kek877",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
     }
   ]
 }
