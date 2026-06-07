@@ -74,6 +74,67 @@
       color: #fff6eb;
     }
 
+    .topbar__menu {
+      position: relative;
+      justify-self: end;
+    }
+
+    .topbar__menu-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .topbar__menu-button:hover,
+    .topbar__menu-button:focus-visible {
+      opacity: 0.9;
+    }
+
+    .topbar__menu-button:focus-visible {
+      outline: 2px solid rgba(255, 246, 235, 0.7);
+      outline-offset: 4px;
+      border-radius: 10px;
+    }
+
+    .topbar__menu-panel {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      min-width: 180px;
+      padding: 10px;
+      border: 1px solid rgba(255, 248, 239, 0.18);
+      border-radius: 18px;
+      background: rgba(255, 251, 245, 0.98);
+      box-shadow: 0 20px 40px rgba(73, 31, 22, 0.2);
+    }
+
+    .topbar__menu-panel[hidden] {
+      display: none;
+    }
+
+    .topbar__menu-link {
+      display: block;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      text-align: left;
+      font-size: 0.96rem;
+      letter-spacing: 0.08em;
+    }
+
+    .topbar__menu-link:hover,
+    .topbar__menu-link:focus-visible {
+      background: rgba(85, 104, 79, 0.1);
+      outline: none;
+    }
+
     .topbar__home {
       color: inherit;
       text-decoration: none;
@@ -458,6 +519,34 @@
       letter-spacing: 0.08em;
     }
 
+    .empty-state__report {
+      display: inline-flex;
+      margin-top: 16px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fffaf2;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+      box-shadow: 0 12px 24px rgba(183, 85, 53, 0.18);
+    }
+
+    .empty-state__report:hover,
+    .empty-state__report:focus-visible {
+      transform: translateY(-1px);
+      opacity: 0.96;
+      box-shadow: 0 16px 28px rgba(183, 85, 53, 0.24);
+    }
+
+    .empty-state__report:focus-visible {
+      outline: 2px solid rgba(183, 85, 53, 0.4);
+      outline-offset: 4px;
+    }
+
     .loading-state[hidden] {
       display: none;
     }
@@ -598,11 +687,16 @@
         </a>
         <a class="topbar__title topbar__home" href="/">空折枝</a>
         <div class="topbar__menu" aria-label="menu">
-          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <path d="M4 6h16"></path>
-            <path d="M4 12h16"></path>
-            <path d="M4 18h16"></path>
-          </svg>
+          <button id="menu-button" class="topbar__menu-button" type="button" aria-label="開啟選單" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <path d="M4 6h16"></path>
+              <path d="M4 12h16"></path>
+              <path d="M4 18h16"></path>
+            </svg>
+          </button>
+          <div id="menu-panel" class="topbar__menu-panel" hidden>
+            <a class="topbar__menu-link" href="https://www.instagram.com/afterthebloom.tw/" target="_blank" rel="noopener noreferrer">聯絡我們</a>
+          </div>
         </div>
       </header>
 
@@ -639,7 +733,10 @@
 
       <div id="spot-list" class="spot-list" aria-live="polite"></div>
       <div id="loading-state" class="loading-state">載入中…</div>
-      <div id="empty-state" class="empty-state" hidden>目前資料庫中還沒有這個鄉鎮市區的熄燈店家喔</div>
+      <div id="empty-state" class="empty-state" hidden>
+        <div>目前資料庫中還沒有這個鄉鎮市區的熄燈店家喔</div>
+        <a class="empty-state__report" href="https://www.instagram.com/afterthebloom.tw/" target="_blank" rel="noopener noreferrer">回報熄燈店家</a>
+      </div>
       <button id="load-more" class="load-more" type="button">載入更多</button>
     </section>
   </div>
@@ -673,6 +770,8 @@
     const followDistrictButton = document.getElementById('follow-district');
     const loadingState = document.getElementById('loading-state');
     const emptyState = document.getElementById('empty-state');
+    const menuButton = document.getElementById('menu-button');
+    const menuPanel = document.getElementById('menu-panel');
     const followModal = document.getElementById('follow-modal');
     const followModalCloseButton = document.getElementById('follow-modal-close');
 
@@ -695,6 +794,24 @@
 
     function closeFollowModal() {
       followModal.hidden = true;
+    }
+
+    function openMenu() {
+      menuPanel.hidden = false;
+      menuButton.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeMenu() {
+      menuPanel.hidden = true;
+      menuButton.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleMenu() {
+      if (menuPanel.hidden) {
+        openMenu();
+        return;
+      }
+      closeMenu();
     }
 
     async function boot() {
@@ -723,6 +840,14 @@
         if (!event.target.closest('.search-wrap')) {
           closeSearchResults();
         }
+        if (!event.target.closest('.topbar__menu')) {
+          closeMenu();
+        }
+      });
+
+      menuButton.addEventListener('click', event => {
+        event.stopPropagation();
+        toggleMenu();
       });
 
       followDistrictButton.addEventListener('click', () => {
@@ -740,6 +865,11 @@
       });
 
       document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !menuPanel.hidden) {
+          closeMenu();
+          menuButton.focus();
+          return;
+        }
         if (event.key === 'Escape' && !followModal.hidden) {
           closeFollowModal();
         }
