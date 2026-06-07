@@ -40,15 +40,15 @@ func RegisterRoutes(router *gin.Engine, store *Store, photosDir, indexPath strin
 			})
 		})
 
-		api.GET("/hubs", func(c *gin.Context) {
-			c.JSON(http.StatusOK, store.Hubs())
+		api.GET("/districts", func(c *gin.Context) {
+			c.JSON(http.StatusOK, store.Districts())
 		})
 
-		api.GET("/hubs/:hubId/spots", func(c *gin.Context) {
+		api.GET("/districts/:districtId/spots", func(c *gin.Context) {
 			page, limit := parsePagination(c)
-			items, total, ok := store.SpotsPageByHub(c.Param("hubId"), page, limit)
+			items, total, ok := store.SpotsPageByDistrict(c.Param("districtId"), page, limit)
 			if !ok {
-				c.JSON(http.StatusNotFound, gin.H{"error": "hub not found"})
+				c.JSON(http.StatusNotFound, gin.H{"error": "district not found"})
 				return
 			}
 			c.JSON(http.StatusOK, paginatedResponse{

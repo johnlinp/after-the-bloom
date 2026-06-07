@@ -10,15 +10,16 @@ import (
 )
 
 const (
-	dataPath   = "data/atb-20260601.json"
-	photosPath = "photos"
-	indexPath  = "web/index.html"
+	dataPath    = "data/atb-20260601.json"
+	zipcodePath = "data/tw-zipcode.json"
+	photosPath  = "photos"
+	indexPath   = "web/index.html"
 )
 
 func main() {
 	log.SetFlags(log.LstdFlags)
 
-	store, err := app.LoadStore(dataPath)
+	store, err := app.LoadStore(dataPath, zipcodePath)
 	if err != nil {
 		log.Fatalf("load store: %v", err)
 	}

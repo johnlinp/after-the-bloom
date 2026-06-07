@@ -9,102 +9,108 @@ import (
 	"strings"
 )
 
-type Hub struct {
+type District struct {
 	ID      string   `json:"id"`
 	Name    string   `json:"name"`
-	Aliases []string `json:"aliases"`
+	ZipCode string   `json:"zip_code"`
+	Aliases []string `json:"aliases,omitempty"`
 }
 
 type Spot struct {
 	ID                    string `json:"id"`
 	Name                  string `json:"name"`
+	ZipCode               string `json:"zip_code"`
 	GoogleMapURL          string `json:"google_map_url"`
 	CurrentBusinessStatus string `json:"current_business_status"`
 	PermanentlyClosedOn   string `json:"permanently_closed_on"`
 }
 
-type HubSpot struct {
-	ID     string `json:"id"`
-	HubID  string `json:"hub_id"`
-	SpotID string `json:"spot_id"`
+type dataset struct {
+	Spots []Spot `json:"spots"`
 }
 
-type dataset struct {
-	Hubs     []Hub     `json:"hubs"`
-	Spots    []Spot    `json:"spots"`
-	HubXSpot []HubSpot `json:"hub_x_spot"`
+type zipcodeDataset map[string]map[string]string
+
+type zipcodeIndex struct {
+	districts []District
+	byZipCode map[string]string
+	byName    map[string]District
 }
 
 type SpotResponse struct {
 	ID                    string `json:"id"`
 	Name                  string `json:"name"`
+	ZipCode               string `json:"zip_code"`
 	GoogleMapURL          string `json:"google_map_url"`
 	CurrentBusinessStatus string `json:"current_business_status"`
 	PermanentlyClosedOn   string `json:"permanently_closed_on"`
-	HubID                 string `json:"hub_id,omitempty"`
-	HubName               string `json:"hub_name,omitempty"`
+	DistrictID            string `json:"district_id,omitempty"`
+	DistrictName          string `json:"district_name,omitempty"`
 }
 
 type Store struct {
-	hubs              []Hub
-	spots             []Spot
-	spotByID          map[string]Spot
-	hubByID           map[string]Hub
-	hubIDBySpotID     map[string]string
-	spotsByHubID      map[string][]Spot
-	sortedAllSpotView []SpotResponse
+	districts          []District
+	spots              []Spot
+	spotByID           map[string]Spot
+	districtByID       map[string]District
+	districtIDBySpotID map[string]string
+	spotsByDistrictID  map[string][]Spot
+	sortedAllSpotView  []SpotResponse
 }
 
-func LoadStore(path string) (*Store, error) {
-	file, err := os.Open(path)
+func LoadStore(datasetPath, zipcodePath string) (*Store, error) {
+	file, err := os.Open(datasetPath)
 	if err != nil {
-		return nil, fmt.Errorf("open dataset %q: %w", path, err)
+		return nil, fmt.Errorf("open dataset %q: %w", datasetPath, err)
 	}
 	defer file.Close()
 
 	var raw dataset
 	if err := json.NewDecoder(file).Decode(&raw); err != nil {
-		return nil, fmt.Errorf("decode dataset %q: %w", path, err)
+		return nil, fmt.Errorf("decode dataset %q: %w", datasetPath, err)
+	}
+
+	zipcodes, err := loadZipcodes(zipcodePath)
+	if err != nil {
+		return nil, err
 	}
 
 	store := &Store{
-		hubs:          append([]Hub(nil), raw.Hubs...),
-		spots:         append([]Spot(nil), raw.Spots...),
-		spotByID:      make(map[string]Spot, len(raw.Spots)),
-		hubByID:       make(map[string]Hub, len(raw.Hubs)),
-		hubIDBySpotID: make(map[string]string, len(raw.HubXSpot)),
-		spotsByHubID:  make(map[string][]Spot, len(raw.Hubs)),
+		spots:              append([]Spot(nil), raw.Spots...),
+		spotByID:           make(map[string]Spot, len(raw.Spots)),
+		districts:          append([]District(nil), zipcodes.districts...),
+		districtByID:       make(map[string]District, len(zipcodes.districts)),
+		districtIDBySpotID: make(map[string]string, len(raw.Spots)),
+		spotsByDistrictID:  make(map[string][]Spot),
 	}
 
-	for _, hub := range raw.Hubs {
-		store.hubByID[hub.ID] = hub
+	for _, district := range store.districts {
+		store.districtByID[district.ID] = district
 	}
 
 	for _, spot := range raw.Spots {
 		store.spotByID[spot.ID] = spot
-	}
 
-	for _, link := range raw.HubXSpot {
-		spot, ok := store.spotByID[link.SpotID]
+		districtName, ok := zipcodes.byZipCode[normalizeZipCode(spot.ZipCode)]
 		if !ok {
 			continue
 		}
-		if _, exists := store.hubByID[link.HubID]; !exists {
+
+		district, exists := zipcodes.byName[districtName]
+		if !exists {
 			continue
 		}
-		if _, seen := store.hubIDBySpotID[link.SpotID]; !seen {
-			store.hubIDBySpotID[link.SpotID] = link.HubID
-		}
-		store.spotsByHubID[link.HubID] = append(store.spotsByHubID[link.HubID], spot)
+
+		districtID := district.ID
+		store.districtIDBySpotID[spot.ID] = districtID
+		store.spotsByDistrictID[districtID] = append(store.spotsByDistrictID[districtID], spot)
 	}
 
-	sort.Slice(store.hubs, func(i, j int) bool {
-		return store.hubs[i].Name < store.hubs[j].Name
-	})
+	sortDistricts(store.districts)
 
-	for hubID, spots := range store.spotsByHubID {
+	for districtID, spots := range store.spotsByDistrictID {
 		sortSpots(spots)
-		store.spotsByHubID[hubID] = spots
+		store.spotsByDistrictID[districtID] = spots
 	}
 
 	all := make([]SpotResponse, 0, len(store.spots))
@@ -116,20 +122,99 @@ func LoadStore(path string) (*Store, error) {
 	return store, nil
 }
 
-func (s *Store) Hubs() []Hub {
-	return append([]Hub(nil), s.hubs...)
+func loadZipcodes(path string) (*zipcodeIndex, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, fmt.Errorf("open zipcode dataset %q: %w", path, err)
+	}
+	defer file.Close()
+
+	var raw zipcodeDataset
+	if err := json.NewDecoder(file).Decode(&raw); err != nil {
+		return nil, fmt.Errorf("decode zipcode dataset %q: %w", path, err)
+	}
+
+	index := &zipcodeIndex{
+		districts: []District{},
+		byZipCode: make(map[string]string),
+		byName:    make(map[string]District),
+	}
+
+	for city, districts := range raw {
+		for district, zip := range districts {
+			fullName := strings.TrimSpace(city) + strings.TrimSpace(district)
+			normalizedZip := strings.TrimSpace(zip)
+			districtRecord := District{
+				ID:      districtID(normalizedZip),
+				Name:    fullName,
+				ZipCode: normalizedZip,
+				Aliases: districtAliases(fullName),
+			}
+			index.districts = append(index.districts, districtRecord)
+			index.byName[fullName] = districtRecord
+			if _, exists := index.byZipCode[normalizedZip]; !exists {
+				index.byZipCode[normalizedZip] = fullName
+			}
+		}
+	}
+
+	sortDistricts(index.districts)
+
+	return index, nil
+}
+
+func normalizeZipCode(value string) string {
+	trimmed := strings.TrimSpace(value)
+	if len(trimmed) >= 3 {
+		return trimmed[:3]
+	}
+	return trimmed
+}
+
+func districtAliases(name string) []string {
+	if len([]rune(name)) <= 3 {
+		return nil
+	}
+	alias := string([]rune(name)[3:])
+	if alias == name {
+		return nil
+	}
+	return []string{alias}
+}
+
+func districtID(zipCode string) string {
+	return "tw-" + zipCode
+}
+
+func sortDistricts(districts []District) {
+	sort.Slice(districts, func(i, j int) bool {
+		leftZip, leftErr := strconv.Atoi(strings.TrimSpace(districts[i].ZipCode))
+		rightZip, rightErr := strconv.Atoi(strings.TrimSpace(districts[j].ZipCode))
+
+		if leftErr == nil && rightErr == nil && leftZip != rightZip {
+			return leftZip < rightZip
+		}
+		if districts[i].ZipCode != districts[j].ZipCode {
+			return districts[i].ZipCode < districts[j].ZipCode
+		}
+		return districts[i].Name < districts[j].Name
+	})
+}
+
+func (s *Store) Districts() []District {
+	return append([]District(nil), s.districts...)
 }
 
 func (s *Store) SpotsPage(page, limit int) ([]SpotResponse, int) {
 	return paginate(s.sortedAllSpotView, page, limit)
 }
 
-func (s *Store) SpotsPageByHub(hubID string, page, limit int) ([]SpotResponse, int, bool) {
-	if _, ok := s.hubByID[hubID]; !ok {
+func (s *Store) SpotsPageByDistrict(districtID string, page, limit int) ([]SpotResponse, int, bool) {
+	if _, ok := s.districtByID[districtID]; !ok {
 		return nil, 0, false
 	}
 
-	spots := s.spotsByHubID[hubID]
+	spots := s.spotsByDistrictID[districtID]
 	views := make([]SpotResponse, 0, len(spots))
 	for _, spot := range spots {
 		views = append(views, s.toSpotResponse(spot))
@@ -154,15 +239,16 @@ func (s *Store) toSpotResponse(spot Spot) SpotResponse {
 	resp := SpotResponse{
 		ID:                    spot.ID,
 		Name:                  spot.Name,
+		ZipCode:               spot.ZipCode,
 		GoogleMapURL:          spot.GoogleMapURL,
 		CurrentBusinessStatus: spot.CurrentBusinessStatus,
 		PermanentlyClosedOn:   spot.PermanentlyClosedOn,
 	}
 
-	if hubID, ok := s.hubIDBySpotID[spot.ID]; ok {
-		resp.HubID = hubID
-		if hub, exists := s.hubByID[hubID]; exists {
-			resp.HubName = hub.Name
+	if districtID, ok := s.districtIDBySpotID[spot.ID]; ok {
+		resp.DistrictID = districtID
+		if district, exists := s.districtByID[districtID]; exists {
+			resp.DistrictName = district.Name
 		}
 	}
 

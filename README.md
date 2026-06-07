@@ -17,8 +17,8 @@ The server binds to `PORT` when present and falls back to `8080`.
 ## API
 
 - `GET /api/v1/spots?page=1&limit=10`
-- `GET /api/v1/hubs`
-- `GET /api/v1/hubs/:hubId/spots?page=1&limit=10`
+- `GET /api/v1/districts`
+- `GET /api/v1/districts/:districtId/spots?page=1&limit=10`
 - `GET /api/v1/spots/:spotId/thumbnail`
 
 ## Existing tools

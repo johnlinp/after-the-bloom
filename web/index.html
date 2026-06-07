@@ -191,7 +191,7 @@
       outline: none;
     }
 
-    .hub-toolbar {
+    .district-toolbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -200,13 +200,13 @@
       min-height: 74px;
     }
 
-    .hub-actions {
+    .district-actions {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .hub-pill {
+    .district-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -219,7 +219,7 @@
       letter-spacing: 0.08em;
     }
 
-    .hub-pill-button {
+    .district-pill-button {
       border: 0;
       background: rgba(185, 193, 170, 0.42);
       cursor: pointer;
@@ -228,23 +228,23 @@
       -webkit-user-select: text;
     }
 
-    .hub-pill-button:hover,
-    .hub-pill-button:focus-visible {
+    .district-pill-button:hover,
+    .district-pill-button:focus-visible {
       filter: brightness(1.06);
     }
 
-    .hub-pill-button:focus-visible {
+    .district-pill-button:focus-visible {
       outline: 2px solid rgba(85, 104, 79, 0.45);
       outline-offset: 4px;
     }
 
-    .hub-pill[hidden],
-    .follow-hub[hidden],
+    .district-pill[hidden],
+    .follow-district[hidden],
     .empty-state[hidden] {
       display: none;
     }
 
-    .follow-hub {
+    .follow-district {
       padding: 14px 26px;
       border: 2px solid rgba(201, 71, 47, 0.9);
       border-radius: 999px;
@@ -255,8 +255,8 @@
       cursor: pointer;
     }
 
-    .follow-hub:hover,
-    .follow-hub:focus-visible {
+    .follow-district:hover,
+    .follow-district:focus-visible {
       filter: brightness(1.08);
     }
 
@@ -363,7 +363,7 @@
       border-radius: 4px;
     }
 
-    .spot-hub {
+    .spot-district {
       margin-top: 18px;
       color: #303632;
       font-size: clamp(0.9rem, 0.88vw, 1rem);
@@ -371,7 +371,7 @@
       word-break: keep-all;
     }
 
-    .spot-hub-button {
+    .spot-district-button {
       display: block;
       padding: 0;
       border: 0;
@@ -382,12 +382,12 @@
       -webkit-user-select: text;
     }
 
-    .spot-hub-button:hover,
-    .spot-hub-button:focus-visible {
+    .spot-district-button:hover,
+    .spot-district-button:focus-visible {
       color: #545a54;
     }
 
-    .spot-hub-button:focus-visible {
+    .spot-district-button:focus-visible {
       outline: 2px solid rgba(85, 104, 79, 0.5);
       outline-offset: 4px;
       border-radius: 4px;
@@ -559,17 +559,17 @@
         justify-self: end;
       }
 
-      .hub-toolbar {
+      .district-toolbar {
         flex-direction: column;
         align-items: stretch;
       }
 
-      .hub-actions {
+      .district-actions {
         width: 100%;
         flex-direction: column;
       }
 
-      .follow-hub {
+      .follow-district {
         width: 100%;
       }
     }
@@ -610,14 +610,14 @@
         <p>哪裡有熄燈的店家？</p>
 
         <div class="search-wrap">
-          <label class="search-bar" for="hub-search">
+          <label class="search-bar" for="district-search">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="7"></circle>
               <path d="M20 20l-3.5-3.5"></path>
             </svg>
-            <input id="hub-search" type="text" placeholder="搜尋生活圈" autocomplete="off">
+            <input id="district-search" type="text" placeholder="搜尋鄉鎮市區" autocomplete="off">
           </label>
-          <div id="search-results" class="search-results" role="listbox" aria-label="hub results"></div>
+          <div id="search-results" class="search-results" role="listbox" aria-label="district results"></div>
         </div>
       </section>
     </div>
@@ -625,21 +625,21 @@
 
   <div class="page">
     <section>
-      <div class="hub-toolbar">
-        <div id="active-hub" class="hub-pill hub-pill-button" role="button" tabindex="0" hidden>
+      <div class="district-toolbar">
+        <div id="active-district" class="district-pill district-pill-button" role="button" tabindex="0" hidden>
           <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true">
             <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"></path>
           </svg>
-          <span id="active-hub-name"></span>
+          <span id="active-district-name"></span>
         </div>
-        <div class="hub-actions">
-          <button id="follow-hub" class="follow-hub" type="button" hidden>追蹤這個生活圈</button>
+        <div class="district-actions">
+          <button id="follow-district" class="follow-district" type="button" hidden>追蹤這個鄉鎮市區</button>
         </div>
       </div>
 
       <div id="spot-list" class="spot-list" aria-live="polite"></div>
       <div id="loading-state" class="loading-state">載入中…</div>
-      <div id="empty-state" class="empty-state" hidden>沒有符合的生活圈或熄燈店家。</div>
+      <div id="empty-state" class="empty-state" hidden>目前資料庫中還沒有這個鄉鎮市區的熄燈店家喔</div>
       <button id="load-more" class="load-more" type="button">載入更多</button>
     </section>
   </div>
@@ -655,37 +655,35 @@
 
   <script>
     const state = {
-      hubs: [],
-      filteredHubs: [],
-      selectedHub: null,
+      districts: [],
+      filteredDistricts: [],
+      selectedDistrict: null,
       page: 1,
       limit: 10,
       total: 0,
       loading: false
     };
 
-    const searchInput = document.getElementById('hub-search');
+    const searchInput = document.getElementById('district-search');
     const searchResults = document.getElementById('search-results');
     const spotList = document.getElementById('spot-list');
     const loadMoreButton = document.getElementById('load-more');
-    const activeHub = document.getElementById('active-hub');
-    const activeHubName = document.getElementById('active-hub-name');
-    const followHubButton = document.getElementById('follow-hub');
+    const activeDistrict = document.getElementById('active-district');
+    const activeDistrictName = document.getElementById('active-district-name');
+    const followDistrictButton = document.getElementById('follow-district');
     const loadingState = document.getElementById('loading-state');
     const emptyState = document.getElementById('empty-state');
     const followModal = document.getElementById('follow-modal');
     const followModalCloseButton = document.getElementById('follow-modal-close');
 
-    function formatHubName(name) {
-      const value = String(name || '').trim();
-      if (!value) return '未分類生活圈';
-      return value.endsWith('生活圈') ? value : `${value}生活圈`;
+    function formatDistrictName(name) {
+      return String(name || '').trim() || '未知鄉鎮市區';
     }
 
-    async function applyHubFilter(hub) {
-      state.selectedHub = hub;
-      searchInput.value = formatHubName(hub.name);
-      renderActiveHub();
+    async function applyDistrictFilter(district) {
+      state.selectedDistrict = district;
+      searchInput.value = formatDistrictName(district.name);
+      renderActiveDistrict();
       closeSearchResults();
       await resetAndLoadSpots();
     }
@@ -701,15 +699,15 @@
 
     async function boot() {
       loadingState.hidden = false;
-      await loadHubs();
+      await loadDistricts();
       await resetAndLoadSpots();
       bindEvents();
     }
 
-    async function loadHubs() {
-      const response = await fetch('/api/v1/hubs');
+    async function loadDistricts() {
+      const response = await fetch('/api/v1/districts');
       const payload = await response.json();
-      state.hubs = Array.isArray(payload) ? payload : [];
+      state.districts = Array.isArray(payload) ? payload : [];
     }
 
     function bindEvents() {
@@ -727,7 +725,7 @@
         }
       });
 
-      followHubButton.addEventListener('click', () => {
+      followDistrictButton.addEventListener('click', () => {
         openFollowModal();
       });
 
@@ -757,14 +755,14 @@
     function handleSearchInput() {
       const query = searchInput.value.trim().toLowerCase();
       if (!query) {
-        state.filteredHubs = [];
+        state.filteredDistricts = [];
         openSearchResults();
         renderSearchResults();
         return;
       }
 
-      state.filteredHubs = state.hubs.filter(hub => {
-        const haystacks = [hub.name, formatHubName(hub.name)].concat(hub.aliases || []);
+      state.filteredDistricts = state.districts.filter(district => {
+        const haystacks = [district.name, formatDistrictName(district.name)].concat(district.aliases || []);
         return haystacks.some(text => String(text).toLowerCase().includes(query));
       }).slice(0, 8);
 
@@ -780,24 +778,22 @@
         return;
       }
 
-      if (state.filteredHubs.length === 0) {
+      if (state.filteredDistricts.length === 0) {
         const empty = document.createElement('div');
         empty.className = 'search-result';
-        empty.textContent = '找不到符合的生活圈';
+        empty.textContent = '找不到符合的鄉鎮市區';
         empty.setAttribute('aria-disabled', 'true');
         searchResults.appendChild(empty);
         return;
       }
 
-      state.filteredHubs.forEach(hub => {
+      state.filteredDistricts.forEach(district => {
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'search-result';
-        button.textContent = hub.aliases && hub.aliases.length
-          ? `${formatHubName(hub.name)} · ${hub.aliases[0]}`
-          : formatHubName(hub.name);
+        button.textContent = formatDistrictName(district.name);
         button.addEventListener('click', async () => {
-          await applyHubFilter(hub);
+          await applyDistrictFilter(district);
         });
         searchResults.appendChild(button);
       });
@@ -811,17 +807,17 @@
       searchResults.classList.remove('is-open');
     }
 
-    function renderActiveHub() {
-      if (!state.selectedHub) {
-        activeHub.hidden = true;
-        followHubButton.hidden = true;
-        activeHubName.textContent = '';
+    function renderActiveDistrict() {
+      if (!state.selectedDistrict) {
+        activeDistrict.hidden = true;
+        followDistrictButton.hidden = true;
+        activeDistrictName.textContent = '';
         return;
       }
 
-      activeHub.hidden = false;
-      followHubButton.hidden = false;
-      activeHubName.textContent = formatHubName(state.selectedHub.name);
+      activeDistrict.hidden = false;
+      followDistrictButton.hidden = false;
+      activeDistrictName.textContent = formatDistrictName(state.selectedDistrict.name);
     }
 
     async function resetAndLoadSpots() {
@@ -836,8 +832,8 @@
       loadMoreButton.disabled = true;
       loadingState.hidden = false;
 
-      const basePath = state.selectedHub
-        ? `/api/v1/hubs/${encodeURIComponent(state.selectedHub.id)}/spots`
+      const basePath = state.selectedDistrict
+        ? `/api/v1/districts/${encodeURIComponent(state.selectedDistrict.id)}/spots`
         : '/api/v1/spots';
       const url = `${basePath}?page=${state.page}&limit=${state.limit}`;
 
@@ -895,37 +891,37 @@
 
         name.textContent = spot.name;
 
-        const hub = document.createElement('span');
-        hub.className = 'spot-hub spot-hub-button';
-        hub.setAttribute('role', 'button');
-        hub.tabIndex = 0;
-        hub.textContent = formatHubName(spot.hub_name);
-        hub.addEventListener('click', async () => {
+        const district = document.createElement('span');
+        district.className = 'spot-district spot-district-button';
+        district.setAttribute('role', 'button');
+        district.tabIndex = 0;
+        district.textContent = formatDistrictName(spot.district_name);
+        district.addEventListener('click', async () => {
           const selectedText = window.getSelection ? String(window.getSelection()) : '';
           if (selectedText.trim()) {
             return;
           }
-          const selectedHub = state.hubs.find(item => item.id === spot.hub_id);
-          if (!selectedHub) {
+          const selectedDistrict = state.districts.find(item => item.id === spot.district_id);
+          if (!selectedDistrict) {
             return;
           }
-          await applyHubFilter(selectedHub);
+          await applyDistrictFilter(selectedDistrict);
         });
-        hub.addEventListener('keydown', async event => {
+        district.addEventListener('keydown', async event => {
           if (event.key !== 'Enter' && event.key !== ' ') {
             return;
           }
           event.preventDefault();
-          const selectedHub = state.hubs.find(item => item.id === spot.hub_id);
-          if (!selectedHub) {
+          const selectedDistrict = state.districts.find(item => item.id === spot.district_id);
+          if (!selectedDistrict) {
             return;
           }
-          await applyHubFilter(selectedHub);
+          await applyDistrictFilter(selectedDistrict);
         });
 
         content.appendChild(date);
         content.appendChild(name);
-        content.appendChild(hub);
+        content.appendChild(district);
 
         const thumbLink = document.createElement('a');
         thumbLink.className = 'spot-thumb-link';
