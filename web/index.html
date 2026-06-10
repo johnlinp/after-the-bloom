@@ -509,6 +509,15 @@
       display: none;
     }
 
+    .end-of-list-report {
+      margin-top: 22px;
+      text-align: center;
+    }
+
+    .end-of-list-report[hidden] {
+      display: none;
+    }
+
     .empty-state {
       margin-top: 22px;
       padding: 28px;
@@ -738,6 +747,9 @@
         <a class="empty-state__report" href="https://ig.me/m/afterthebloom.tw" target="_blank" rel="noopener noreferrer">回報熄燈店家</a>
       </div>
       <button id="load-more" class="load-more" type="button">載入更多</button>
+      <div id="end-of-list-report" class="end-of-list-report" hidden>
+        <a class="empty-state__report" href="https://ig.me/m/afterthebloom.tw" target="_blank" rel="noopener noreferrer">回報更多熄燈店家</a>
+      </div>
     </section>
   </div>
 
@@ -770,6 +782,7 @@
     const followDistrictButton = document.getElementById('follow-district');
     const loadingState = document.getElementById('loading-state');
     const emptyState = document.getElementById('empty-state');
+    const endOfListReport = document.getElementById('end-of-list-report');
     const menuButton = document.getElementById('menu-button');
     const menuPanel = document.getElementById('menu-panel');
     const followModal = document.getElementById('follow-modal');
@@ -954,6 +967,7 @@
       state.page = 1;
       state.total = 0;
       spotList.innerHTML = '';
+      endOfListReport.hidden = true;
       await loadSpots({ append: false });
     }
 
@@ -985,6 +999,7 @@
         }
         emptyState.hidden = false;
         loadMoreButton.hidden = true;
+        endOfListReport.hidden = true;
       } finally {
         state.loading = false;
         loadMoreButton.disabled = false;
@@ -999,6 +1014,7 @@
 
       if (!append && spots.length === 0) {
         emptyState.hidden = false;
+        endOfListReport.hidden = true;
         return;
       }
 
@@ -1082,6 +1098,7 @@
       const loadedCount = spotList.querySelectorAll('.spot-card').length;
       const hasMore = loadedCount < state.total && lastBatchSize > 0;
       loadMoreButton.hidden = !hasMore;
+      endOfListReport.hidden = hasMore || loadedCount === 0;
     }
 
     boot();
