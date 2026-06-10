@@ -441,10 +441,154 @@
       "permanently_closed_on": "2024"
     },
     {
+      "id": "471dbf5c-d5a0-4898-9bdb-d297a7ef5bb6",
+      "name": "Fermi",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/uSRoAKAPvns4juzr6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026/3"
+    },
+    {
+      "id": "116d3024-53fa-4f56-8941-d2fbe3aacb2b",
+      "name": "永福樓",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/AxGwxH455iNQDHaFA",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019/2"
+    },
+    {
+      "id": "bb9811ea-77ad-4732-afe0-cfb7e9ea48d2",
+      "name": "珍味園海鮮小館",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/VstCjjoRorJyvAHM7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019"
+    },
+    {
+      "id": "d6ec7c6a-ada4-4f36-a9e0-8d0eb0cdafd1",
+      "name": "曹家屯酸菜白肉鍋",
+      "zip_code": "111",
+      "google_map_url": "https://maps.app.goo.gl/4ibZcAiJZHVVb23VA",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019"
+    },
+    {
+      "id": "f4e0ffab-861c-4aec-81ab-0dc9ca2727c4",
+      "name": "鰻料理京都屋",
+      "zip_code": "104",
+      "google_map_url": "https://maps.app.goo.gl/gba9AAsf4hcN13j36",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019"
+    },
+    {
+      "id": "b91315cb-393f-4be7-8dce-3da8bb39b2de",
+      "name": "米塔義式廚房-南京店",
+      "zip_code": "104",
+      "google_map_url": "https://maps.app.goo.gl/aDzwsP2BHnS6Mb9C8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "4f15f3dc-f600-4dd9-9c09-90e668f2458d",
+      "name": "義瑪卡多餐酒咖啡館南京店",
+      "zip_code": "105",
+      "google_map_url": "https://maps.app.goo.gl/YwPVKnbrKryuoPJ86",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2022"
+    },
+    {
+      "id": "294c4d63-136a-4aaf-b954-76574c925829",
+      "name": "義瑪卡多餐酒館 Il Mercato大直店",
+      "zip_code": "10462",
+      "google_map_url": "https://maps.app.goo.gl/X9ivdc8z6MSKCpFc8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019"
+    },
+    {
+      "id": "491914c0-96e2-4f4a-a76f-0e53098c468d",
+      "name": "金石堂書店 天母店",
+      "zip_code": "111",
+      "google_map_url": "https://maps.app.goo.gl/W4Dn6nmGYCyfK6eM9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025"
+    },
+    {
+      "id": "821fae32-32ad-4c15-8a0c-3f923b44ff3f",
+      "name": "誠品敦南店",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/gbqG9aqSgeaDd814A",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2020"
+    },
+    {
+      "id": "c7f6406a-8d17-4cbf-a66e-2f4b2dee7545",
+      "name": "哈根達斯",
+      "zip_code": "111",
+      "google_map_url": "https://maps.app.goo.gl/g1e1mErzJGQwPKCY8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2017"
+    },
+    {
+      "id": "2e1ec6d8-a74e-4a45-891c-b51485d20471",
+      "name": "Ice Monster",
+      "zip_code": "110",
+      "google_map_url": "https://maps.app.goo.gl/LAf9xfRmT1BUdSem9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023/8"
+    },
+    {
+      "id": "c85ddffe-2714-4234-983f-f65df7212d4e",
+      "name": "ICE MONSTER 忠孝旗艦店 永康冰館",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/FoJ6uF9AtJUF8KZB7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019"
+    },
+    {
+      "id": "29d1667d-c30e-4e9b-b52c-4ff3b0c80a31",
+      "name": "ICE MONSTER 永康店 永康冰館",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/V7R7Cuv7xLXq56zD6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2021"
+    },
+    {
+      "id": "6fa4d93f-8b3a-4013-ac93-c127a7694124",
+      "name": "路地 氷の怪物 (台北店)",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/ya4reQHBzLyiVP3G6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2022"
+    },
+    {
       "id": "c7162b17-64f6-4e80-b247-e8b65f7e9f22",
       "name": "逢家現炒",
       "zip_code": "407",
       "google_map_url": "https://maps.app.goo.gl/MhWooXkAmnaovueP6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023"
+    },
+    {
+      "id": "20370343-4ef1-428e-85c6-440287593213",
+      "name": "華亭豬腳麵",
+      "zip_code": "103",
+      "google_map_url": "https://maps.app.goo.gl/61r6Z76yyahqTTDU6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025/8"
+    },
+    {
+      "id": "4c400d7a-fa3b-4c0a-b20c-cef8ed10983f",
+      "name": "Pasela'an緩緩書屋",
+      "zip_code": "976006",
+      "google_map_url": "https://maps.app.goo.gl/9LZxp3TccUPKWKWw6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024"
+    },
+    {
+      "id": "4d7af0a0-d4b8-47d2-b385-7b5497b1cfee",
+      "name": "艋舺阿龍",
+      "zip_code": "108",
+      "google_map_url": "https://maps.app.goo.gl/2NdySnrhQQiYKGDS8",
       "current_business_status": "permanently closed",
       "permanently_closed_on": "2023"
     },
