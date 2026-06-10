@@ -389,6 +389,10 @@
       -webkit-user-select: text;
     }
 
+    .spot-content {
+      min-width: 0;
+    }
+
     .spot-meta {
       color: #627059;
       font-size: clamp(0.78rem, 0.74vw, 0.88rem);
@@ -396,6 +400,7 @@
     }
 
     .spot-name {
+      display: block;
       margin-top: 20px;
       font-family: var(--serif);
       font-size: clamp(1.22rem, 1.4vw, 1.6rem);
@@ -403,7 +408,8 @@
       color: #21251f;
       font-weight: 700;
       letter-spacing: 0.04em;
-      word-break: keep-all;
+      word-break: normal;
+      overflow-wrap: anywhere;
     }
 
     .spot-link {
@@ -429,7 +435,8 @@
       color: #303632;
       font-size: clamp(0.9rem, 0.88vw, 1rem);
       letter-spacing: 0.08em;
-      word-break: keep-all;
+      word-break: normal;
+      overflow-wrap: anywhere;
     }
 
     .spot-district-button {
@@ -1025,6 +1032,7 @@
         card.className = 'spot-card';
 
         const content = document.createElement('div');
+        content.className = 'spot-content';
         const date = document.createElement('div');
         date.className = 'spot-meta';
         date.textContent = `${spot.permanently_closed_on} 熄燈`;
