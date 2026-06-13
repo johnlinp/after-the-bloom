@@ -599,6 +599,14 @@
       "google_map_url": "https://maps.app.goo.gl/Ns3xgmveRk4Kek877",
       "current_business_status": "permanently closed",
       "permanently_closed_on": "2024"
+    },
+    {
+      "id": "e2a7c2de-0107-4ca3-b8fd-3cf6cc5419d6",
+      "name": "麥當勞-台中逢甲餐廳",
+      "zip_code": "407",
+      "google_map_url": "https://maps.app.goo.gl/cerx9HXMLpAQWwTh8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023"
     }
   ]
 }
