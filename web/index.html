@@ -37,18 +37,15 @@
 
     .top-shell {
       position: relative;
-      background:
-        linear-gradient(180deg, var(--hero-band-deep) 0, var(--hero-band) 22px, var(--hero-band) 100%);
+      background: var(--hero-band);
       color: #fff8ef;
-      box-shadow: inset 0 -1px 0 rgba(88, 28, 18, 0.18);
     }
 
     .top-shell::after {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0) 28%);
+      background: none;
       pointer-events: none;
     }
 
