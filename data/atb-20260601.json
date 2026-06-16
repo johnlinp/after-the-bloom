@@ -607,6 +607,14 @@
       "google_map_url": "https://maps.app.goo.gl/cerx9HXMLpAQWwTh8",
       "current_business_status": "permanently closed",
       "permanently_closed_on": "2023"
+    },
+    {
+      "id": "075b70c9-3609-4986-b759-26b999a7d142",
+      "name": "在地居麵食館",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/NAEpvoKZQ6CL38HZ7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2016"
     }
   ]
 }
