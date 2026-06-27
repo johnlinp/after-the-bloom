@@ -19,6 +19,7 @@ type District struct {
 type Spot struct {
 	ID                    string `json:"id"`
 	Name                  string `json:"name"`
+	ShortCode             string `json:"short_code"`
 	ZipCode               string `json:"zip_code"`
 	GoogleMapURL          string `json:"google_map_url"`
 	CurrentBusinessStatus string `json:"current_business_status"`
@@ -40,6 +41,7 @@ type zipcodeIndex struct {
 type SpotResponse struct {
 	ID                    string `json:"id"`
 	Name                  string `json:"name"`
+	ShortCode             string `json:"short_code"`
 	ZipCode               string `json:"zip_code"`
 	GoogleMapURL          string `json:"google_map_url"`
 	CurrentBusinessStatus string `json:"current_business_status"`
@@ -52,6 +54,7 @@ type Store struct {
 	districts          []District
 	spots              []Spot
 	spotByID           map[string]Spot
+	spotByShortCode    map[string]Spot
 	districtByID       map[string]District
 	districtIDBySpotID map[string]string
 	spotsByDistrictID  map[string][]Spot
@@ -78,6 +81,7 @@ func LoadStore(datasetPath, zipcodePath string) (*Store, error) {
 	store := &Store{
 		spots:              append([]Spot(nil), raw.Spots...),
 		spotByID:           make(map[string]Spot, len(raw.Spots)),
+		spotByShortCode:    make(map[string]Spot, len(raw.Spots)),
 		districts:          append([]District(nil), zipcodes.districts...),
 		districtByID:       make(map[string]District, len(zipcodes.districts)),
 		districtIDBySpotID: make(map[string]string, len(raw.Spots)),
@@ -90,6 +94,9 @@ func LoadStore(datasetPath, zipcodePath string) (*Store, error) {
 
 	for _, spot := range raw.Spots {
 		store.spotByID[spot.ID] = spot
+		if spot.ShortCode != "" {
+			store.spotByShortCode[spot.ShortCode] = spot
+		}
 
 		districtName, ok := zipcodes.byZipCode[normalizeZipCode(spot.ZipCode)]
 		if !ok {
@@ -229,6 +236,14 @@ func (s *Store) HasSpot(spotID string) bool {
 	return ok
 }
 
+func (s *Store) SpotByShortCode(shortCode string) (SpotResponse, bool) {
+	spot, ok := s.spotByShortCode[strings.TrimSpace(shortCode)]
+	if !ok {
+		return SpotResponse{}, false
+	}
+	return s.toSpotResponse(spot), true
+}
+
 func (s *Store) sortedSpots() []Spot {
 	spots := append([]Spot(nil), s.spots...)
 	sortSpots(spots)
@@ -239,6 +254,7 @@ func (s *Store) toSpotResponse(spot Spot) SpotResponse {
 	resp := SpotResponse{
 		ID:                    spot.ID,
 		Name:                  spot.Name,
+		ShortCode:             spot.ShortCode,
 		ZipCode:               spot.ZipCode,
 		GoogleMapURL:          spot.GoogleMapURL,
 		CurrentBusinessStatus: spot.CurrentBusinessStatus,

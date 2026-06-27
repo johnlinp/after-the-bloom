@@ -29,6 +29,9 @@ func RegisterRoutes(router *gin.Engine, store *Store, photosDir, indexPath strin
 	router.GET("/distrct/:districtId", func(c *gin.Context) {
 		c.File(indexPath)
 	})
+	router.GET("/spot/:shortCode", func(c *gin.Context) {
+		c.File(indexPath)
+	})
 
 	api := router.Group("/api/v1")
 	{
@@ -60,6 +63,15 @@ func RegisterRoutes(router *gin.Engine, store *Store, photosDir, indexPath strin
 				Total: total,
 				Items: items,
 			})
+		})
+
+		api.GET("/spots/short-code/:shortCode", func(c *gin.Context) {
+			spot, ok := store.SpotByShortCode(c.Param("shortCode"))
+			if !ok {
+				c.JSON(http.StatusNotFound, gin.H{"error": "spot not found"})
+				return
+			}
+			c.JSON(http.StatusOK, spot)
 		})
 
 		api.GET("/spots/:spotId/thumbnail", func(c *gin.Context) {

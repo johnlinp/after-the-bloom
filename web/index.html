@@ -55,6 +55,10 @@
       padding: 28px clamp(28px, 4vw, 72px) 88px;
     }
 
+    .top-shell .page {
+      padding-bottom: 28px;
+    }
+
     .topbar {
       display: grid;
       grid-template-columns: 80px 1fr 80px;
@@ -161,6 +165,13 @@
     .hero {
       text-align: center;
       padding: 56px 0 48px;
+    }
+
+    .hero[hidden],
+    .district-toolbar[hidden],
+    .listing-controls[hidden],
+    .spot-detail[hidden] {
+      display: none;
     }
 
     .hero p {
@@ -583,6 +594,163 @@
       text-align: center;
     }
 
+    .spot-detail {
+      padding-top: 28px;
+    }
+
+    .spot-detail__card {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: clamp(24px, 4vw, 40px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 252, 247, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .spot-detail__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .spot-detail__meta {
+      color: #627059;
+      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+    }
+
+    .spot-detail__name {
+      margin: 14px 0 0;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: 0.04em;
+    }
+
+    .spot-detail__district {
+      margin: 18px 0 0;
+    }
+
+    .spot-detail__district-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(186, 190, 166, 0.42);
+      color: #55684f;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    .spot-detail__district-icon {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 auto;
+    }
+
+    .spot-detail__district-link:hover,
+    .spot-detail__district-link:focus-visible {
+      filter: brightness(1.03);
+    }
+
+    .spot-detail__district-link:focus-visible {
+      outline: 2px solid rgba(85, 104, 79, 0.5);
+      outline-offset: 4px;
+    }
+
+    .spot-detail__thumb {
+      margin-top: 28px;
+      width: min(100%, 560px);
+      aspect-ratio: 1.5 / 1;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(85, 104, 79, 0.22);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.75), rgba(232, 225, 211, 0.85)),
+        repeating-linear-gradient(-45deg, rgba(85, 104, 79, 0.05) 0 8px, rgba(255,255,255,0) 8px 16px);
+    }
+
+    .spot-detail__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .spot-detail__fallback {
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      color: rgba(85, 104, 79, 0.72);
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+    }
+
+    .spot-detail__pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(85, 104, 79, 0.12);
+      color: #485744;
+      font-size: 0.86rem;
+      letter-spacing: 0.08em;
+    }
+
+    .spot-detail__map-link {
+      text-decoration: none;
+      background: var(--hero-band);
+      color: #fff8ef;
+    }
+
+    .spot-detail__map-link:hover,
+    .spot-detail__map-link:focus-visible {
+      filter: brightness(1.08);
+      outline: none;
+    }
+
+    .spot-detail__report {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      color: #596459;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-align: right;
+    }
+
+    .spot-detail__report-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fffaf2;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+      box-shadow: 0 12px 24px rgba(183, 85, 53, 0.18);
+    }
+
+    .spot-detail__report-link:hover,
+    .spot-detail__report-link:focus-visible {
+      transform: translateY(-1px);
+      opacity: 0.96;
+      box-shadow: 0 16px 28px rgba(183, 85, 53, 0.24);
+      outline: none;
+    }
+
     @media (min-width: 1024px) {
       .hero {
         padding-top: 64px;
@@ -608,6 +776,10 @@
       .spot-thumb {
         max-width: 360px;
         justify-self: end;
+      }
+
+      .spot-detail__map-link {
+        flex: 0 0 auto;
       }
     }
 
@@ -636,6 +808,10 @@
     @media (max-width: 820px) {
       .page {
         padding: 18px 18px 56px;
+      }
+
+      .top-shell .page {
+        padding-bottom: 18px;
       }
 
       .topbar {
@@ -684,6 +860,16 @@
 
       .follow-district {
         width: 100%;
+      }
+
+      .spot-detail__header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .spot-detail__report {
+        justify-content: flex-start;
+        text-align: left;
       }
     }
   </style>
@@ -756,14 +942,17 @@
       </div>
 
       <div id="spot-list" class="spot-list" aria-live="polite"></div>
-      <div id="loading-state" class="loading-state">載入中…</div>
-      <div id="empty-state" class="empty-state" hidden>
-        <div>目前資料庫中還沒有這個鄉鎮市區的熄燈店家喔</div>
-        <a class="empty-state__report" href="https://ig.me/m/afterthebloom.tw" target="_blank" rel="noopener noreferrer">回報熄燈店家</a>
-      </div>
-      <button id="load-more" class="load-more" type="button">載入更多</button>
-      <div id="end-of-list-report" class="end-of-list-report" hidden>
-        <a class="empty-state__report" href="https://ig.me/m/afterthebloom.tw" target="_blank" rel="noopener noreferrer">回報更多熄燈店家</a>
+      <section id="spot-detail" class="spot-detail" hidden aria-live="polite"></section>
+      <div id="listing-controls" class="listing-controls">
+        <div id="loading-state" class="loading-state">載入中…</div>
+        <div id="empty-state" class="empty-state" hidden>
+          <div>目前資料庫中還沒有這個鄉鎮市區的熄燈店家喔</div>
+          <a class="empty-state__report" href="https://ig.me/m/afterthebloom.tw" target="_blank" rel="noopener noreferrer">回報熄燈店家</a>
+        </div>
+        <button id="load-more" class="load-more" type="button">載入更多</button>
+        <div id="end-of-list-report" class="end-of-list-report" hidden>
+          <a class="empty-state__report" href="https://ig.me/m/afterthebloom.tw" target="_blank" rel="noopener noreferrer">回報更多熄燈店家</a>
+        </div>
       </div>
     </section>
   </div>
@@ -785,18 +974,24 @@
 
   <script>
     const state = {
+      route: 'list',
       districts: [],
       filteredDistricts: [],
       selectedDistrict: null,
+      selectedSpot: null,
       page: 1,
       limit: 10,
       total: 0,
       loading: false
     };
 
+    const heroSection = document.querySelector('.hero');
+    const districtToolbar = document.querySelector('.district-toolbar');
     const searchInput = document.getElementById('district-search');
     const searchResults = document.getElementById('search-results');
     const spotList = document.getElementById('spot-list');
+    const spotDetail = document.getElementById('spot-detail');
+    const listingControls = document.getElementById('listing-controls');
     const loadMoreButton = document.getElementById('load-more');
     const activeDistrict = document.getElementById('active-district');
     const activeDistrictName = document.getElementById('active-district-name');
@@ -811,6 +1006,14 @@
 
     function formatDistrictName(name) {
       return String(name || '').trim() || '未知鄉鎮市區';
+    }
+
+    function spotPath(spot) {
+      const shortCode = String((spot && spot.short_code) || '').trim();
+      if (!shortCode) {
+        return '/';
+      }
+      return `/spot/${encodeURIComponent(shortCode)}`;
     }
 
     function districtPath(district) {
@@ -835,6 +1038,24 @@
       }
       const districtID = String(match[1] || '').toLowerCase();
       return state.districts.find(district => String(district.id || '').toLowerCase() === districtID) || null;
+    }
+
+    function shortCodeFromLocation() {
+      const match = window.location.pathname.match(/^\/spot\/([^/]+)\/?$/);
+      if (!match) {
+        return '';
+      }
+      return decodeURIComponent(match[1] || '').trim();
+    }
+
+    function setRoute(route) {
+      const detailMode = route === 'spot';
+      state.route = route;
+      heroSection.hidden = detailMode;
+      districtToolbar.hidden = detailMode;
+      spotList.hidden = detailMode;
+      listingControls.hidden = detailMode;
+      spotDetail.hidden = !detailMode;
     }
 
     async function applyDistrictFilter(district, options = {}) {
@@ -879,6 +1100,15 @@
     async function boot() {
       loadingState.hidden = false;
       await loadDistricts();
+      const shortCode = shortCodeFromLocation();
+      if (shortCode) {
+        setRoute('spot');
+        await loadSpotDetail(shortCode);
+        bindEvents();
+        return;
+      }
+
+      setRoute('list');
       const districtFromPath = districtFromLocation();
       if (districtFromPath) {
         await applyDistrictFilter(districtFromPath, { syncPath: false });
@@ -945,6 +1175,16 @@
       });
 
       window.addEventListener('popstate', async () => {
+        const shortCode = shortCodeFromLocation();
+        if (shortCode) {
+          state.selectedDistrict = null;
+          state.selectedSpot = null;
+          setRoute('spot');
+          await loadSpotDetail(shortCode);
+          return;
+        }
+
+        setRoute('list');
         const district = districtFromLocation();
         if (district) {
           await applyDistrictFilter(district, { syncPath: false });
@@ -1096,9 +1336,7 @@
 
         const name = document.createElement('a');
         name.className = 'spot-link spot-name';
-        name.href = spot.google_map_url || '#';
-        name.target = '_blank';
-        name.rel = 'noopener noreferrer';
+        name.href = spotPath(spot);
 
         name.textContent = spot.name;
 
@@ -1136,9 +1374,7 @@
 
         const thumbLink = document.createElement('a');
         thumbLink.className = 'spot-thumb-link';
-        thumbLink.href = spot.google_map_url || '#';
-        thumbLink.target = '_blank';
-        thumbLink.rel = 'noopener noreferrer';
+        thumbLink.href = spotPath(spot);
 
         const thumb = document.createElement('div');
         thumb.className = 'spot-thumb';
@@ -1157,6 +1393,126 @@
         card.appendChild(thumbLink);
         spotList.appendChild(card);
       });
+    }
+
+    async function loadSpotDetail(shortCode) {
+      state.loading = true;
+      loadingState.hidden = false;
+      spotDetail.innerHTML = '';
+
+      try {
+        const response = await fetch(`/api/v1/spots/short-code/${encodeURIComponent(shortCode)}`);
+        if (!response.ok) {
+          throw new Error('failed to load spot');
+        }
+
+        const spot = await response.json();
+        state.selectedSpot = spot;
+        renderSpotDetail(spot);
+      } catch (error) {
+        state.selectedSpot = null;
+        renderSpotDetailNotFound();
+      } finally {
+        state.loading = false;
+        loadingState.hidden = true;
+      }
+    }
+
+    function renderSpotDetail(spot) {
+      spotDetail.innerHTML = '';
+
+      const card = document.createElement('article');
+      card.className = 'spot-detail__card';
+
+      const header = document.createElement('div');
+      header.className = 'spot-detail__header';
+
+      const meta = document.createElement('div');
+      meta.className = 'spot-detail__meta';
+      meta.textContent = `${spot.permanently_closed_on} 熄燈`;
+
+      const mapLink = document.createElement('a');
+      mapLink.className = 'spot-detail__pill spot-detail__map-link';
+      mapLink.href = spot.google_map_url || '#';
+      mapLink.target = '_blank';
+      mapLink.rel = 'noopener noreferrer';
+      mapLink.textContent = '在 Google Map 打開';
+
+      header.appendChild(meta);
+      header.appendChild(mapLink);
+
+      const name = document.createElement('h1');
+      name.className = 'spot-detail__name';
+      name.textContent = spot.name;
+
+      const district = document.createElement('p');
+      district.className = 'spot-detail__district';
+
+      const districtLink = document.createElement('a');
+      districtLink.className = 'spot-detail__district-link';
+      districtLink.href = districtPath({ id: spot.district_id });
+
+      const districtIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      districtIcon.setAttribute('class', 'spot-detail__district-icon');
+      districtIcon.setAttribute('viewBox', '0 0 24 24');
+      districtIcon.setAttribute('fill', 'currentColor');
+      districtIcon.setAttribute('aria-hidden', 'true');
+
+      const districtIconPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      districtIconPath.setAttribute('d', 'M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z');
+      districtIcon.appendChild(districtIconPath);
+
+      const districtLabel = document.createElement('span');
+      districtLabel.textContent = formatDistrictName(spot.district_name);
+
+      districtLink.appendChild(districtIcon);
+      districtLink.appendChild(districtLabel);
+
+      district.appendChild(districtLink);
+
+      const thumb = document.createElement('div');
+      thumb.className = 'spot-detail__thumb';
+
+      const img = document.createElement('img');
+      img.alt = `${spot.name} thumbnail`;
+      img.src = `/api/v1/spots/${encodeURIComponent(spot.id)}/thumbnail`;
+      img.addEventListener('error', () => {
+        thumb.innerHTML = '<div class="spot-detail__fallback">NO IMAGE</div>';
+      }, { once: true });
+
+      thumb.appendChild(img);
+
+      const report = document.createElement('div');
+      report.className = 'spot-detail__report';
+
+      const reportText = document.createElement('span');
+      reportText.textContent = '我們搞錯了嗎？';
+
+      const reportLink = document.createElement('a');
+      reportLink.className = 'spot-detail__report-link';
+      reportLink.href = 'https://ig.me/m/afterthebloom.tw';
+      reportLink.target = '_blank';
+      reportLink.rel = 'noopener noreferrer';
+      reportLink.textContent = '回報錯誤';
+
+      report.appendChild(reportText);
+      report.appendChild(reportLink);
+
+      card.appendChild(header);
+      card.appendChild(name);
+      card.appendChild(district);
+      card.appendChild(thumb);
+      card.appendChild(report);
+      spotDetail.appendChild(card);
+    }
+
+    function renderSpotDetailNotFound() {
+      spotDetail.innerHTML = `
+        <div class="empty-state">
+          <div>找不到這筆熄燈店家資料</div>
+          <a class="empty-state__report" href="/">回到首頁</a>
+        </div>
+      `;
     }
 
     function updateLoadMore(lastBatchSize) {

@@ -25,6 +25,17 @@ func TestAPIEndpoints(t *testing.T) {
 	router := gin.New()
 	RegisterRoutes(router, store, filepath.Join("..", "..", "photos"), filepath.Join("..", "..", "web", "index.html"))
 
+	knownShortCode := ""
+	for _, spot := range store.spots {
+		if spot.ShortCode != "" {
+			knownShortCode = spot.ShortCode
+			break
+		}
+	}
+	if knownShortCode == "" {
+		t.Fatal("expected at least one spot to have a short code")
+	}
+
 	t.Run("spots pagination", func(t *testing.T) {
 		rec := httptest.NewRecorder()
 		req := httptest.NewRequest(http.MethodGet, "/api/v1/spots?page=1&limit=10", nil)
@@ -53,6 +64,9 @@ func TestAPIEndpoints(t *testing.T) {
 		if payload.Total == 0 {
 			t.Fatalf("total = %d, want > 0", payload.Total)
 		}
+		if payload.Items[0].ShortCode == "" {
+			t.Fatal("expected spot response to include short code")
+		}
 	})
 
 	t.Run("district page route", func(t *testing.T) {
@@ -65,6 +79,19 @@ func TestAPIEndpoints(t *testing.T) {
 		}
 		if rec.Body.Len() == 0 {
 			t.Fatal("expected district page route to serve index html")
+		}
+	})
+
+	t.Run("spot page route", func(t *testing.T) {
+		rec := httptest.NewRecorder()
+		req := httptest.NewRequest(http.MethodGet, "/spot/"+knownShortCode, nil)
+		router.ServeHTTP(rec, req)
+
+		if rec.Code != http.StatusOK {
+			t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
+		}
+		if rec.Body.Len() == 0 {
+			t.Fatal("expected spot page route to serve index html")
 		}
 	})
 
@@ -198,6 +225,24 @@ func TestAPIEndpoints(t *testing.T) {
 
 		if rec.Code != http.StatusOK {
 			t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
+		}
+	})
+
+	t.Run("spot by short code", func(t *testing.T) {
+		rec := httptest.NewRecorder()
+		req := httptest.NewRequest(http.MethodGet, "/api/v1/spots/short-code/"+knownShortCode, nil)
+		router.ServeHTTP(rec, req)
+
+		if rec.Code != http.StatusOK {
+			t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
+		}
+
+		var payload SpotResponse
+		if err := json.Unmarshal(rec.Body.Bytes(), &payload); err != nil {
+			t.Fatalf("decode short-code spot response: %v", err)
+		}
+		if payload.ShortCode != knownShortCode {
+			t.Fatalf("short code = %q, want %q", payload.ShortCode, knownShortCode)
 		}
 	})
 }
