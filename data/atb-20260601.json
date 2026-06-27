@@ -601,6 +601,30 @@
       "permanently_closed_on": "2024"
     },
     {
+      "id": "46ee07d6-aca0-4723-b12e-cf585e57ab89",
+      "name": "覺醒音樂三重店",
+      "zip_code": "24142",
+      "google_map_url": "https://maps.app.goo.gl/m5w8NVzESojrzrDL8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023"
+    },
+    {
+      "id": "906ba052-3dcc-4bb7-9edd-5dfdd2aff69b",
+      "name": "綠堤咖啡",
+      "zip_code": "241",
+      "google_map_url": "https://maps.app.goo.gl/ggkM95hjeN4Wa41s9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019/5"
+    },
+    {
+      "id": "6e76e1fe-6522-437d-a934-09b0112d890d",
+      "name": "小福利麻辣鍋 中和環球店",
+      "zip_code": "235",
+      "google_map_url": "https://maps.app.goo.gl/BJsBJgkf1usiKyfcA",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026"
+    },
+    {
       "id": "e2a7c2de-0107-4ca3-b8fd-3cf6cc5419d6",
       "name": "麥當勞-台中逢甲餐廳",
       "zip_code": "407",
