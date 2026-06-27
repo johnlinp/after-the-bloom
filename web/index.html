@@ -813,11 +813,39 @@
       return String(name || '').trim() || '未知鄉鎮市區';
     }
 
-    async function applyDistrictFilter(district) {
+    function districtPath(district) {
+      if (!district || !district.id) {
+        return '/';
+      }
+      return `/distrct/${encodeURIComponent(district.id)}`;
+    }
+
+    function syncDistrictPath(district) {
+      const nextPath = districtPath(district);
+      if (window.location.pathname === nextPath) {
+        return;
+      }
+      window.history.pushState({ districtId: district ? district.id : null }, '', nextPath);
+    }
+
+    function districtFromLocation() {
+      const match = window.location.pathname.match(/^\/distrct\/(tw-\d{3})\/?$/i);
+      if (!match) {
+        return null;
+      }
+      const districtID = String(match[1] || '').toLowerCase();
+      return state.districts.find(district => String(district.id || '').toLowerCase() === districtID) || null;
+    }
+
+    async function applyDistrictFilter(district, options = {}) {
+      const { syncPath = true } = options;
       state.selectedDistrict = district;
       searchInput.value = formatDistrictName(district.name);
       renderActiveDistrict();
       closeSearchResults();
+      if (syncPath) {
+        syncDistrictPath(district);
+      }
       await resetAndLoadSpots();
     }
 
@@ -851,7 +879,12 @@
     async function boot() {
       loadingState.hidden = false;
       await loadDistricts();
-      await resetAndLoadSpots();
+      const districtFromPath = districtFromLocation();
+      if (districtFromPath) {
+        await applyDistrictFilter(districtFromPath, { syncPath: false });
+      } else {
+        await resetAndLoadSpots();
+      }
       bindEvents();
     }
 
@@ -909,6 +942,20 @@
         if (state.loading) return;
         state.page += 1;
         await loadSpots({ append: true });
+      });
+
+      window.addEventListener('popstate', async () => {
+        const district = districtFromLocation();
+        if (district) {
+          await applyDistrictFilter(district, { syncPath: false });
+          return;
+        }
+
+        state.selectedDistrict = null;
+        searchInput.value = '';
+        renderActiveDistrict();
+        closeSearchResults();
+        await resetAndLoadSpots();
       });
     }
 

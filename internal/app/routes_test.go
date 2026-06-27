@@ -55,6 +55,19 @@ func TestAPIEndpoints(t *testing.T) {
 		}
 	})
 
+	t.Run("district page route", func(t *testing.T) {
+		rec := httptest.NewRecorder()
+		req := httptest.NewRequest(http.MethodGet, "/distrct/tw-106", nil)
+		router.ServeHTTP(rec, req)
+
+		if rec.Code != http.StatusOK {
+			t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
+		}
+		if rec.Body.Len() == 0 {
+			t.Fatal("expected district page route to serve index html")
+		}
+	})
+
 	t.Run("districts", func(t *testing.T) {
 		rec := httptest.NewRecorder()
 		req := httptest.NewRequest(http.MethodGet, "/api/v1/districts", nil)

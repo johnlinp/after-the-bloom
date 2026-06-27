@@ -26,6 +26,9 @@ func RegisterRoutes(router *gin.Engine, store *Store, photosDir, indexPath strin
 	router.GET("/", func(c *gin.Context) {
 		c.File(indexPath)
 	})
+	router.GET("/distrct/:districtId", func(c *gin.Context) {
+		c.File(indexPath)
+	})
 
 	api := router.Group("/api/v1")
 	{
