@@ -357,14 +357,25 @@
     }
 
     .modal__close {
-      padding: 12px 24px;
-      border: 1px solid rgba(85, 104, 79, 0.6);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 54px;
+      border: 2px solid rgba(201, 71, 47, 0.9);
       border-radius: 999px;
-      background: transparent;
-      color: #4b5e44;
-      font-size: 0.92rem;
-      letter-spacing: 0.12em;
+      background: var(--hero-band);
+      color: #fff8ef;
+      font-size: 1.08rem;
+      letter-spacing: 0.18em;
+      line-height: 1;
+      text-decoration: none;
       cursor: pointer;
+    }
+
+    .modal__close:hover,
+    .modal__close:focus-visible {
+      filter: brightness(1.08);
+      outline: none;
     }
 
     .spot-list {
@@ -759,9 +770,15 @@
 
   <div id="follow-modal" class="modal" hidden>
     <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="follow-modal-message">
-      <p id="follow-modal-message" class="modal__message">抱歉還沒寫這個功能</p>
+      <p id="follow-modal-message" class="modal__message">目前追蹤功能尚未完成 請多多見諒</p>
       <div class="modal__actions">
-        <button id="follow-modal-close" class="modal__close" type="button">呃好</button>
+        <a
+          id="follow-modal-close"
+          class="modal__close"
+          href="https://ig.me/m/afterthebloom.tw"
+          target="_blank"
+          rel="noopener noreferrer"
+        >聯絡我們</a>
       </div>
     </div>
   </div>
@@ -869,10 +886,6 @@
 
       followDistrictButton.addEventListener('click', () => {
         openFollowModal();
-      });
-
-      followModalCloseButton.addEventListener('click', () => {
-        closeFollowModal();
       });
 
       followModal.addEventListener('click', event => {
