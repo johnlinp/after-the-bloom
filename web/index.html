@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:type" content="website" id="meta-og-type">
+  <meta property="og:url" content="https://afterthebloom.com/" id="meta-og-url">
+  <meta property="og:title" content="空折枝 - 哪裡有熄燈的店家？" id="meta-og-title">
+  <meta property="og:description" content="空折枝整理熄燈店家的資訊，讓你看看哪些熟悉的地方已經悄悄告別。" id="meta-og-description">
+  <meta property="og:image" content="" id="meta-og-image">
+  <meta property="og:site_name" content="空折枝" id="meta-og-site-name">
   <title>空折枝 - 哪裡有熄燈的店家？</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232D2D2D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21 C15 16 9 9 5 4'/%3E%3Cpath d='M14.5 15.5 C10 15 8 16 6 16'/%3E%3Cpath d='M11 11.5 C12 8 13 6 14 4'/%3E%3Cpath d='M8 8 C6 7.5 4 8 2 8'/%3E%3C/svg%3E">
   <style>
@@ -1003,9 +1009,66 @@
     const menuPanel = document.getElementById('menu-panel');
     const followModal = document.getElementById('follow-modal');
     const followModalCloseButton = document.getElementById('follow-modal-close');
+    const ogTypeMeta = document.getElementById('meta-og-type');
+    const ogURLMeta = document.getElementById('meta-og-url');
+    const ogTitleMeta = document.getElementById('meta-og-title');
+    const ogDescriptionMeta = document.getElementById('meta-og-description');
+    const ogImageMeta = document.getElementById('meta-og-image');
+    const ogSiteNameMeta = document.getElementById('meta-og-site-name');
+
+    const defaultMetadata = {
+      title: '空折枝 - 哪裡有熄燈的店家？',
+      description: '空折枝整理熄燈店家的資訊，讓你看看哪些熟悉的地方已經悄悄告別。',
+      siteName: '空折枝',
+      siteURL: 'https://afterthebloom.com/'
+    };
 
     function formatDistrictName(name) {
       return String(name || '').trim() || '未知鄉鎮市區';
+    }
+
+    function canonicalURL(pathname) {
+      return new URL(pathname || '/', defaultMetadata.siteURL).toString();
+    }
+
+    function updateMetadata(metadata) {
+      const next = Object.assign({
+        type: 'website',
+        url: canonicalURL(window.location.pathname)
+      }, defaultMetadata, metadata || {});
+
+      document.title = next.title;
+      ogTypeMeta.setAttribute('content', next.type);
+      ogURLMeta.setAttribute('content', next.url);
+      ogTitleMeta.setAttribute('content', next.title);
+      ogDescriptionMeta.setAttribute('content', next.description);
+      ogImageMeta.setAttribute('content', next.image || '');
+      ogSiteNameMeta.setAttribute('content', next.siteName);
+    }
+
+    function resetMetadata() {
+      updateMetadata({
+        title: defaultMetadata.title,
+        description: defaultMetadata.description,
+        url: canonicalURL(window.location.pathname)
+      });
+    }
+
+    function spotMetadata(spot) {
+      const district = formatDistrictName(spot.district_name);
+      const closedOn = String(spot.permanently_closed_on || '').trim();
+      let description = `${spot.name}位於${district}。`;
+      if (closedOn) {
+        description = `${spot.name}位於${district}，已於${closedOn}熄燈。`;
+      }
+      description += '空折枝持續整理這些悄悄告別的地方。';
+
+      return {
+        title: `${defaultMetadata.siteName} - ${spot.name}`,
+        description,
+        url: canonicalURL(spotPath(spot)),
+        image: canonicalURL(`/api/v1/spots/${encodeURIComponent(spot.id)}/thumbnail`)
+      };
     }
 
     function spotPath(spot) {
@@ -1067,6 +1130,7 @@
       if (syncPath) {
         syncDistrictPath(district);
       }
+      resetMetadata();
       await resetAndLoadSpots();
     }
 
@@ -1099,6 +1163,7 @@
 
     async function boot() {
       loadingState.hidden = false;
+      resetMetadata();
       await loadDistricts();
       const shortCode = shortCodeFromLocation();
       if (shortCode) {
@@ -1408,9 +1473,11 @@
 
         const spot = await response.json();
         state.selectedSpot = spot;
+        updateMetadata(spotMetadata(spot));
         renderSpotDetail(spot);
       } catch (error) {
         state.selectedSpot = null;
+        resetMetadata();
         renderSpotDetailNotFound();
       } finally {
         state.loading = false;

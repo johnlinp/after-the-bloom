@@ -6,6 +6,7 @@ import (
 	"net/http/httptest"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"testing"
 
 	"github.com/gin-gonic/gin"
@@ -26,14 +27,25 @@ func TestAPIEndpoints(t *testing.T) {
 	RegisterRoutes(router, store, filepath.Join("..", "..", "photos"), filepath.Join("..", "..", "web", "index.html"))
 
 	knownShortCode := ""
+	knownShortCodeWithPhoto := ""
+	knownSpotIDWithPhoto := ""
 	for _, spot := range store.spots {
 		if spot.ShortCode != "" {
-			knownShortCode = spot.ShortCode
-			break
+			if knownShortCode == "" {
+				knownShortCode = spot.ShortCode
+			}
+			if matches, _ := filepath.Glob(filepath.Join("..", "..", "photos", spot.ID+".*")); len(matches) > 0 {
+				knownShortCodeWithPhoto = spot.ShortCode
+				knownSpotIDWithPhoto = spot.ID
+				break
+			}
 		}
 	}
 	if knownShortCode == "" {
 		t.Fatal("expected at least one spot to have a short code")
+	}
+	if knownShortCodeWithPhoto == "" {
+		t.Fatal("expected at least one spot with both a short code and a thumbnail")
 	}
 
 	t.Run("spots pagination", func(t *testing.T) {
@@ -84,7 +96,7 @@ func TestAPIEndpoints(t *testing.T) {
 
 	t.Run("spot page route", func(t *testing.T) {
 		rec := httptest.NewRecorder()
-		req := httptest.NewRequest(http.MethodGet, "/spot/"+knownShortCode, nil)
+		req := httptest.NewRequest(http.MethodGet, "/spot/"+knownShortCodeWithPhoto, nil)
 		router.ServeHTTP(rec, req)
 
 		if rec.Code != http.StatusOK {
@@ -92,6 +104,20 @@ func TestAPIEndpoints(t *testing.T) {
 		}
 		if rec.Body.Len() == 0 {
 			t.Fatal("expected spot page route to serve index html")
+		}
+		body := rec.Body.String()
+		spot, ok := store.SpotByShortCode(knownShortCodeWithPhoto)
+		if !ok {
+			t.Fatalf("expected short code %q to resolve to a spot", knownShortCodeWithPhoto)
+		}
+		if !strings.Contains(body, `<meta property="og:url" content="https://afterthebloom.com/spot/`+knownShortCodeWithPhoto+`" id="meta-og-url">`) {
+			t.Fatal("expected spot page route to serve spot-specific og:url metadata")
+		}
+		if !strings.Contains(body, `<meta property="og:title" content="空折枝 - `+spot.Name+`" id="meta-og-title">`) {
+			t.Fatal("expected spot page route to serve spot-specific og:title metadata")
+		}
+		if !strings.Contains(body, `<meta property="og:image" content="https://afterthebloom.com/api/v1/spots/`+knownSpotIDWithPhoto+`/thumbnail" id="meta-og-image">`) {
+			t.Fatal("expected spot page route to serve spot-specific og:image metadata")
 		}
 	})
 
