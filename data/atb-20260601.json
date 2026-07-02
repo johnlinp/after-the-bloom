@@ -707,6 +707,33 @@
       "short_code": "Uw7Nbl"
     },
     {
+      "id": "6fa08b39-0bd8-4942-8600-e12756cf5ec3",
+      "name": "八仙樂園",
+      "zip_code": "249",
+      "google_map_url": "https://maps.app.goo.gl/smsjNVCcdfPi5ngY6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2015",
+      "short_code": "EIMg9Y"
+    },
+    {
+      "id": "9eb9e6e9-9a79-49f7-b716-3add625de68a",
+      "name": "亞哥花園",
+      "zip_code": "406",
+      "wikipedia_url": "https://zh.wikipedia.org/wiki/%E4%BA%9E%E5%93%A5%E8%8A%B1%E5%9C%92",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2008",
+      "short_code": "u9A1gl"
+    },
+    {
+      "id": "c57426fe-7ca2-4e8e-994b-cb57e7bdabdf",
+      "name": "可利亞 奶油烤肉＆火烤兩吃",
+      "zip_code": "806",
+      "google_map_url": "https://maps.app.goo.gl/DtUqERrsdjSgrzHq8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024",
+      "short_code": "XhGlGW"
+    },
+    {
       "id": "e2a7c2de-0107-4ca3-b8fd-3cf6cc5419d6",
       "name": "麥當勞-台中逢甲餐廳",
       "zip_code": "407",
