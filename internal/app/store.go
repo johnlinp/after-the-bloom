@@ -22,6 +22,7 @@ type Spot struct {
 	ShortCode             string `json:"short_code"`
 	ZipCode               string `json:"zip_code"`
 	GoogleMapURL          string `json:"google_map_url"`
+	WikipediaURL          string `json:"wikipedia_url"`
 	CurrentBusinessStatus string `json:"current_business_status"`
 	PermanentlyClosedOn   string `json:"permanently_closed_on"`
 }
@@ -44,6 +45,7 @@ type SpotResponse struct {
 	ShortCode             string `json:"short_code"`
 	ZipCode               string `json:"zip_code"`
 	GoogleMapURL          string `json:"google_map_url"`
+	WikipediaURL          string `json:"wikipedia_url"`
 	CurrentBusinessStatus string `json:"current_business_status"`
 	PermanentlyClosedOn   string `json:"permanently_closed_on"`
 	DistrictID            string `json:"district_id,omitempty"`
@@ -257,6 +259,7 @@ func (s *Store) toSpotResponse(spot Spot) SpotResponse {
 		ShortCode:             spot.ShortCode,
 		ZipCode:               spot.ZipCode,
 		GoogleMapURL:          spot.GoogleMapURL,
+		WikipediaURL:          spot.WikipediaURL,
 		CurrentBusinessStatus: spot.CurrentBusinessStatus,
 		PermanentlyClosedOn:   spot.PermanentlyClosedOn,
 	}

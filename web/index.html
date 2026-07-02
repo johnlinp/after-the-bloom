@@ -1498,15 +1498,27 @@
       meta.className = 'spot-detail__meta';
       meta.textContent = `${spot.permanently_closed_on} 熄燈`;
 
-      const mapLink = document.createElement('a');
-      mapLink.className = 'spot-detail__pill spot-detail__map-link';
-      mapLink.href = spot.google_map_url || '#';
-      mapLink.target = '_blank';
-      mapLink.rel = 'noopener noreferrer';
-      mapLink.textContent = '在 Google Map 打開';
-
       header.appendChild(meta);
-      header.appendChild(mapLink);
+
+      if (spot.google_map_url) {
+        const mapLink = document.createElement('a');
+        mapLink.className = 'spot-detail__pill spot-detail__map-link';
+        mapLink.href = spot.google_map_url;
+        mapLink.target = '_blank';
+        mapLink.rel = 'noopener noreferrer';
+        mapLink.textContent = '在 Google Map 打開';
+        header.appendChild(mapLink);
+      }
+
+      if (spot.wikipedia_url) {
+        const wikipediaLink = document.createElement('a');
+        wikipediaLink.className = 'spot-detail__pill spot-detail__map-link';
+        wikipediaLink.href = spot.wikipedia_url;
+        wikipediaLink.target = '_blank';
+        wikipediaLink.rel = 'noopener noreferrer';
+        wikipediaLink.textContent = '在 Wikipedia 打開';
+        header.appendChild(wikipediaLink);
+      }
 
       const name = document.createElement('h1');
       name.className = 'spot-detail__name';
