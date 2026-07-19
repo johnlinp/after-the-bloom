@@ -734,6 +734,33 @@
       "short_code": "u9A1gl"
     },
     {
+      "id": "39061fd1-6836-4059-9e09-fb0f80d27a9e",
+      "name": "老楊滷味",
+      "zip_code": "10491",
+      "google_map_url": "https://maps.app.goo.gl/UJcJ1gLosD5KPUuv6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023",
+      "short_code": "z940g6"
+    },
+    {
+      "id": "334fadf0-bd3a-443d-9ad4-f746758347a8",
+      "name": "鄉香西餐",
+      "zip_code": "111",
+      "google_map_url": "https://maps.app.goo.gl/HLzbrZekQ1VNztaq5",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2020/4",
+      "short_code": "YZ1YI0"
+    },
+    {
+      "id": "67b7ed8c-c22b-4aff-86cc-63129d6bbee6",
+      "name": "宮川日本料理",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/PpHBDwvvBFvn6SN48",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023",
+      "short_code": "BEiNO8"
+    },
+    {
       "id": "c57426fe-7ca2-4e8e-994b-cb57e7bdabdf",
       "name": "可利亞 奶油烤肉＆火烤兩吃",
       "zip_code": "806",
