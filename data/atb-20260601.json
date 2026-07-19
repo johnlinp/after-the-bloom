@@ -734,6 +734,78 @@
       "short_code": "u9A1gl"
     },
     {
+      "id": "022a8f66-dd8b-4947-af5a-50933fd6cd90",
+      "name": "阿才的店",
+      "zip_code": "104",
+      "google_map_url": "https://maps.app.goo.gl/4MoyJtZmEB3JKXwj9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "FHHmf4"
+    },
+    {
+      "id": "e99ea19e-7538-4b2d-a9b4-68f57b9f87e2",
+      "name": "永和鹹蛋糕",
+      "zip_code": "234",
+      "google_map_url": "https://maps.app.goo.gl/TBB7HuZ1rnTq1W1M8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024",
+      "short_code": "h9YlGA"
+    },
+    {
+      "id": "f51b59e5-e0d4-435a-8c26-ad2870616b97",
+      "name": "藏月日式豬排專賣店",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/P1rbnNVCKkqWGRog6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2022",
+      "short_code": "FfpBqs"
+    },
+    {
+      "id": "4bdbbd0f-47e2-4bbb-953f-4dd8346a5a5a",
+      "name": "麵太郎居酒屋",
+      "zip_code": "10491",
+      "google_map_url": "https://maps.app.goo.gl/kKKsx6JdnbQyrLtC7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "CAL3MA"
+    },
+    {
+      "id": "8fa85c04-66e2-4ffd-a5db-d75c46007c7a",
+      "name": "立花",
+      "zip_code": "40651",
+      "google_map_url": "https://maps.app.goo.gl/u9r57trpidAyG7Bz8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "4QA5IB"
+    },
+    {
+      "id": "a95b5d56-6d3b-4d26-9ad1-bb975c384ad6",
+      "name": "Dozo創作和食居酒屋",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/zJkMgV39BYMiyYMY7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2021",
+      "short_code": "jvLOF8"
+    },
+    {
+      "id": "71f71e5f-a23a-4320-960d-08d147b8eb43",
+      "name": "穗波和食",
+      "zip_code": "25163",
+      "google_map_url": "https://maps.app.goo.gl/EsxLMsodKR4crhFx9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026",
+      "short_code": "hRNAxt"
+    },
+    {
+      "id": "6972b666-290b-42ac-a179-09bb8bf42af9",
+      "name": "三四味屋",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/ZfCJHsWmSmVacsKR9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2013",
+      "short_code": "Z1PQj5"
+    },
+    {
       "id": "39061fd1-6836-4059-9e09-fb0f80d27a9e",
       "name": "老楊滷味",
       "zip_code": "10491",
