@@ -833,6 +833,96 @@
       "short_code": "BEiNO8"
     },
     {
+      "id": "fdcc84b3-b2b0-47e0-9d91-3c16a380091c",
+      "name": "高記玉米餅",
+      "zip_code": "300",
+      "google_map_url": "https://maps.app.goo.gl/wRY5PteZEJeMey9y9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2015",
+      "short_code": "JwYpsD"
+    },
+    {
+      "id": "c0cd49c8-3958-49ea-9c0a-80e78ae31e85",
+      "name": "秋嗨嗨かき氷 ChillHighHigh",
+      "zip_code": "100",
+      "google_map_url": "https://maps.app.goo.gl/F55EydTa2JHJiqN29",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024",
+      "short_code": "ruIjog"
+    },
+    {
+      "id": "2fc2bb42-0df2-4404-8f2d-100bbc63a4bd",
+      "name": "京屋拉麵",
+      "zip_code": "801",
+      "google_map_url": "https://maps.app.goo.gl/3HhPo5MEBthr3xyx7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2021",
+      "short_code": "QsXZ34"
+    },
+    {
+      "id": "71aa9fa1-4b9d-4153-aae0-8ba02cc677f6",
+      "name": "山小屋",
+      "zip_code": "10491",
+      "google_map_url": "https://maps.app.goo.gl/8v3cvkmso9AU5ZPN6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2018",
+      "short_code": "Ptbkfn"
+    },
+    {
+      "id": "d501742c-bccd-47e3-a5ce-cf794877236f",
+      "name": "麵通屋",
+      "zip_code": "105",
+      "google_map_url": "https://maps.app.goo.gl/qWdd3Kc4fMQQjr4g6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2016",
+      "short_code": "aSllZB"
+    },
+    {
+      "id": "65317b2b-d3b0-4167-af70-afed5c6c339e",
+      "name": "旺味麵場",
+      "zip_code": "10491",
+      "google_map_url": "https://maps.app.goo.gl/s3KYpDZ9MprHHAHn6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2020",
+      "short_code": "TY9S3E"
+    },
+    {
+      "id": "950d0588-8eb9-49e2-9b41-4feee8d6b688",
+      "name": "合味拉麵",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/saQy6fd6Q3eZizuh7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2021/6",
+      "short_code": "c80DYo"
+    },
+    {
+      "id": "19f27cff-188b-4bef-a0cc-ea0ba5697d67",
+      "name": "串屋麵場",
+      "zip_code": "111",
+      "google_map_url": "https://maps.app.goo.gl/betZYJZWy6MFEkMo9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2013",
+      "short_code": "QReYKP"
+    },
+    {
+      "id": "ed19011c-14ae-4138-9c45-620b53fdf995",
+      "name": "珍來拉麵",
+      "zip_code": "403",
+      "google_map_url": "https://maps.app.goo.gl/MWL3BvETguE7E4oK8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "GgGovM"
+    },
+    {
+      "id": "d58a4931-3d87-4ec3-9d97-823682acfea3",
+      "name": "麵麵食光",
+      "zip_code": "406",
+      "google_map_url": "https://maps.app.goo.gl/snipmjJCET4pQunJ9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "yR58QE"
+    },
+    {
       "id": "c57426fe-7ca2-4e8e-994b-cb57e7bdabdf",
       "name": "可利亞 奶油烤肉＆火烤兩吃",
       "zip_code": "806",
