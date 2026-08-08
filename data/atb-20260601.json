@@ -1004,6 +1004,24 @@
       "short_code": "TKKHWL"
     },
     {
+      "id": "f84b951a-caac-4f36-8fb3-2779158660ab",
+      "name": "韓奶奶食堂",
+      "zip_code": "407",
+      "google_map_url": "https://maps.app.goo.gl/ycEoystQ7MmzF6JVA",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2018",
+      "short_code": "OI1Ki7"
+    },
+    {
+      "id": "2d686497-7862-4c8a-ac10-915310fee63c",
+      "name": "逢甲養機場",
+      "zip_code": "407",
+      "google_map_url": "https://maps.app.goo.gl/r3odFS84pPWXzMzN9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026/1",
+      "short_code": "9fULzL"
+    },
+    {
       "id": "c57426fe-7ca2-4e8e-994b-cb57e7bdabdf",
       "name": "可利亞 奶油烤肉＆火烤兩吃",
       "zip_code": "806",
