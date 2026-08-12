@@ -37,6 +37,7 @@ type pageMetadata struct {
 }
 
 func RegisterRoutes(router *gin.Engine, store *Store, photosDir, indexPath string) {
+	router.StaticFile("/favicon.svg", filepath.Join(filepath.Dir(indexPath), "favicon.svg"))
 	router.GET("/", func(c *gin.Context) {
 		serveIndexPage(c, indexPath, defaultPageMetadata())
 	})

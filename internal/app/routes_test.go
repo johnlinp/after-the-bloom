@@ -94,6 +94,19 @@ func TestAPIEndpoints(t *testing.T) {
 		}
 	})
 
+	t.Run("favicon route", func(t *testing.T) {
+		rec := httptest.NewRecorder()
+		req := httptest.NewRequest(http.MethodGet, "/favicon.svg", nil)
+		router.ServeHTTP(rec, req)
+
+		if rec.Code != http.StatusOK {
+			t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
+		}
+		if !strings.Contains(rec.Body.String(), "<svg") {
+			t.Fatal("expected favicon route to serve svg content")
+		}
+	})
+
 	t.Run("spot page route", func(t *testing.T) {
 		rec := httptest.NewRecorder()
 		req := httptest.NewRequest(http.MethodGet, "/spot/"+knownShortCodeWithPhoto, nil)
