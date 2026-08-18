@@ -41,7 +41,7 @@ func RegisterRoutes(router *gin.Engine, store *Store, photosDir, indexPath strin
 	router.GET("/", func(c *gin.Context) {
 		serveIndexPage(c, indexPath, defaultPageMetadata())
 	})
-	router.GET("/distrct/:districtId", func(c *gin.Context) {
+	router.GET("/district/:districtId", func(c *gin.Context) {
 		serveIndexPage(c, indexPath, defaultPageMetadata())
 	})
 	router.GET("/spot/:shortCode", func(c *gin.Context) {

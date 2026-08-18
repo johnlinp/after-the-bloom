@@ -83,7 +83,7 @@ func TestAPIEndpoints(t *testing.T) {
 
 	t.Run("district page route", func(t *testing.T) {
 		rec := httptest.NewRecorder()
-		req := httptest.NewRequest(http.MethodGet, "/distrct/tw-106", nil)
+		req := httptest.NewRequest(http.MethodGet, "/district/tw-106", nil)
 		router.ServeHTTP(rec, req)
 
 		if rec.Code != http.StatusOK {

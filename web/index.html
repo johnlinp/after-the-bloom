@@ -1083,7 +1083,7 @@
       if (!district || !district.id) {
         return '/';
       }
-      return `/distrct/${encodeURIComponent(district.id)}`;
+      return `/district/${encodeURIComponent(district.id)}`;
     }
 
     function syncDistrictPath(district) {
@@ -1095,7 +1095,7 @@
     }
 
     function districtFromLocation() {
-      const match = window.location.pathname.match(/^\/distrct\/(tw-\d{3})\/?$/i);
+      const match = window.location.pathname.match(/^\/district\/(tw-\d{3})\/?$/i);
       if (!match) {
         return null;
       }
