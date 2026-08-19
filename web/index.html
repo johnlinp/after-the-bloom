@@ -757,6 +757,44 @@
       outline: none;
     }
 
+    .spot-detail__report-link--secondary {
+      background: rgba(201, 71, 47, 0.12);
+      color: #c9472f;
+      box-shadow: none;
+    }
+
+    .spot-detail__report-link--secondary:hover,
+    .spot-detail__report-link--secondary:focus-visible {
+      box-shadow: 0 10px 22px rgba(201, 71, 47, 0.12);
+    }
+
+    .spot-detail__comments {
+      margin-top: 28px;
+      padding: 22px 22px 24px;
+      border: 1px solid rgba(85, 104, 79, 0.18);
+      border-radius: 24px;
+      background: rgba(252, 248, 239, 0.96);
+    }
+
+    .spot-detail__comments-title {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      color: #3e4f3a;
+      letter-spacing: 0.05em;
+    }
+
+    .spot-detail__comments-subtext {
+      margin: 14px 0 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #6a7565;
+    }
+
+    .spot-detail__comments-action {
+      margin-top: 16px;
+    }
+
     @media (min-width: 1024px) {
       .hero {
         padding-top: 64px;
@@ -1577,11 +1615,35 @@
       report.appendChild(reportText);
       report.appendChild(reportLink);
 
+      const comments = document.createElement('section');
+      comments.className = 'spot-detail__comments';
+      comments.setAttribute('aria-label', 'Comment section preview');
+
+      const commentsTitle = document.createElement('h2');
+      commentsTitle.className = 'spot-detail__comments-title';
+      commentsTitle.textContent = '留言區';
+
+      const commentsSubtext = document.createElement('p');
+      commentsSubtext.className = 'spot-detail__comments-subtext';
+      commentsSubtext.textContent = '之後這裡會開放大家留下回憶與交流想法。';
+
+      const featureRequestLink = document.createElement('a');
+      featureRequestLink.className = 'spot-detail__pill spot-detail__map-link spot-detail__comments-action';
+      featureRequestLink.href = 'https://johnlinp.featurevote.app/?feature=72ef507e-9504-400c-94b5-71f5e5668c97';
+      featureRequestLink.target = '_blank';
+      featureRequestLink.rel = 'noopener noreferrer';
+      featureRequestLink.textContent = '前往功能許願';
+
+      comments.appendChild(commentsTitle);
+      comments.appendChild(commentsSubtext);
+      comments.appendChild(featureRequestLink);
+
       card.appendChild(header);
       card.appendChild(name);
       card.appendChild(district);
       card.appendChild(thumb);
       card.appendChild(report);
+      card.appendChild(comments);
       spotDetail.appendChild(card);
     }
 
