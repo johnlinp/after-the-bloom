@@ -369,28 +369,36 @@
 
     .modal__actions {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
+      gap: 14px;
       margin-top: 42px;
     }
 
-    .modal__close {
+    .modal__action {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 18px 54px;
+      min-width: 180px;
+      padding: 18px 32px;
       border: 2px solid rgba(201, 71, 47, 0.9);
       border-radius: 999px;
       background: var(--hero-band);
       color: #fff8ef;
-      font-size: 1.08rem;
-      letter-spacing: 0.18em;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
       line-height: 1;
       text-decoration: none;
       cursor: pointer;
     }
 
-    .modal__close:hover,
-    .modal__close:focus-visible {
+    .modal__action--secondary {
+      background: transparent;
+      color: var(--hero-band);
+    }
+
+    .modal__action:hover,
+    .modal__action:focus-visible {
       filter: brightness(1.08);
       outline: none;
     }
@@ -566,14 +574,18 @@
       align-items: center;
       justify-content: center;
       padding: 12px 20px;
+      border: 0;
       border-radius: 999px;
       background: var(--accent);
       color: #fffaf2;
       text-decoration: none;
+      font-family: inherit;
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
       box-shadow: 0 12px 24px rgba(183, 85, 53, 0.18);
+      cursor: pointer;
     }
 
     .empty-state__report:hover,
@@ -739,14 +751,18 @@
       align-items: center;
       justify-content: center;
       padding: 10px 18px;
+      border: 0;
       border-radius: 999px;
       background: var(--accent);
       color: #fffaf2;
       text-decoration: none;
+      font-family: inherit;
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
       box-shadow: 0 12px 24px rgba(183, 85, 53, 0.18);
+      cursor: pointer;
     }
 
     .spot-detail__report-link:hover,
@@ -981,7 +997,13 @@
           <span id="active-district-name"></span>
         </div>
         <div class="district-actions">
-          <button id="follow-district" class="follow-district" type="button" hidden>追蹤這個鄉鎮市區</button>
+          <button
+            id="follow-district"
+            class="follow-district js-open-feedback-modal"
+            type="button"
+            data-featurevote-url="https://johnlinp.featurevote.app/?feature=452470f5-a752-4c51-86f8-978c92e8b3cc"
+            hidden
+          >追蹤這個鄉鎮市區</button>
         </div>
       </div>
 
@@ -991,27 +1013,41 @@
         <div id="loading-state" class="loading-state">載入中…</div>
         <div id="empty-state" class="empty-state" hidden>
           <div>目前資料庫中還沒有這個鄉鎮市區的熄燈店家喔</div>
-          <a class="empty-state__report" href="https://ig.me/m/afterthebloom.tw" target="_blank" rel="noopener noreferrer">回報熄燈店家</a>
+          <button
+            class="empty-state__report js-open-feedback-modal"
+            type="button"
+            data-featurevote-url="https://johnlinp.featurevote.app/?feature=2ac6b1c4-131a-4468-a71d-ebdeb06a66d3"
+          >回報熄燈店家</button>
         </div>
         <button id="load-more" class="load-more" type="button">載入更多</button>
         <div id="end-of-list-report" class="end-of-list-report" hidden>
-          <a class="empty-state__report" href="https://ig.me/m/afterthebloom.tw" target="_blank" rel="noopener noreferrer">回報更多熄燈店家</a>
+          <button
+            class="empty-state__report js-open-feedback-modal"
+            type="button"
+            data-featurevote-url="https://johnlinp.featurevote.app/?feature=2ac6b1c4-131a-4468-a71d-ebdeb06a66d3"
+          >回報更多熄燈店家</button>
         </div>
       </div>
     </section>
   </div>
 
-  <div id="follow-modal" class="modal" hidden>
-    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="follow-modal-message">
-      <p id="follow-modal-message" class="modal__message">目前追蹤功能尚未完成 請多多見諒</p>
+  <div id="feedback-modal" class="modal" hidden>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="feedback-modal-message">
+      <p id="feedback-modal-message" class="modal__message">這個功能目前還在製作中，歡迎投票讓我們知道你想要這個功能 (免登入)，或直接到 Instagram 告訴我們。</p>
       <div class="modal__actions">
         <a
-          id="follow-modal-close"
-          class="modal__close"
-          href="https://johnlinp.featurevote.app/?feature=452470f5-a752-4c51-86f8-978c92e8b3cc"
+          id="feedback-modal-featurevote"
+          class="modal__action"
+          href="https://johnlinp.featurevote.app/"
           target="_blank"
           rel="noopener noreferrer"
-        >前往功能許願</a>
+        >前往投票</a>
+        <a
+          class="modal__action modal__action--secondary"
+          href="https://ig.me/m/afterthebloom.tw"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Instagram 告訴我們</a>
       </div>
     </div>
   </div>
@@ -1045,8 +1081,8 @@
     const endOfListReport = document.getElementById('end-of-list-report');
     const menuButton = document.getElementById('menu-button');
     const menuPanel = document.getElementById('menu-panel');
-    const followModal = document.getElementById('follow-modal');
-    const followModalCloseButton = document.getElementById('follow-modal-close');
+    const feedbackModal = document.getElementById('feedback-modal');
+    const feedbackModalFeatureVoteButton = document.getElementById('feedback-modal-featurevote');
     const ogTypeMeta = document.getElementById('meta-og-type');
     const ogURLMeta = document.getElementById('meta-og-url');
     const ogTitleMeta = document.getElementById('meta-og-title');
@@ -1172,13 +1208,14 @@
       await resetAndLoadSpots();
     }
 
-    function openFollowModal() {
-      followModal.hidden = false;
-      followModalCloseButton.focus();
+    function openFeedbackModal(featureVoteUrl) {
+      feedbackModalFeatureVoteButton.href = featureVoteUrl;
+      feedbackModal.hidden = false;
+      feedbackModalFeatureVoteButton.focus();
     }
 
-    function closeFollowModal() {
-      followModal.hidden = true;
+    function closeFeedbackModal() {
+      feedbackModal.hidden = true;
     }
 
     function openMenu() {
@@ -1243,6 +1280,10 @@
         if (!event.target.closest('.topbar__menu')) {
           closeMenu();
         }
+        const feedbackModalTrigger = event.target.closest('.js-open-feedback-modal');
+        if (feedbackModalTrigger) {
+          openFeedbackModal(feedbackModalTrigger.dataset.featurevoteUrl);
+        }
       });
 
       menuButton.addEventListener('click', event => {
@@ -1250,13 +1291,9 @@
         toggleMenu();
       });
 
-      followDistrictButton.addEventListener('click', () => {
-        openFollowModal();
-      });
-
-      followModal.addEventListener('click', event => {
-        if (event.target === followModal) {
-          closeFollowModal();
+      feedbackModal.addEventListener('click', event => {
+        if (event.target === feedbackModal) {
+          closeFeedbackModal();
         }
       });
 
@@ -1266,8 +1303,8 @@
           menuButton.focus();
           return;
         }
-        if (event.key === 'Escape' && !followModal.hidden) {
-          closeFollowModal();
+        if (event.key === 'Escape' && !feedbackModal.hidden) {
+          closeFeedbackModal();
         }
       });
 
@@ -1605,11 +1642,10 @@
       const reportText = document.createElement('span');
       reportText.textContent = '我們搞錯了嗎？';
 
-      const reportLink = document.createElement('a');
-      reportLink.className = 'spot-detail__report-link';
-      reportLink.href = 'https://ig.me/m/afterthebloom.tw';
-      reportLink.target = '_blank';
-      reportLink.rel = 'noopener noreferrer';
+      const reportLink = document.createElement('button');
+      reportLink.className = 'spot-detail__report-link js-open-feedback-modal';
+      reportLink.type = 'button';
+      reportLink.dataset.featurevoteUrl = 'https://johnlinp.featurevote.app/?feature=5dc2ea66-b4b2-4fb0-bf99-355e879415a5';
       reportLink.textContent = '回報錯誤';
 
       report.appendChild(reportText);
