@@ -482,6 +482,33 @@
       "short_code": "wW9B3C"
     },
     {
+      "id": "0590cf1f-25ad-4c26-a5a1-fb4a0e3a83be",
+      "name": "Asia49亞洲料理及酒廊",
+      "zip_code": "220",
+      "google_map_url": "https://maps.app.goo.gl/vy6Ys7uiSE7cagjQ6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026/8",
+      "short_code": "F7G8T0"
+    },
+    {
+      "id": "0aa58eda-ff3a-47a5-8314-506fb1f66927",
+      "name": "好好食房 Soup Up- 南西店B1｜雞湯專賣店｜中山美食",
+      "zip_code": "104",
+      "google_map_url": "https://maps.app.goo.gl/Ght2LN68SzGXswER9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2022",
+      "short_code": "92fUVn"
+    },
+    {
+      "id": "12030d28-5539-42d2-abfe-828a5b3e3b9a",
+      "name": "好好食房 Soup Up- 中和環球店｜中和雞湯專賣店｜中和環球美食｜溫補料理",
+      "zip_code": "235",
+      "google_map_url": "https://maps.app.goo.gl/pNtsXiy3H16jasZ36",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2021",
+      "short_code": "sXko8U"
+    },
+    {
       "id": "49d0ed67-6893-465c-9cfa-fb06f6efc342",
       "name": "好好食房 Soup Up- 西湖店",
       "zip_code": "114",
