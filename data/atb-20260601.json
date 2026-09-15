@@ -50,6 +50,69 @@
       "short_code": "DkrirC"
     },
     {
+      "id": "30da8dde-e660-4519-84a8-3396d02de74b",
+      "name": "韓國媽媽烤肉",
+      "zip_code": "103",
+      "google_map_url": "https://maps.app.goo.gl/cVw5aKphyc4SYDJW7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026",
+      "short_code": "MBGaLU"
+    },
+    {
+      "id": "23f1b0c9-e00f-4acb-b865-b0c092474348",
+      "name": "布列塔尼歐法鄉村雅廚 La Bretagne",
+      "zip_code": "403",
+      "google_map_url": "https://maps.app.goo.gl/cniN8GNro71Av1nM7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2020/3",
+      "short_code": "LlnJp9"
+    },
+    {
+      "id": "1f67488e-840e-4b7e-961b-7aa3f58ef5c4",
+      "name": "韓一館",
+      "zip_code": "320",
+      "google_map_url": "https://maps.app.goo.gl/Ykk33KszessU3SgA9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026/5",
+      "short_code": "NrUpKi"
+    },
+    {
+      "id": "b67bf42c-8880-4986-b634-387f2b339bd8",
+      "name": "養瀧酒藏居酒屋",
+      "zip_code": "408",
+      "google_map_url": "https://maps.app.goo.gl/Mq3R2oAdJd8o1LJk8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026/8",
+      "short_code": "muAXCm"
+    },
+    {
+      "id": "c84d8146-febc-441c-934a-2707a09267a8",
+      "name": "伍角船板",
+      "zip_code": "10491",
+      "google_map_url": "https://maps.app.goo.gl/i6LPz5eDSd7pQygm7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2017",
+      "short_code": "jjxbhH"
+    },
+    {
+      "id": "413b5e0a-e813-4e49-a07e-5efbbb0d3683",
+      "name": "鶴園 鱻涮鍋",
+      "zip_code": "403",
+      "google_map_url": "https://maps.app.goo.gl/2oLgsdyEi2r7jZNf7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2021",
+      "short_code": "DfxbT6"
+    },
+    {
+      "id": "0e3c9c99-4541-42ac-9c78-2ca8d32d0754",
+      "name": "山嵐拉麵 大安店",
+      "zip_code": "10664",
+      "google_map_url": "https://maps.app.goo.gl/Trs7sLLFmqFp7tuk9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "cE9iks"
+    },
+    {
       "id": "2509c5cf-1ba2-48e5-a173-50cc9e394c4c",
       "name": "山嵐拉麵 公館店",
       "zip_code": "100",
