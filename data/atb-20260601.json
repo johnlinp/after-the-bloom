@@ -113,6 +113,132 @@
       "short_code": "cE9iks"
     },
     {
+      "id": "408d74dc-a0ab-4fd0-943a-a3f9d888fa27",
+      "name": "羅撒蛋糕重新店",
+      "zip_code": "241",
+      "google_map_url": "https://maps.app.goo.gl/DP3eYLKioEqS3Gd29",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "hiDe5N"
+    },
+    {
+      "id": "bfa46447-9c51-411f-b188-d34a164bd043",
+      "name": "羅撒蛋糕中正店",
+      "zip_code": "241",
+      "google_map_url": "https://maps.app.goo.gl/VFSi6DW3HkpKbPh48",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "X6XvW4"
+    },
+    {
+      "id": "f3cd2091-a961-419c-803f-91110428f640",
+      "name": "楓格蛋糕 三重店",
+      "zip_code": "241",
+      "google_map_url": "https://maps.app.goo.gl/3JR5gSrJ5zMUFem57",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "tBHM2T"
+    },
+    {
+      "id": "69d63296-b095-44a7-abfc-948e32af976f",
+      "name": "楓格蛋糕 林口店",
+      "zip_code": "24448",
+      "google_map_url": "https://maps.app.goo.gl/xy9yhrvtnmFRkwiq8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "HV6SBo"
+    },
+    {
+      "id": "1087dc3a-7fd4-4e8c-9030-7a2cd30593ce",
+      "name": "上宇林三重文化北店",
+      "zip_code": "241",
+      "google_map_url": "https://maps.app.goo.gl/yrvp21kghdDHnka2A",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026",
+      "short_code": "VuAo0j"
+    },
+    {
+      "id": "bb37d214-d0a1-4523-b5cf-4e54b0b5d570",
+      "name": "山頭火拉麵 京站店",
+      "zip_code": "103",
+      "google_map_url": "https://maps.app.goo.gl/Gsf6qkh2EiV1BBY28",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "Pf8qlP"
+    },
+    {
+      "id": "695e6484-daf8-4812-ace8-aab8feaaa9b1",
+      "name": "N.Y.Bagels Cafe",
+      "zip_code": "103",
+      "google_map_url": "https://maps.app.goo.gl/eSzZHdSTPfCu29cY7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2022",
+      "short_code": "1dG8nP"
+    },
+    {
+      "id": "dd101481-f8f0-443b-b33e-dc2b315c744a",
+      "name": "愛爾蘭瘋薯 京站店",
+      "zip_code": "103",
+      "google_map_url": "https://maps.app.goo.gl/setkM33SavA4jK5JA",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024",
+      "short_code": "djSCIh"
+    },
+    {
+      "id": "4715d515-7e43-4b63-ab14-a16f7f5d4cf0",
+      "name": "愛爾蘭瘋薯",
+      "zip_code": "108",
+      "google_map_url": "https://maps.app.goo.gl/JRFNQPW2nen1K75y7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2020",
+      "short_code": "UIqBDt"
+    },
+    {
+      "id": "0b83e776-b45f-42fd-b524-2caab269c729",
+      "name": "茄子洋廚公館店",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/vwjBLCuU3QtiokLw7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019",
+      "short_code": "vbOiQm"
+    },
+    {
+      "id": "e3c6434a-81af-459c-a7f9-2a5fd2ab412e",
+      "name": "蕭家",
+      "zip_code": "100",
+      "google_map_url": "https://maps.app.goo.gl/HjsKuQ3GC6yeMoHH7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023/5",
+      "short_code": "vrRjai"
+    },
+    {
+      "id": "000e0350-4f68-401d-8fbd-234bf3788c96",
+      "name": "一風堂",
+      "zip_code": "115",
+      "google_map_url": "https://maps.app.goo.gl/qxCKX5HumLy6vT5c9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2020",
+      "short_code": "5vC2AA"
+    },
+    {
+      "id": "c52ef844-784f-4a0e-a84b-78caa465f29b",
+      "name": "琉球新麵 - 通堂 拉麵居酒屋",
+      "zip_code": "10694",
+      "google_map_url": "https://maps.app.goo.gl/cVzRNGVyu9oyJfCq8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2020",
+      "short_code": "M1GyA9"
+    },
+    {
+      "id": "328c4f9b-4022-4f16-bb3c-ec9227c6df71",
+      "name": "焼肉スマイル（燒肉Smile）新北三重店",
+      "zip_code": "241",
+      "google_map_url": "https://maps.app.goo.gl/oqLb12KtWw8UKKTh7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026/9",
+      "short_code": "RE7GR8"
+    },
+    {
       "id": "2509c5cf-1ba2-48e5-a173-50cc9e394c4c",
       "name": "山嵐拉麵 公館店",
       "zip_code": "100",
