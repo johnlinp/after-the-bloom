@@ -1354,6 +1354,15 @@
         await loadSpots({ append: true });
       });
 
+      followDistrictButton.addEventListener('click', () => {
+        if (!state.selectedDistrict) {
+          return;
+        }
+        trackAnalyticsEvent('follow_district_click', {
+          district_id: state.selectedDistrict.id
+        });
+      });
+
       window.addEventListener('popstate', async () => {
         const shortCode = shortCodeFromLocation();
         if (shortCode) {
@@ -1661,6 +1670,12 @@
         mapLink.target = '_blank';
         mapLink.rel = 'noopener noreferrer';
         mapLink.textContent = '在 Google Map 打開';
+        mapLink.addEventListener('click', () => {
+          trackAnalyticsEvent('external_website_click', {
+            spot_id: spot.id,
+            destination: 'google_map'
+          });
+        });
         header.appendChild(mapLink);
       }
 
@@ -1671,6 +1686,12 @@
         wikipediaLink.target = '_blank';
         wikipediaLink.rel = 'noopener noreferrer';
         wikipediaLink.textContent = '在 Wikipedia 打開';
+        wikipediaLink.addEventListener('click', () => {
+          trackAnalyticsEvent('external_website_click', {
+            spot_id: spot.id,
+            destination: 'wikipedia'
+          });
+        });
         header.appendChild(wikipediaLink);
       }
 
@@ -1732,6 +1753,12 @@
       reportLink.type = 'button';
       reportLink.dataset.featurevoteUrl = 'https://johnlinp.featurevote.app/?feature=5dc2ea66-b4b2-4fb0-bf99-355e879415a5';
       reportLink.textContent = '回報錯誤';
+      reportLink.addEventListener('click', () => {
+        trackAnalyticsEvent('report_error_click', {
+          spot_id: spot.id,
+          short_code: spot.short_code
+        });
+      });
 
       report.appendChild(reportText);
       report.appendChild(reportLink);

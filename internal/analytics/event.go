@@ -18,6 +18,9 @@ const (
 	EventDistrictSearch = "district_search"
 	EventDistrictClick  = "district_click"
 	EventSpotClick      = "spot_click"
+	EventFollowDistrict = "follow_district_click"
+	EventReportError    = "report_error_click"
+	EventExternalSite   = "external_website_click"
 )
 
 var (
@@ -127,6 +130,37 @@ func validateMetadata(eventType string, raw json.RawMessage) (map[string]any, er
 		return map[string]any{
 			"spot_id": value.SpotID, "short_code": value.ShortCode, "source": value.Source,
 		}, nil
+
+	case EventFollowDistrict:
+		var value struct {
+			DistrictID string `json:"district_id"`
+		}
+		if err := decodeMetadata(raw, &value); err != nil || !validRequiredString(value.DistrictID, 64) {
+			return nil, errInvalidMetadata
+		}
+		return map[string]any{"district_id": value.DistrictID}, nil
+
+	case EventReportError:
+		var value struct {
+			SpotID    string `json:"spot_id"`
+			ShortCode string `json:"short_code"`
+		}
+		if err := decodeMetadata(raw, &value); err != nil ||
+			!validRequiredString(value.SpotID, 64) || !validRequiredString(value.ShortCode, 64) {
+			return nil, errInvalidMetadata
+		}
+		return map[string]any{"spot_id": value.SpotID, "short_code": value.ShortCode}, nil
+
+	case EventExternalSite:
+		var value struct {
+			SpotID      string `json:"spot_id"`
+			Destination string `json:"destination"`
+		}
+		if err := decodeMetadata(raw, &value); err != nil ||
+			!validRequiredString(value.SpotID, 64) || !oneOf(value.Destination, "google_map", "wikipedia") {
+			return nil, errInvalidMetadata
+		}
+		return map[string]any{"spot_id": value.SpotID, "destination": value.Destination}, nil
 
 	default:
 		return nil, errInvalidEventType

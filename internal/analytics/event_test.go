@@ -38,6 +38,21 @@ func TestDecodeEventRequest(t *testing.T) {
 			eventType: EventSpotClick,
 		},
 		{
+			name:      "follow district",
+			body:      `{"event_type":"follow_district_click","metadata":{"district_id":"tw-106"}}`,
+			eventType: EventFollowDistrict,
+		},
+		{
+			name:      "report error",
+			body:      `{"event_type":"report_error_click","metadata":{"spot_id":"spot-id","short_code":"abc123"}}`,
+			eventType: EventReportError,
+		},
+		{
+			name:      "external website",
+			body:      `{"event_type":"external_website_click","metadata":{"spot_id":"spot-id","destination":"google_map"}}`,
+			eventType: EventExternalSite,
+		},
+		{
 			name:      "unknown event",
 			body:      `{"event_type":"unknown","metadata":{}}`,
 			wantError: true,
@@ -55,6 +70,11 @@ func TestDecodeEventRequest(t *testing.T) {
 		{
 			name:      "invalid source",
 			body:      `{"event_type":"spot_click","metadata":{"spot_id":"spot-id","short_code":"abc123","source":"card"}}`,
+			wantError: true,
+		},
+		{
+			name:      "invalid external destination",
+			body:      `{"event_type":"external_website_click","metadata":{"spot_id":"spot-id","destination":"other"}}`,
 			wantError: true,
 		},
 	}
