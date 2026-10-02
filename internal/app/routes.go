@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/johnlinp/after-the-bloom/internal/analytics"
 )
 
 const (
@@ -36,7 +37,7 @@ type pageMetadata struct {
 	SiteName    string
 }
 
-func RegisterRoutes(router *gin.Engine, store *Store, photosDir, indexPath string) {
+func RegisterRoutes(router *gin.Engine, store *Store, analyticsHandler *analytics.Handler, photosDir, indexPath string) {
 	router.StaticFile("/favicon.svg", filepath.Join(filepath.Dir(indexPath), "favicon.svg"))
 	router.GET("/", func(c *gin.Context) {
 		serveIndexPage(c, indexPath, defaultPageMetadata())
@@ -55,6 +56,8 @@ func RegisterRoutes(router *gin.Engine, store *Store, photosDir, indexPath strin
 
 	api := router.Group("/api/v1")
 	{
+		api.POST("/analytics/events", analyticsHandler.Record)
+
 		api.GET("/spots", func(c *gin.Context) {
 			page, limit := parsePagination(c)
 			items, total := store.SpotsPage(page, limit)

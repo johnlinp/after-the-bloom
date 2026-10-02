@@ -932,6 +932,16 @@
         text-align: left;
       }
     }
+    .geoip-attribution {
+      margin: 28px 0 20px;
+      color: #777;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .geoip-attribution a {
+      color: inherit;
+    }
   </style>
 </head>
 <body>
@@ -1029,6 +1039,7 @@
         </div>
       </div>
     </section>
+    <p class="geoip-attribution"><a href="https://db-ip.com" target="_blank" rel="noopener noreferrer">IP Geolocation by DB-IP</a></p>
   </div>
 
   <div id="feedback-modal" class="modal" hidden>
@@ -1096,6 +1107,22 @@
       siteName: '空折枝',
       siteURL: 'https://afterthebloom.com/'
     };
+
+    let searchAnalyticsTimer = null;
+    let lastTrackedDistrictSearch = '';
+
+    function trackAnalyticsEvent(eventType, metadata) {
+      try {
+        void fetch('/api/v1/analytics/events', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ event_type: eventType, metadata }),
+          keepalive: true
+        }).catch(() => {});
+      } catch (_) {
+        // Analytics must never interrupt the browsing experience.
+      }
+    }
 
     function formatDistrictName(name) {
       return String(name || '').trim() || '未知鄉鎮市區';
@@ -1237,6 +1264,9 @@
     }
 
     async function boot() {
+      trackAnalyticsEvent('page_landing', {
+        path: window.location.pathname
+      });
       loadingState.hidden = false;
       resetMetadata();
       await loadDistricts();
@@ -1310,6 +1340,16 @@
 
       loadMoreButton.addEventListener('click', async () => {
         if (state.loading) return;
+
+        const metadata = {
+          path: window.location.pathname,
+          next_page: state.page + 1
+        };
+        if (state.selectedDistrict) {
+          metadata.district_id = state.selectedDistrict.id;
+        }
+        trackAnalyticsEvent('load_more_click', metadata);
+
         state.page += 1;
         await loadSpots({ append: true });
       });
@@ -1341,7 +1381,9 @@
 
     function handleSearchInput() {
       const query = searchInput.value.trim().toLowerCase();
+      window.clearTimeout(searchAnalyticsTimer);
       if (!query) {
+        lastTrackedDistrictSearch = '';
         state.filteredDistricts = [];
         openSearchResults();
         renderSearchResults();
@@ -1352,6 +1394,17 @@
         const haystacks = [district.name, formatDistrictName(district.name)].concat(district.aliases || []);
         return haystacks.some(text => String(text).toLowerCase().includes(query));
       }).slice(0, 8);
+
+      searchAnalyticsTimer = window.setTimeout(() => {
+        if (query === lastTrackedDistrictSearch) {
+          return;
+        }
+        lastTrackedDistrictSearch = query;
+        trackAnalyticsEvent('district_search', {
+          query,
+          result_count: state.filteredDistricts.length
+        });
+      }, 500);
 
       openSearchResults();
       renderSearchResults();
@@ -1380,6 +1433,10 @@
         button.className = 'search-result';
         button.textContent = formatDistrictName(district.name);
         button.addEventListener('click', async () => {
+          trackAnalyticsEvent('district_click', {
+            district_id: district.id,
+            source: 'search_result'
+          });
           await applyDistrictFilter(district);
         });
         searchResults.appendChild(button);
@@ -1479,6 +1536,13 @@
         name.href = spotPath(spot);
 
         name.textContent = spot.name;
+        name.addEventListener('click', () => {
+          trackAnalyticsEvent('spot_click', {
+            spot_id: spot.id,
+            short_code: spot.short_code,
+            source: 'name'
+          });
+        });
 
         const district = document.createElement('span');
         district.className = 'spot-district spot-district-button';
@@ -1494,6 +1558,10 @@
           if (!selectedDistrict) {
             return;
           }
+          trackAnalyticsEvent('district_click', {
+            district_id: selectedDistrict.id,
+            source: 'spot_card'
+          });
           await applyDistrictFilter(selectedDistrict);
         });
         district.addEventListener('keydown', async event => {
@@ -1505,6 +1573,10 @@
           if (!selectedDistrict) {
             return;
           }
+          trackAnalyticsEvent('district_click', {
+            district_id: selectedDistrict.id,
+            source: 'spot_card'
+          });
           await applyDistrictFilter(selectedDistrict);
         });
 
@@ -1515,6 +1587,13 @@
         const thumbLink = document.createElement('a');
         thumbLink.className = 'spot-thumb-link';
         thumbLink.href = spotPath(spot);
+        thumbLink.addEventListener('click', () => {
+          trackAnalyticsEvent('spot_click', {
+            spot_id: spot.id,
+            short_code: spot.short_code,
+            source: 'thumbnail'
+          });
+        });
 
         const thumb = document.createElement('div');
         thumb.className = 'spot-thumb';
@@ -1605,6 +1684,12 @@
       const districtLink = document.createElement('a');
       districtLink.className = 'spot-detail__district-link';
       districtLink.href = districtPath({ id: spot.district_id });
+      districtLink.addEventListener('click', () => {
+        trackAnalyticsEvent('district_click', {
+          district_id: spot.district_id,
+          source: 'spot_detail'
+        });
+      });
 
       const districtIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       districtIcon.setAttribute('class', 'spot-detail__district-icon');

@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"github.com/gin-gonic/gin"
+	"github.com/johnlinp/after-the-bloom/internal/analytics"
 )
 
 func TestAPIEndpoints(t *testing.T) {
@@ -24,7 +25,13 @@ func TestAPIEndpoints(t *testing.T) {
 	}
 
 	router := gin.New()
-	RegisterRoutes(router, store, filepath.Join("..", "..", "photos"), filepath.Join("..", "..", "web", "index.html"))
+	RegisterRoutes(
+		router,
+		store,
+		analytics.NewHandler(analytics.NoopRecorder{}, nil, nil),
+		filepath.Join("..", "..", "photos"),
+		filepath.Join("..", "..", "web", "index.html"),
+	)
 
 	knownShortCode := ""
 	knownShortCodeWithPhoto := ""

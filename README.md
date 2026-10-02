@@ -14,8 +14,69 @@ go run ./cmd/after-the-bloom
 
 The server binds to `PORT` when present and falls back to `8080`.
 
+## MongoDB
+
+MongoDB is the application's persistent database.
+
+Configure the database connection with:
+
+```bash
+export MONGODB_URI='mongodb+srv://...'
+export MONGODB_DATABASE='after_the_bloom'
+```
+
+Keep the connection URI in environment configuration rather than source
+control. The application creates the collections and indexes required by its
+enabled features.
+
+### Test MongoDB locally
+
+Start MongoDB 8 in Docker:
+
+```bash
+docker run --name after-the-bloom-mongo \
+  -p 27017:27017 \
+  -e MONGO_INITDB_ROOT_USERNAME=atb \
+  -e MONGO_INITDB_ROOT_PASSWORD=local-development-only \
+  -d mongo:8.0
+```
+
+On later runs, use `docker start after-the-bloom-mongo`. The local connection
+configuration is:
+
+```bash
+export MONGODB_URI='mongodb://atb:local-development-only@127.0.0.1:27017/?authSource=admin'
+export MONGODB_DATABASE='after_the_bloom_dev'
+```
+
+Open an interactive shell without installing `mongosh` locally:
+
+```bash
+docker exec -it after-the-bloom-mongo mongosh \
+  --username atb \
+  --password local-development-only \
+  --authenticationDatabase admin \
+  after_the_bloom_dev
+```
+
+## Analytics
+
+Analytics events help us understand how visitors use the site and where the experience can be improved.
+
+Analytics is disabled unless enabled in the environment:
+
+```bash
+export ANALYTICS_ENABLED=true
+```
+
+The Heroku Go buildpack runs `bin/go-post-compile`, which downloads the pinned
+GeoIP database to `data/geoip/dbip-country-lite.mmdb` in the deployed slug.
+Update `DBIP_COUNTRY_LITE_VERSION` in `bin/download-geoip` when adopting a newer
+monthly DB-IP release.
+
 ## API
 
+- `POST /api/v1/analytics/events`
 - `GET /api/v1/spots?page=1&limit=10`
 - `GET /api/v1/districts`
 - `GET /api/v1/districts/:districtId/spots?page=1&limit=10`

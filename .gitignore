@@ -1,3 +1,7 @@
 /place-retriever
 /place-validator
-/bin/
+/bin/*
+!/bin/download-geoip
+!/bin/go-post-compile
+/.env
+/data/geoip/*.mmdb

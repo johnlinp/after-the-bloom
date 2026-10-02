@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+GEOIP_DIR="$PROJECT_DIR/data/geoip"
+MMDB_PATH="$GEOIP_DIR/dbip-country-lite.mmdb"
+DBIP_COUNTRY_LITE_VERSION="${DBIP_COUNTRY_LITE_VERSION:-2026-09}"
+DOWNLOAD_URL="https://download.db-ip.com/free/dbip-country-lite-${DBIP_COUNTRY_LITE_VERSION}.mmdb.gz"
+TEMP_DIR="$(mktemp -d)"
+
+cleanup() {
+  rm -rf "$TEMP_DIR"
+}
+trap cleanup EXIT
+
+mkdir -p "$GEOIP_DIR"
+curl -fsSL "$DOWNLOAD_URL" -o "$TEMP_DIR/dbip-country-lite.mmdb.gz"
+gzip -dc "$TEMP_DIR/dbip-country-lite.mmdb.gz" > "$MMDB_PATH"
+echo "Stored DB-IP Country Lite ${DBIP_COUNTRY_LITE_VERSION} at $MMDB_PATH"
