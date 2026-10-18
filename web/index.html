@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="空折枝整理熄燈店家的資訊，讓你看看哪些熟悉的地方已經悄悄告別。" id="meta-description">
+  <link rel="canonical" href="https://afterthebloom.com/" id="canonical-link">
   <meta property="og:type" content="website" id="meta-og-type">
   <meta property="og:url" content="https://afterthebloom.com/" id="meta-og-url">
   <meta property="og:title" content="空折枝 - 哪裡有熄燈的店家？" id="meta-og-title">
@@ -1083,6 +1085,8 @@
     const menuPanel = document.getElementById('menu-panel');
     const feedbackModal = document.getElementById('feedback-modal');
     const feedbackModalFeatureVoteButton = document.getElementById('feedback-modal-featurevote');
+    const descriptionMeta = document.getElementById('meta-description');
+    const canonicalLink = document.getElementById('canonical-link');
     const ogTypeMeta = document.getElementById('meta-og-type');
     const ogURLMeta = document.getElementById('meta-og-url');
     const ogTitleMeta = document.getElementById('meta-og-title');
@@ -1128,6 +1132,8 @@
       }, defaultMetadata, metadata || {});
 
       document.title = next.title;
+      descriptionMeta.setAttribute('content', next.description);
+      canonicalLink.setAttribute('href', next.url);
       ogTypeMeta.setAttribute('content', next.type);
       ogURLMeta.setAttribute('content', next.url);
       ogTitleMeta.setAttribute('content', next.title);
@@ -1154,7 +1160,7 @@
       description += '空折枝持續整理這些悄悄告別的地方。';
 
       return {
-        title: `${defaultMetadata.siteName} - ${spot.name}`,
+        title: `${spot.name}（${district}） | ${defaultMetadata.siteName}`,
         description,
         url: canonicalURL(spotPath(spot)),
         image: canonicalURL(`/api/v1/spots/${encodeURIComponent(spot.id)}/thumbnail`)

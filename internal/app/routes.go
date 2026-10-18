@@ -189,7 +189,7 @@ func spotPageMetadata(spot SpotResponse) pageMetadata {
 	description += "空折枝持續整理這些悄悄告別的地方。"
 
 	return pageMetadata{
-		Title:       siteName + " - " + spot.Name,
+		Title:       spot.Name + "（" + districtName + "） | " + siteName,
 		Description: description,
 		URL:         siteURL + "spot/" + spot.ShortCode,
 		ImageURL:    siteURL + "api/v1/spots/" + spot.ID + "/thumbnail",
@@ -206,6 +206,8 @@ func serveIndexPage(c *gin.Context, indexPath string, meta pageMetadata) {
 
 	rendered := string(indexHTML)
 	rendered = replaceTitleTag(rendered, meta.Title)
+	rendered = replaceMetaContentByID(rendered, "meta-description", meta.Description)
+	rendered = replaceAttributeByID(rendered, "canonical-link", "href", meta.URL)
 	rendered = replaceMetaContentByID(rendered, "meta-og-url", meta.URL)
 	rendered = replaceMetaContentByID(rendered, "meta-og-title", meta.Title)
 	rendered = replaceMetaContentByID(rendered, "meta-og-description", meta.Description)
@@ -229,13 +231,17 @@ func replaceTitleTag(doc, value string) string {
 }
 
 func replaceMetaContentByID(doc, id, value string) string {
+	return replaceAttributeByID(doc, id, "content", value)
+}
+
+func replaceAttributeByID(doc, id, attribute, value string) string {
 	marker := `id="` + id + `"`
 	markerIndex := strings.Index(doc, marker)
 	if markerIndex == -1 {
 		return doc
 	}
 
-	tagStart := strings.LastIndex(doc[:markerIndex], "<meta")
+	tagStart := strings.LastIndex(doc[:markerIndex], "<")
 	if tagStart == -1 {
 		return doc
 	}
@@ -247,7 +253,7 @@ func replaceMetaContentByID(doc, id, value string) string {
 	tagEnd += markerIndex
 
 	tag := doc[tagStart : tagEnd+1]
-	contentMarker := `content="`
+	contentMarker := attribute + `="`
 	contentStart := strings.Index(tag, contentMarker)
 	if contentStart == -1 {
 		return doc

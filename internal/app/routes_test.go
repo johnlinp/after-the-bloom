@@ -56,6 +56,26 @@ func TestAPIEndpoints(t *testing.T) {
 		t.Fatal("expected at least one spot with both a short code and a thumbnail")
 	}
 
+	t.Run("home page metadata", func(t *testing.T) {
+		rec := httptest.NewRecorder()
+		req := httptest.NewRequest(http.MethodGet, "/", nil)
+		router.ServeHTTP(rec, req)
+
+		if rec.Code != http.StatusOK {
+			t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
+		}
+		body := rec.Body.String()
+		if !strings.Contains(body, `<title>`+defaultPageTitle+`</title>`) {
+			t.Fatal("expected home page title")
+		}
+		if !strings.Contains(body, `<meta name="description" content="`+defaultPageDescription+`" id="meta-description">`) {
+			t.Fatal("expected home page meta description")
+		}
+		if !strings.Contains(body, `<link rel="canonical" href="`+siteURL+`" id="canonical-link">`) {
+			t.Fatal("expected home page canonical URL")
+		}
+	})
+
 	t.Run("spots pagination", func(t *testing.T) {
 		rec := httptest.NewRecorder()
 		req := httptest.NewRequest(http.MethodGet, "/api/v1/spots?page=1&limit=10", nil)
@@ -179,7 +199,17 @@ func TestAPIEndpoints(t *testing.T) {
 		if !strings.Contains(body, `<meta property="og:url" content="https://afterthebloom.com/spot/`+knownShortCodeWithPhoto+`" id="meta-og-url">`) {
 			t.Fatal("expected spot page route to serve spot-specific og:url metadata")
 		}
-		if !strings.Contains(body, `<meta property="og:title" content="空折枝 - `+spot.Name+`" id="meta-og-title">`) {
+		expectedTitle := spot.Name + "（" + spot.DistrictName + "） | 空折枝"
+		if !strings.Contains(body, `<title>`+expectedTitle+`</title>`) {
+			t.Fatal("expected spot page route to serve a spot-specific title")
+		}
+		if !strings.Contains(body, `<meta name="description" content="`+spot.Name+`位於`+spot.DistrictName) {
+			t.Fatal("expected spot page route to serve a spot-specific meta description")
+		}
+		if !strings.Contains(body, `<link rel="canonical" href="https://afterthebloom.com/spot/`+knownShortCodeWithPhoto+`" id="canonical-link">`) {
+			t.Fatal("expected spot page route to serve a spot-specific canonical URL")
+		}
+		if !strings.Contains(body, `<meta property="og:title" content="`+expectedTitle+`" id="meta-og-title">`) {
 			t.Fatal("expected spot page route to serve spot-specific og:title metadata")
 		}
 		if !strings.Contains(body, `<meta property="og:image" content="https://afterthebloom.com/api/v1/spots/`+knownSpotIDWithPhoto+`/thumbnail" id="meta-og-image">`) {
