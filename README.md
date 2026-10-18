@@ -76,6 +76,7 @@ monthly DB-IP release.
 
 ## API
 
+- `GET /sitemap.xml`
 - `POST /api/v1/analytics/events`
 - `GET /api/v1/spots?page=1&limit=10`
 - `GET /api/v1/districts`

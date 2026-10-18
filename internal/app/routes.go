@@ -1,8 +1,10 @@
 package app
 
 import (
+	"encoding/xml"
 	"html"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -37,8 +39,26 @@ type pageMetadata struct {
 	SiteName    string
 }
 
+type sitemapURLSet struct {
+	XMLName xml.Name     `xml:"urlset"`
+	XMLNS   string       `xml:"xmlns,attr"`
+	URLs    []sitemapURL `xml:"url"`
+}
+
+type sitemapURL struct {
+	Location string `xml:"loc"`
+}
+
 func RegisterRoutes(router *gin.Engine, store *Store, analyticsHandler *analytics.Handler, photosDir, indexPath string) {
 	router.StaticFile("/favicon.svg", filepath.Join(filepath.Dir(indexPath), "favicon.svg"))
+	router.GET("/sitemap.xml", func(c *gin.Context) {
+		contents, err := buildSitemap(store)
+		if err != nil {
+			c.Status(http.StatusInternalServerError)
+			return
+		}
+		c.Data(http.StatusOK, "application/xml; charset=utf-8", contents)
+	})
 	router.GET("/", func(c *gin.Context) {
 		serveIndexPage(c, indexPath, defaultPageMetadata())
 	})
@@ -113,6 +133,37 @@ func RegisterRoutes(router *gin.Engine, store *Store, analyticsHandler *analytic
 			c.File(matches[0])
 		})
 	}
+}
+
+func buildSitemap(store *Store) ([]byte, error) {
+	urls := make([]sitemapURL, 0, 1+len(store.districts)+len(store.sortedAllSpotView))
+	urls = append(urls, sitemapURL{Location: siteURL})
+
+	for _, district := range store.Districts() {
+		urls = append(urls, sitemapURL{
+			Location: siteURL + "district/" + url.PathEscape(district.ID),
+		})
+	}
+
+	for _, spot := range store.sortedAllSpotView {
+		shortCode := strings.TrimSpace(spot.ShortCode)
+		if shortCode == "" {
+			continue
+		}
+		urls = append(urls, sitemapURL{
+			Location: siteURL + "spot/" + url.PathEscape(shortCode),
+		})
+	}
+
+	contents, err := xml.MarshalIndent(sitemapURLSet{
+		XMLNS: "http://www.sitemaps.org/schemas/sitemap/0.9",
+		URLs:  urls,
+	}, "", "  ")
+	if err != nil {
+		return nil, err
+	}
+
+	return append([]byte(xml.Header), contents...), nil
 }
 
 func defaultPageMetadata() pageMetadata {

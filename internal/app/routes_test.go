@@ -2,6 +2,7 @@ package app
 
 import (
 	"encoding/json"
+	"encoding/xml"
 	"net/http"
 	"net/http/httptest"
 	"path/filepath"
@@ -111,6 +112,51 @@ func TestAPIEndpoints(t *testing.T) {
 		}
 		if !strings.Contains(rec.Body.String(), "<svg") {
 			t.Fatal("expected favicon route to serve svg content")
+		}
+	})
+
+	t.Run("sitemap", func(t *testing.T) {
+		rec := httptest.NewRecorder()
+		req := httptest.NewRequest(http.MethodGet, "/sitemap.xml", nil)
+		router.ServeHTTP(rec, req)
+
+		if rec.Code != http.StatusOK {
+			t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
+		}
+		if contentType := rec.Header().Get("Content-Type"); contentType != "application/xml; charset=utf-8" {
+			t.Fatalf("Content-Type = %q, want application/xml; charset=utf-8", contentType)
+		}
+
+		var payload sitemapURLSet
+		if err := xml.Unmarshal(rec.Body.Bytes(), &payload); err != nil {
+			t.Fatalf("decode sitemap response: %v", err)
+		}
+		if payload.XMLNS != "http://www.sitemaps.org/schemas/sitemap/0.9" {
+			t.Fatalf("xmlns = %q, want sitemap protocol namespace", payload.XMLNS)
+		}
+
+		expectedURLCount := 1 + len(store.Districts())
+		for _, spot := range store.sortedAllSpotView {
+			if strings.TrimSpace(spot.ShortCode) != "" {
+				expectedURLCount++
+			}
+		}
+		if len(payload.URLs) != expectedURLCount {
+			t.Fatalf("len(urls) = %d, want %d", len(payload.URLs), expectedURLCount)
+		}
+
+		locations := make(map[string]bool, len(payload.URLs))
+		for _, sitemapURL := range payload.URLs {
+			locations[sitemapURL.Location] = true
+		}
+		if !locations[siteURL] {
+			t.Fatalf("expected sitemap to contain homepage %q", siteURL)
+		}
+		if !locations[siteURL+"district/tw-106"] {
+			t.Fatal("expected sitemap to contain a district page")
+		}
+		if !locations[siteURL+"spot/"+knownShortCode] {
+			t.Fatal("expected sitemap to contain a spot page")
 		}
 	})
 
