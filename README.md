@@ -1,6 +1,8 @@
-# 空折枝 / After the Bloom
+# After the Bloom
 
-A Gin-based single-page web application for browsing permanently closed local businesses, backed by the `data/atb-20260601.json` dataset loaded into memory at startup.
+When local businesses close for good, they can become hard to find and remember. After the Bloom helps people rediscover these places by browsing permanently closed local businesses.
+
+Visit [https://afterthebloom.com/](https://afterthebloom.com/).
 
 ## Requirements
 
