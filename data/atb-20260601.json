@@ -221,6 +221,51 @@
       "short_code": "O96I4g"
     },
     {
+      "id": "a931efe8-0a45-4a9c-a090-e33d1d79f584",
+      "name": "仙園海鮮會館",
+      "zip_code": "406",
+      "google_map_url": "https://maps.app.goo.gl/TwPPtURBHyQiL6d27",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026/10",
+      "short_code": "vKDqCv"
+    },
+    {
+      "id": "ae0d25e9-7f54-404b-9b89-debadd139954",
+      "name": "聖華宮 雙囍會館",
+      "zip_code": "408",
+      "google_map_url": "https://maps.app.goo.gl/NUmcRH5c6JHcQCCJ6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026/2",
+      "short_code": "CxNZOB"
+    },
+    {
+      "id": "bff820fc-823e-47dd-9521-c6ffe5066175",
+      "name": "聖華宮素菜餐廳-彰化店",
+      "zip_code": "500",
+      "google_map_url": "https://maps.app.goo.gl/bdG1nY5i61wNtykJ9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019",
+      "short_code": "nP1PoJ"
+    },
+    {
+      "id": "5f6af65d-702d-435c-bf52-2012b3a261c0",
+      "name": "水舞饌 茶餐廳 崇德店",
+      "zip_code": "406",
+      "google_map_url": "https://maps.app.goo.gl/XPQ4pZWoWcJexoa56",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "rCydHx"
+    },
+    {
+      "id": "4397adfb-7edf-47d5-81c7-86b3eba93fb1",
+      "name": "耕心園",
+      "zip_code": "406",
+      "google_map_url": "https://maps.app.goo.gl/WUyYKeU9eKrukzWn8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2021",
+      "short_code": "i3aLt6"
+    },
+    {
       "id": "88a37bfb-eef1-4e32-acd7-94dc6e02f23a",
       "name": "Al Dente",
       "zip_code": "10491",
