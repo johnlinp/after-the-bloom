@@ -1346,6 +1346,51 @@
       "short_code": "XhGlGW"
     },
     {
+      "id": "024d2ef9-d698-467c-be5f-d5d87b570867",
+      "name": "周胖子餃子館",
+      "zip_code": "112",
+      "google_map_url": "https://maps.app.goo.gl/EFFRLuPxt4jRMRdN7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2022",
+      "short_code": "XXg3bc"
+    },
+    {
+      "id": "afe87d9e-3439-4136-acd9-6e8f93363d79",
+      "name": "皇池溫泉一館",
+      "zip_code": "112",
+      "google_map_url": "https://maps.app.goo.gl/rXJ1jEEMme6nroJNA",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026",
+      "short_code": "TcBT6j"
+    },
+    {
+      "id": "b2c83037-7544-4475-b75c-19f77083d467",
+      "name": "萬家福量販 北投店",
+      "zip_code": "112",
+      "google_map_url": "https://maps.app.goo.gl/sBfPZMufcra2wbDh8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "2MtG0J"
+    },
+    {
+      "id": "7c25761f-db43-425d-900f-d7d22b3bc4af",
+      "name": "熱海大飯店",
+      "zip_code": "112",
+      "google_map_url": "https://maps.app.goo.gl/XduofM8pVY91Zsmm6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024",
+      "short_code": "gga38d"
+    },
+    {
+      "id": "80188062-7aa1-41b9-a711-3ba48cc7ad00",
+      "name": "神旺大飯店 台北",
+      "zip_code": "172",
+      "google_map_url": "https://maps.app.goo.gl/Uh5aDQBoGzLYCc1C7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2022/9",
+      "short_code": "HA0YOs"
+    },
+    {
       "id": "e2a7c2de-0107-4ca3-b8fd-3cf6cc5419d6",
       "name": "麥當勞-台中逢甲餐廳",
       "zip_code": "407",
