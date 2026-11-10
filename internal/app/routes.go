@@ -50,7 +50,7 @@ type sitemapURL struct {
 }
 
 func RegisterRoutes(router *gin.Engine, store *Store, analyticsHandler *analytics.Handler, photosDir, indexPath string) {
-	router.StaticFile("/favicon.svg", filepath.Join(filepath.Dir(indexPath), "favicon.svg"))
+	router.StaticFile("/favicon.png", filepath.Join(filepath.Dir(indexPath), "favicon.png"))
 	router.GET("/sitemap.xml", func(c *gin.Context) {
 		contents, err := buildSitemap(store)
 		if err != nil {

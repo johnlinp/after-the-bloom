@@ -3,6 +3,7 @@ package app
 import (
 	"encoding/json"
 	"encoding/xml"
+	"image/png"
 	"net/http"
 	"net/http/httptest"
 	"path/filepath"
@@ -124,14 +125,21 @@ func TestAPIEndpoints(t *testing.T) {
 
 	t.Run("favicon route", func(t *testing.T) {
 		rec := httptest.NewRecorder()
-		req := httptest.NewRequest(http.MethodGet, "/favicon.svg", nil)
+		req := httptest.NewRequest(http.MethodGet, "/favicon.png", nil)
 		router.ServeHTTP(rec, req)
 
 		if rec.Code != http.StatusOK {
 			t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
 		}
-		if !strings.Contains(rec.Body.String(), "<svg") {
-			t.Fatal("expected favicon route to serve svg content")
+		if got := rec.Header().Get("Content-Type"); got != "image/png" {
+			t.Fatalf("Content-Type = %q, want image/png", got)
+		}
+		config, err := png.DecodeConfig(rec.Body)
+		if err != nil {
+			t.Fatalf("decode favicon PNG: %v", err)
+		}
+		if config.Width != 192 || config.Height != 192 {
+			t.Fatalf("favicon dimensions = %dx%d, want 192x192", config.Width, config.Height)
 		}
 	})
 
