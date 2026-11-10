@@ -71,10 +71,8 @@ Analytics is disabled unless enabled in the environment:
 export ANALYTICS_ENABLED=true
 ```
 
-The Heroku Go buildpack runs `bin/go-post-compile`, which downloads the pinned
+The Heroku Go buildpack runs `bin/go-post-compile`, which downloads the current month's
 GeoIP database to `data/geoip/dbip-country-lite.mmdb` in the deployed slug.
-Update `DBIP_COUNTRY_LITE_VERSION` in `bin/download-geoip` when adopting a newer
-monthly DB-IP release.
 
 ## API
 

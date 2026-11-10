@@ -5,7 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 GEOIP_DIR="$PROJECT_DIR/data/geoip"
 MMDB_PATH="$GEOIP_DIR/dbip-country-lite.mmdb"
-DBIP_COUNTRY_LITE_VERSION="${DBIP_COUNTRY_LITE_VERSION:-2026-09}"
+DBIP_COUNTRY_LITE_VERSION="$(date +%Y-%m)"
 DOWNLOAD_URL="https://download.db-ip.com/free/dbip-country-lite-${DBIP_COUNTRY_LITE_VERSION}.mmdb.gz"
 TEMP_DIR="$(mktemp -d)"
 
