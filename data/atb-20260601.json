@@ -1472,6 +1472,33 @@
       "short_code": "NuvC4V"
     },
     {
+      "id": "a779ed3c-b778-4387-98be-2c5284fef4cc",
+      "name": "美滿小料理",
+      "zip_code": "407",
+      "google_map_url": "https://maps.app.goo.gl/BBzwjS2MgruRxADn9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026",
+      "short_code": "iuHZc0"
+    },
+    {
+      "id": "afacda90-3de8-464e-be5b-6ce5b79253af",
+      "name": "瑰覓Gui Mi 逢甲店 早午餐盤 |義大利麵 |台中美食",
+      "zip_code": "407",
+      "google_map_url": "https://maps.app.goo.gl/qdXb7jB2LEUCMZoi7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026",
+      "short_code": "2uHM8n"
+    },
+    {
+      "id": "edaeb442-6d1b-4d16-a7d0-0ebae1ceedd9",
+      "name": "爛漫小料理",
+      "zip_code": "403",
+      "google_map_url": "https://maps.app.goo.gl/WE8REV1dmLTEpkds9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025",
+      "short_code": "d6siHM"
+    },
+    {
       "id": "075b70c9-3609-4986-b759-26b999a7d142",
       "name": "在地居麵食館",
       "zip_code": "106",
