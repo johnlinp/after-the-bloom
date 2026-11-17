@@ -1499,6 +1499,33 @@
       "short_code": "d6siHM"
     },
     {
+      "id": "b99dacdf-97a5-47e3-b8f2-48d06ace843b",
+      "name": "Pinknic野餐吧",
+      "zip_code": "110",
+      "google_map_url": "https://maps.app.goo.gl/yLVxoBDn2DHDyHq18",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2018",
+      "short_code": "UOOjjd"
+    },
+    {
+      "id": "7d6d9175-ebb2-4a53-b74f-d2dd616f625b",
+      "name": "Pinknic野餐吧 忠孝小房間",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/wLWMpYhgEQWLy6bW9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2017",
+      "short_code": "QaPgxm"
+    },
+    {
+      "id": "41dfa1d3-3a56-414c-8dc3-f7086901cf76",
+      "name": "Pique Nique",
+      "zip_code": "112",
+      "google_map_url": "https://maps.app.goo.gl/dPBYngPwqxtK7i8D8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2024",
+      "short_code": "F19h3j"
+    },
+    {
       "id": "075b70c9-3609-4986-b759-26b999a7d142",
       "name": "在地居麵食館",
       "zip_code": "106",
