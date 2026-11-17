@@ -1526,6 +1526,114 @@
       "short_code": "F19h3j"
     },
     {
+      "id": "25247c9a-5092-4fca-a3ba-52763bb7a6c5",
+      "name": "好樂迪KTV",
+      "zip_code": "900",
+      "google_map_url": "https://maps.app.goo.gl/z2GTMBM8LVNH4yJF9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2025/10",
+      "short_code": "hbG1G6"
+    },
+    {
+      "id": "934c0a25-5823-4630-9dbf-f1428b0bc023",
+      "name": "皇星汽車旅館",
+      "zip_code": "900",
+      "google_map_url": "https://maps.app.goo.gl/StERVe8c5HGkspQQ9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2026",
+      "short_code": "0siH0U"
+    },
+    {
+      "id": "10bd5e8d-aee6-4ac8-b17c-4d6be4c8251f",
+      "name": "漢城",
+      "zip_code": "10491",
+      "google_map_url": "https://maps.app.goo.gl/PCtvMqxdE6kZVkNn7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019",
+      "short_code": "2H6btj"
+    },
+    {
+      "id": "fba1ea63-e891-4e74-800b-0eb5db730675",
+      "name": "叉子廚房",
+      "zip_code": "220",
+      "google_map_url": "https://maps.app.goo.gl/jYpTLGz8s9v48h2r6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023",
+      "short_code": "5w5Oby"
+    },
+    {
+      "id": "2d33affc-2041-421e-a65b-dbe271fcec3e",
+      "name": "曬太陽洋食小館",
+      "zip_code": "100",
+      "google_map_url": "https://maps.app.goo.gl/1sNv8gy49SzKXbrp8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2023",
+      "short_code": "OJXS3e"
+    },
+    {
+      "id": "5887f1ae-d288-49d5-81e9-ae93b6cdc05d",
+      "name": "宅涮涮鍋",
+      "zip_code": "106",
+      "google_map_url": "https://maps.app.goo.gl/zb3uv7XMuoSzP3Md8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019",
+      "short_code": "DBU77R"
+    },
+    {
+      "id": "8c15feba-462b-4213-abca-9bee39ec4d99",
+      "name": "乍牛 炸牛排專賣 台中新光中港店",
+      "zip_code": "407",
+      "google_map_url": "https://maps.app.goo.gl/y6rGUGpH5gQCwZZn7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019",
+      "short_code": "3yTuMC"
+    },
+    {
+      "id": "980f4b12-7754-4850-9ace-4ff0dc49d18a",
+      "name": "三田製麵所 台北車站店",
+      "zip_code": "100",
+      "google_map_url": "https://maps.app.goo.gl/Ldb6ihMc5kFLRtdp6",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019",
+      "short_code": "2rYm0O"
+    },
+    {
+      "id": "05debfed-0f9f-4b39-a5bd-da1e72fd9597",
+      "name": "三田製麵所 環球板橋車站店",
+      "zip_code": "220",
+      "google_map_url": "https://maps.app.goo.gl/SfjFtNPituTkcdfW7",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019",
+      "short_code": "3W7970"
+    },
+    {
+      "id": "fc6df0dc-7557-4b24-a182-55de01847e3c",
+      "name": "三田製麵所 台北統一時代店",
+      "zip_code": "110",
+      "google_map_url": "https://maps.app.goo.gl/vYk4EZYaGSPdye4K8",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2018",
+      "short_code": "ilU9KY"
+    },
+    {
+      "id": "a6e8af47-b8f1-4187-ba9a-8715788273b8",
+      "name": "三田製麵所 南港車站店",
+      "zip_code": "115",
+      "google_map_url": "https://maps.app.goo.gl/LsbxzMZJTter9Aew9",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019",
+      "short_code": "D3KelJ"
+    },
+    {
+      "id": "075a426b-4887-423e-a7df-1307a47029fe",
+      "name": "三田製麵所 台中中友店",
+      "zip_code": "404",
+      "google_map_url": "https://maps.app.goo.gl/7Yui1H3moXwoxaV79",
+      "current_business_status": "permanently closed",
+      "permanently_closed_on": "2019",
+      "short_code": "hFACNo"
+    },
+    {
       "id": "075b70c9-3609-4986-b759-26b999a7d142",
       "name": "在地居麵食館",
       "zip_code": "106",
